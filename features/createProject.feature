@@ -1,10 +1,10 @@
 Feature: create project
-  Scenario: project created successfully
+  Scenario: user creates project successfully
     Given user is logged in as projectleader
     When project is created
     Then project is created and available
 
-  Scenario: project creation failed
+  Scenario: user is not authorized to create project
     Given user is not logged in as projectleader
     When project is created
     Then project is not created
