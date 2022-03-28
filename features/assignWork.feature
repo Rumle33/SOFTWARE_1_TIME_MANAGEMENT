@@ -4,7 +4,7 @@ Feature: Assign work
     And co-worker is assigned to project
     And co-worker is available
     When co-worker is assigned to activity
-    Then then the co-worker is assigned :)
+    Then then the co-worker is assigned
 
   Scenario: co-worker not assigned on project
     Given user is logged in as projectleader
@@ -20,6 +20,5 @@ Feature: Assign work
 
   Scenario: user is not projectleader
     Given user is not projectleader
-    And co-worker is not available
     When co-worker is assigned to activity
     Then print error message "co-worker not available"
