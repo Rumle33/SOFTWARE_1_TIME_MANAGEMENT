@@ -1,4 +1,4 @@
-public class ProjectLeader implements Employee{
+public class ProjectLeader extends Employee{
     @Override
     protected void createProject() {
 
@@ -17,5 +17,25 @@ public class ProjectLeader implements Employee{
     @Override
     protected boolean isAvailable() {
         return false;
+    }
+
+    public void createActivity(){
+
+    }
+
+    public void setTimeEstimate(double estimate){
+
+    }
+
+    public void setStartDate(String date){
+
+    }
+
+    public void setEndDate(String date){
+
+    }
+
+    public void assignEmployee(Activity activity){
+
     }
 }

@@ -1,4 +1,4 @@
-public class DevelopmentEmployee implements Employee {
+public class DevelopmentEmployee extends Employee {
     @Override
     protected void createProject() {
 
@@ -17,5 +17,13 @@ public class DevelopmentEmployee implements Employee {
     @Override
     protected boolean isAvailable() {
         return false;
+    }
+
+    public void chooseProjectLeader(){
+
+    }
+
+    protected void registerTimeWorked(){
+
     }
 }
