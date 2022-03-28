@@ -1,4 +1,8 @@
-public class ProjectLeader extends Employee{
+package dtu;
+
+import dtu.Employee;
+
+public class DevelopmentEmployee extends Employee {
     @Override
     protected void createProject() {
 
@@ -19,23 +23,11 @@ public class ProjectLeader extends Employee{
         return false;
     }
 
-    public void createActivity(){
+    public void chooseProjectLeader(){
 
     }
 
-    public void setTimeEstimate(double estimate){
-
-    }
-
-    public void setStartDate(String date){
-
-    }
-
-    public void setEndDate(String date){
-
-    }
-
-    public void assignEmployee(Activity activity){
+    protected void registerTimeWorked(){
 
     }
 }
