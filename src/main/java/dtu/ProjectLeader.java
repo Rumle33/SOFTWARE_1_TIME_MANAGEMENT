@@ -3,6 +3,9 @@ package dtu;
 import dtu.Employee;
 
 public class ProjectLeader extends Employee {
+
+    private Project assignedProject;
+
     @Override
     protected void createProject() {
 
