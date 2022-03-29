@@ -2,9 +2,19 @@ package dtu;
 
 import dtu.Employee;
 
+import java.util.ArrayList;
+
 public class ProjectLeader extends Employee {
 
-    private Project assignedProject;
+    private ArrayList<Project> active_projects = new ArrayList<Project>();
+    private ArrayList<Activity> active_activities = new ArrayList<Activity>();
+    protected Project assignedProject; //The project that the given person is project leader on
+    protected boolean available;
+
+    public ProjectLeader(Project assignedProject, String initials){
+        super(initials);
+        this.assignedProject = assignedProject;
+    }
 
     @Override
     protected void createProject() {
@@ -22,12 +32,21 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
-    protected boolean isAvailable() {
-        return false;
+    protected boolean getAvailable() {
+        return available;
     }
 
-    public void createActivity(){
+    @Override
+    protected void setAvailable(boolean available) {
+        this.available = available;
+    }
 
+    protected String getInitials(){
+        return super.getInitials();
+    }
+
+    public void createActivity(String start_date, String end_date, String activity_name){
+        this.assignedProject.activities.add(new Activity(start_date, end_date,activity_name));
     }
 
     public void setTimeEstimate(double estimate){
@@ -42,7 +61,9 @@ public class ProjectLeader extends Employee {
 
     }
 
-    public void assignEmployee(Activity activity){
-
+    public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee){
+        if (employee.active_projects.contains(this.assignedProject)){
+            employee.active_activities.add(activity);
+        }
     }
 }
