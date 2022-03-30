@@ -6,7 +6,10 @@ public class DevelopmentEmployee extends Employee {
 
     protected ArrayList<Project> active_projects = new ArrayList<Project>();
     protected ArrayList<Activity> active_activities = new ArrayList<Activity>();
+    protected ArrayList<DevelopmentEmployee> DevelopmentE = new ArrayList<DevelopmentEmployee>();
+    protected ArrayList<ProjectLeader> ProjectLeader = new ArrayList<ProjectLeader>();
     private boolean available;
+    private boolean ifChoosenleader;
 
     public DevelopmentEmployee(String initials) {
         super(initials);
@@ -45,7 +48,19 @@ public class DevelopmentEmployee extends Employee {
         this.active_projects.add(project);
     }
 
-    public void chooseProjectLeader(){
+    public void chooseProjectLeader(boolean ifChoosenleader, ArrayList<DevelopmentEmployee> dev){
+        this.ifChoosenleader = ifChoosenleader;
+        this.DevelopmentE = dev;
+
+
+
+
+
+
+
+    }
+
+    protected  void voteForProjectleader (DevelopmentEmployee dev){
 
     }
 
