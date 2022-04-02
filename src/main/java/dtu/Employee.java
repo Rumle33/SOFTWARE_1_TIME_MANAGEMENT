@@ -2,10 +2,13 @@ package dtu;
 
 import java.util.ArrayList;
 
-abstract class Employee {
+abstract public class Employee {
     private String initials;
-    private ArrayList<Project> active_projects = new ArrayList<Project>();
-    private ArrayList<Activity> active_activities = new ArrayList<Activity>();
+    private boolean available;
+
+    public Employee(String initials){
+        this.initials = initials;
+    }
 
     abstract protected void createProject();
 
@@ -13,6 +16,12 @@ abstract class Employee {
 
     abstract protected void seekAssistance();
 
-    abstract protected boolean isAvailable();
+    abstract protected boolean getAvailable();
+
+    abstract protected void setAvailable(boolean available);
+
+    protected String getInitials(){
+        return this.initials;
+    }
 
 }
