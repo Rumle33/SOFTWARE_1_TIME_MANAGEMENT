@@ -1,5 +1,7 @@
 package dtu;
 
+import jdk.internal.icu.text.UnicodeSet;
+
 import java.util.ArrayList;
 
 public class DevelopmentEmployee extends Employee {
@@ -10,6 +12,7 @@ public class DevelopmentEmployee extends Employee {
     protected ArrayList<ProjectLeader> ProjectLeader = new ArrayList<ProjectLeader>();
     private boolean available;
     private boolean ifChoosenleader;
+
 
     public DevelopmentEmployee(String initials) {
         super(initials);
@@ -48,20 +51,16 @@ public class DevelopmentEmployee extends Employee {
         this.active_projects.add(project);
     }
 
-    public void chooseProjectLeader(boolean ifChoosenleader, ArrayList<DevelopmentEmployee> dev){
-        this.ifChoosenleader = ifChoosenleader;
-        this.DevelopmentE = dev;
+    protected void chooseProjectLeader(boolean ifChoosenleader, DevelopmentEmployee dev){
+        DevelopmentE.add(dev);
+        this.DevelopmentE.remove(true);
 
-
-
-
-
-
+        //this.dev.add(new ProjectLeader(ProjectLeader));
 
     }
 
     protected  void voteForProjectleader (DevelopmentEmployee dev){
-
+       // dev.add(ProjectLeader);
     }
 
     protected void registerTimeWorked(){
