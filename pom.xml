@@ -25,7 +25,7 @@
 			<!-- The Surefire Plugin is needed to run JUnit 5 tests with Maven -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
+				<version>2.12.4</version>
 				<configuration>
 				</configuration>
 			</plugin>

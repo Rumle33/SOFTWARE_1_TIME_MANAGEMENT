@@ -9,7 +9,7 @@ import io.cucumber.java.en_old.Ac;
 
 import static org.junit.Assert.*;
 
-public class assignWorkTest {
+public class Test {
 
     DevelopmentEmployee Jens = new DevelopmentEmployee("j");
     Project project = new Project("project");
@@ -17,7 +17,7 @@ public class assignWorkTest {
     Activity activity = new Activity("29-03-2022", "20-06-2022", "activity");
 
 
-    public assignWorkTest(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
+    public Test(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
         this.Jens = Jens;
         this.Casper = Casper;
         this.project = project;
