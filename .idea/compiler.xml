@@ -7,13 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="empty_project" />
-        <module name="put_your_project_name_here" />
+        <module name="Group6" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="put_your_project_name_here" options="" />
+      <module name="Group6" options="" />
     </option>
   </component>
 </project>
