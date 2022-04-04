@@ -11,4 +11,9 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="put_your_project_name_here" options="--add-modules java.base --add-exports java.base/jdk.internal.icu.text=ALL-UNNAMED" />
+    </option>
+  </component>
 </project>
