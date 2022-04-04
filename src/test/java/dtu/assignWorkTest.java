@@ -9,7 +9,7 @@ import io.cucumber.java.en_old.Ac;
 
 import static org.junit.Assert.*;
 
-public class assignWork {
+public class assignWorkTest {
 
     DevelopmentEmployee Jens = new DevelopmentEmployee("j");
     Project project = new Project("project");
@@ -17,7 +17,7 @@ public class assignWork {
     Activity activity = new Activity("29-03-2022", "20-06-2022", "activity");
 
 
-    public assignWork(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
+    public assignWorkTest(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
         this.Jens = Jens;
         this.Casper = Casper;
         this.project = project;
@@ -28,7 +28,7 @@ public class assignWork {
 
     @Given("user is projectleader")
     public void userProjectleader(){
-        assertSame(Casper.getClass(), ProjectLeader.class);
+        assertSame(this.Casper.getClass(), ProjectLeader.class);
     }
 
     @Given("co-worker is assigned to same project as leader")
@@ -51,6 +51,8 @@ public class assignWork {
     public void assigned(){
         assertTrue(Jens.active_activities.contains(activity));
     }
+
+
     /*
      * Note that the constructor is apparently never called, but there are no null
      * pointer exceptions regarding that libraryApp is not set. When creating the

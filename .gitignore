@@ -1,1 +1,7 @@
 /target/
+
+
+# Macs
+.DS_Store
+.idea
+

@@ -21,7 +21,7 @@ class ProjectleaderTest {
     @Given("user votes for another user")
     public void userVote(){
 
-        assertTrue(5==5);
+
     }
 
     @Given("input is valid")
