@@ -17,8 +17,9 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
-    protected void createProject() {
-
+    protected Project createProject(String name) {
+        Project project = new Project(name);
+        return project;
     }
 
     @Override
