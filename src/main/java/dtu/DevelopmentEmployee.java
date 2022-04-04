@@ -1,7 +1,5 @@
 package dtu;
 
-//import jdk.internal.icu.text.UnicodeSet;
-
 import java.util.ArrayList;
 
 public class DevelopmentEmployee extends Employee {
@@ -19,8 +17,9 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected void createProject() {
-
+    protected Project createProject(String name) {
+        Project project = new Project(name);
+        return project;
     }
 
     @Override

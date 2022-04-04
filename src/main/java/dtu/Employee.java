@@ -10,7 +10,7 @@ abstract public class Employee {
         this.initials = initials;
     }
 
-    abstract protected void createProject();
+    abstract protected Project createProject(String name);
 
     abstract protected void registerTimeWorked(int time);
 

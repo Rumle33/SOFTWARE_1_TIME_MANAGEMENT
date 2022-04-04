@@ -18,6 +18,10 @@ public class Project {
         return name;
     }
 
+    public void addActivity(Activity activity) {
+        activities.add(activity);
+    }
+
     public ArrayList<Activity> getActivities() {
         return activities;
     }
