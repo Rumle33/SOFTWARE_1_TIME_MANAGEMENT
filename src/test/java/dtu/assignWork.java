@@ -28,7 +28,7 @@ public class assignWork {
 
     @Given("user is projectleader")
     public void userProjectleader(){
-        assertSame(Casper.getClass(), ProjectLeader.class);
+        assertSame(this.Casper.getClass(), ProjectLeader.class);
     }
 
     @Given("co-worker is assigned to same project as leader")
