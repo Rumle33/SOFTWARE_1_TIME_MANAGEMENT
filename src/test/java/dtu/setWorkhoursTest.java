@@ -17,10 +17,8 @@ public class setWorkhoursTest {
     String invalid_input = "to komma fem";
     double activity_hours_before;
 
-    public setWorkhoursTest(){
-    }
 
-    @Given("user input is valid - hours worked")
+    @Given("user input is {float} - hours worked")
     public void inputHours(){
         assertEquals(valid_input, (double) valid_input, 0.0);
     }
@@ -36,7 +34,7 @@ public class setWorkhoursTest {
         assertEquals(activity.getHoursWorked(), activity_hours_before + valid_input, 0.0);
     }
 
-    @Given("user input is not valid - hours worked")
+    @Given("user input is {string} - hours worked")
     public void inputHoursInvalid(){
         assertNotEquals(invalid_input.getClass(), double.class);
     }
@@ -52,6 +50,16 @@ public class setWorkhoursTest {
 //    @Then("workhours are not registered")
 //    public void hoursNotRegistered(){
 //        assertEquals(activity.getHoursWorked(), activity_hours_before + valid_input, 0.0);
+//    }
+
+//    @Given("user is developmentemployee")
+//    public void userIsDevelopmentEmployee(){
+//        assertSame(this.Jens.getClass(), DevelopmentEmployee.class);
+//    }
+//
+//    @Given("user is projectleader")
+//    public void userIsProjectLeader(){
+//        assertSame(this.Casper.getClass(), ProjectLeader.class);
 //    }
 
 }

@@ -1,14 +1,8 @@
 package dtu;
 
-import java.util.List;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en_old.Ac;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
@@ -21,18 +15,10 @@ public class assignWorkTest {
     private Activity activity = new Activity("29-03-2022", "20-06-2022", "activity");
 
 
-    public assignWorkTest(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
-        this.Jens = Jens;
-        this.Casper = Casper;
-        this.project = project;
-        this.activity = activity;
-        this.Jens.setAvailable(true);
+    @Given("user is projectleader")
+    public void userProjectleader(){
+        assertSame(this.Casper.getClass(), ProjectLeader.class);
     }
-
-//    @Given("user is projectleader")
-//    public void userProjectleader(){
-//        assertSame(this.Casper.getClass(), ProjectLeader.class);
-//    }
 
     @Given("co-worker is assigned to same project as leader")
     public void isAssignedToProject(){
@@ -42,6 +28,7 @@ public class assignWorkTest {
 
     @Given("co-worker is available")
     public void isAvailable(){
+        this.Jens.setAvailable(true);
         assertTrue(this.Jens.getAvailable());
     }
 
@@ -55,6 +42,16 @@ public class assignWorkTest {
         assertTrue(Jens.active_activities.contains(activity));
     }
 
+
+    @Given("co-worker is not assigned to project")
+    public void notassigned(){
+        assertFalse(Jens.active_activities.contains(activity));
+    }
+
+    @Then("print error message {string}")
+    public void printError(){
+
+    }
 
     /*
      * Note that the constructor is apparently never called, but there are no null
