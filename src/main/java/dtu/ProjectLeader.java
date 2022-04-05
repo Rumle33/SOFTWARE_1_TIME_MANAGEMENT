@@ -10,6 +10,7 @@ public class ProjectLeader extends Employee {
     private ArrayList<Activity> active_activities = new ArrayList<Activity>();
     protected Project assignedProject; //The project that the given person is project leader on
     protected boolean available;
+    protected double hours_worked;
 
     public ProjectLeader(Project assignedProject, String initials){
         super(initials);
@@ -23,8 +24,9 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
-    protected void registerTimeWorked(int time) {
-
+    protected void registerTimeWorked(double time, Activity activity) {
+        this.hours_worked += time;
+        activity.addHoursWorked(time);
     }
 
     @Override

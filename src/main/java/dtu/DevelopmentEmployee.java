@@ -10,6 +10,7 @@ public class DevelopmentEmployee extends Employee {
     protected ArrayList<ProjectLeader> ProjectLeader = new ArrayList<ProjectLeader>();
     private boolean available;
     private boolean ifChoosenleader;
+    protected double hours_worked;
 
 
     public DevelopmentEmployee(String initials) {
@@ -23,9 +24,11 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected void registerTimeWorked(int time) {
-
+    protected void registerTimeWorked(double time, Activity activity) {
+        this.hours_worked += time;
+        activity.addHoursWorked(time);
     }
+
 
     @Override
     protected void seekAssistance() {

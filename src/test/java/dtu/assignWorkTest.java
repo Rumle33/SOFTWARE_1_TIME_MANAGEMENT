@@ -6,18 +6,22 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en_old.Ac;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-public class Test {
 
-    DevelopmentEmployee Jens = new DevelopmentEmployee("j");
-    Project project = new Project("project");
-    ProjectLeader Casper = new ProjectLeader(project,"c");
-    Activity activity = new Activity("29-03-2022", "20-06-2022", "activity");
+public class assignWorkTest {
+
+    private DevelopmentEmployee Jens = new DevelopmentEmployee("j");
+    private Project project = new Project("project");
+    private ProjectLeader Casper = new ProjectLeader(project,"c");
+    private Activity activity = new Activity("29-03-2022", "20-06-2022", "activity");
 
 
-    public Test(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
+    public assignWorkTest(DevelopmentEmployee Jens, ProjectLeader Casper, Project project, Activity activity){
         this.Jens = Jens;
         this.Casper = Casper;
         this.project = project;
@@ -25,11 +29,10 @@ public class Test {
         this.Jens.setAvailable(true);
     }
 
-
-    @Given("user is projectleader")
-    public void userProjectleader(){
-        assertSame(this.Casper.getClass(), ProjectLeader.class);
-    }
+//    @Given("user is projectleader")
+//    public void userProjectleader(){
+//        assertSame(this.Casper.getClass(), ProjectLeader.class);
+//    }
 
     @Given("co-worker is assigned to same project as leader")
     public void isAssignedToProject(){

@@ -2,6 +2,7 @@ package dtu;
 
 public class Activity {
     private double estimated_Time = 0;
+    private double hours_worked;
     private String start_Date = "";
     private String end_Date = "";
     private String name = "";
@@ -38,5 +39,13 @@ public class Activity {
 
     public void setEndDate(String end_Date) {
         this.end_Date = end_Date;
+    }
+
+    public void addHoursWorked(double hours){
+        hours_worked += hours;
+    }
+
+    public double getHoursWorked(){
+        return hours_worked;
     }
 }

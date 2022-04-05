@@ -12,7 +12,7 @@ abstract public class Employee {
 
     abstract protected Project createProject(String name);
 
-    abstract protected void registerTimeWorked(int time);
+    abstract protected void registerTimeWorked(double time, Activity activity);
 
     abstract protected void seekAssistance();
 
