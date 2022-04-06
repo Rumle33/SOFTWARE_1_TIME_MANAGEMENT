@@ -28,7 +28,7 @@ public class CreateProjectTest {
 
     @Then("project is added to users projectlist, Casper")
     public void projectCreatedCasper() {
-        Casper.assignToProject(project);
+//        Casper.assignToProject(project);
     }
 
     @Given("user is logged in as developmentemployee")

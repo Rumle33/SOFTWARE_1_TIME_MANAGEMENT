@@ -2,6 +2,8 @@ package dtu;
 
 import dtu.Employee;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class ProjectLeader extends Employee {
@@ -19,8 +21,7 @@ public class ProjectLeader extends Employee {
 
     @Override
     protected Project createProject(String name) {
-        Project project = new Project(name);
-        return project;
+        return new Project(name);
     }
 
     @Override

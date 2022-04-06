@@ -50,7 +50,7 @@ public class assignWorkTest {
 
     @Then("print error message {string}")
     public void printError(){
-
+        //Hvordan får man den til at tjekke et print/output/Error?
     }
 
     /*
