@@ -6,6 +6,7 @@ public class Activity {
     private String start_Date = "";
     private String end_Date = "";
     private String name = "";
+    private boolean isPersonal = false;
 
     public Activity(String start_Date, String end_Date, String name) {
         this.start_Date = start_Date;
@@ -47,5 +48,13 @@ public class Activity {
 
     public double getHoursWorked(){
         return hours_worked;
+    }
+
+    public boolean isPersonal() {
+        return this.isPersonal;
+    }
+
+    public void setPersonal(boolean personal) {
+        this.isPersonal = personal;
     }
 }

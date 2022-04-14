@@ -5,6 +5,7 @@ public class Project {
     private ProjectLeader projectleader = null;
     private String name = "";
     protected ArrayList<Activity> activities = new ArrayList<Activity>();
+    protected ArrayList<DevelopmentEmployee> devs_in_project = new ArrayList<DevelopmentEmployee>();
 
     public Project(String name) {
         this.name = name;
@@ -19,10 +20,14 @@ public class Project {
     }
 
     public void addActivity(Activity activity) {
-        activities.add(activity);
+        this.activities.add(activity);
     }
 
-    public ArrayList<Activity> getActivities() {
-        return activities;
+    public Activity getActivity(int index) {
+        return this.activities.get(index);
+    }
+
+    public void addDevToProject(DevelopmentEmployee dev) {
+        this.devs_in_project.add(dev);
     }
 }

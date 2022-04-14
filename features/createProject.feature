@@ -1,10 +1,10 @@
 Feature: create project
-  Scenario: user creates project successfully
-    Given user is logged in as projectleader
-    When project is created, Casper
-    Then project is added to users projectlist, Casper
-
-  Scenario: user is not authorized to create project
+  Scenario: developmentemployee creates project
     Given user is logged in as developmentemployee
-    When project is created, Jens
-    Then project is added to users projectlist, Jens
+    When developmentemployee creates project
+    Then project is added to developmentemployees projectlist
+
+  Scenario: projectleader creates project
+    Given user is logged in as projectleader
+    When projectleader creates project
+    Then project is added to projectleaders projectlist

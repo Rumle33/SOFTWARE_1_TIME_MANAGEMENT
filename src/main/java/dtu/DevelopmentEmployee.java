@@ -68,4 +68,12 @@ public class DevelopmentEmployee extends Employee {
     protected void registerTimeWorked(){
 
     }
+
+    protected void addActivity(Activity activity) {
+        this.active_activities.add(activity);
+    }
+
+    public Activity getActivity(int index) {
+        return this.active_activities.get(index);
+    }
 }

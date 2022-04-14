@@ -10,6 +10,7 @@ public class ProjectLeader extends Employee {
 
     private ArrayList<Project> active_projects = new ArrayList<Project>();
     private ArrayList<Activity> active_activities = new ArrayList<Activity>();
+    private ArrayList<DevelopmentEmployee> devs_in_assignedProject = new ArrayList<DevelopmentEmployee>();
     protected Project assignedProject; //The project that the given person is project leader on
     protected boolean available;
     protected double hours_worked;
@@ -45,29 +46,49 @@ public class ProjectLeader extends Employee {
         this.available = available;
     }
 
-    protected String getInitials(){
+    protected String getInitials() {
         return super.getInitials();
     }
 
-    public void createActivity(String start_date, String end_date, String activity_name){
-        this.assignedProject.activities.add(new Activity(start_date, end_date,activity_name));
+    public void createActivity(String start_date, String end_date, String activity_name) {
+        this.assignedProject.addActivity(new Activity(start_date, end_date,activity_name));
     }
 
-    public void setTimeEstimate(double estimate){
+    public void addDevToProject(DevelopmentEmployee dev) {
+        this.assignedProject.addDevToProject(dev);
+    }
+
+    public void createPersonalActivity(DevelopmentEmployee dev, Activity activity) {
+        dev.addActivity(activity);
+    }
+
+    public void setTimeEstimate(double estimate) {
 
     }
 
-    public void setStartDate(String date){
+    public void setStartDate(String date) {
 
     }
 
-    public void setEndDate(String date){
+    public void setEndDate(String date) {
 
     }
 
-    public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee){
+    protected void assignToProject(Project project) {
+        this.active_projects.add(project);
+    }
+
+    public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee) {
         if (employee.active_projects.contains(this.assignedProject)){
             employee.active_activities.add(activity);
         }
+    }
+
+    public Activity getActivity(int index) {
+        return this.active_activities.get(index);
+    }
+
+    public int getNumberOfActivities() {
+        return this.active_activities.size();
     }
 }
