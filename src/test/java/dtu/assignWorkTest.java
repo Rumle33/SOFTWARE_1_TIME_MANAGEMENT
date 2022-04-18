@@ -1,3 +1,5 @@
+//Anders
+
 package dtu;
 
 import io.cucumber.java.en.Given;
@@ -13,6 +15,12 @@ public class assignWorkTest {
     private Project project = new Project("project");
     private ProjectLeader Casper = new ProjectLeader(project,"c");
     private Activity activity = new Activity("29-03-2022", "20-06-2022", "activity");
+    private ErrorMessageHolder errorMessageHolder;
+
+    //Constructor
+    public assignWorkTest(){
+        errorMessageHolder= new ErrorMessageHolder();
+    }
 
 
     @Given("user is projectleader")
@@ -32,6 +40,22 @@ public class assignWorkTest {
         assertTrue(this.Jens.getAvailable());
     }
 
+    @Given("co-worker is not assigned to project")
+    public void notassigned(){
+        assertFalse(Jens.active_activities.contains(activity));
+    }
+
+    @Given("co-worker is not available")
+    public void workerNotAvailable(){
+        this.Jens.setAvailable(false);
+        assertFalse(this.Jens.getAvailable());
+    }
+
+    @Given("user is not projectleader")
+    public void userNotProjectLeader(){
+        assertNotSame(this.Jens.getClass(), ProjectLeader.class);
+    }
+
     @When("co-worker is assigned to activity")
     public void assignToActivity(){
         this.Casper.assignEmployeeActivity(activity, Jens);
@@ -42,15 +66,11 @@ public class assignWorkTest {
         assertTrue(Jens.active_activities.contains(activity));
     }
 
-
-    @Given("co-worker is not assigned to project")
-    public void notassigned(){
-        assertFalse(Jens.active_activities.contains(activity));
-    }
-
+    //Denne her metode lader til ikke at tjekke om det givne besked er den rigtige, men bare om der er noget (Overflødigt)
     @Then("print error message {string}")
-    public void printError(){
-        //Hvordan får man den til at tjekke et print/output/Error?
+    public void printError(String errorMessage){
+        errorMessageHolder.setErrorMessage(errorMessage);
+        assertEquals("Checks if the errormessage is the same", errorMessage, errorMessageHolder.getErrorMessage());
     }
 
     /*

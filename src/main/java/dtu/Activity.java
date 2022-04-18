@@ -1,5 +1,7 @@
 package dtu;
 
+import java.util.InputMismatchException;
+
 public class Activity {
     private double estimated_Time = 0;
     private double hours_worked;
@@ -42,8 +44,12 @@ public class Activity {
         this.end_Date = end_Date;
     }
 
-    public void addHoursWorked(double hours){
-        hours_worked += hours;
+    public void addHoursWorked(double hours) throws InputMismatchException {
+        try {
+            hours_worked += hours;
+        } catch (InputMismatchException e){
+            System.out.println("Exeption: " + e);
+        }
     }
 
     public double getHoursWorked(){
