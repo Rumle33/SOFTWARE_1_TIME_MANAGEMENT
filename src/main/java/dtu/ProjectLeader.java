@@ -62,8 +62,8 @@ public class ProjectLeader extends Employee {
         dev.addActivity(activity);
     }
 
-    public void setTimeEstimate(double estimate) {
-
+    public void setTimeEstimate(double estimate, Activity activity) {
+        activity.setEstimatedTime(estimate);
     }
 
     public void setStartDate(String date) {

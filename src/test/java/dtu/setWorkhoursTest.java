@@ -24,7 +24,7 @@ public class setWorkhoursTest {
         assertEquals(hours, (double) hours, 0.0);
     }
 
-    @When("{float} is inputted - Projectlader")
+    @When("{float} is inputted - Projectleader")
     public void hoursInputted(Float hours){
         activity_hours_before = activity.getHoursWorked();
         this.Casper.registerTimeWorked(hours, activity);
