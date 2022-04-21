@@ -1,7 +1,5 @@
 package dtu;
 
-import java.util.ArrayList;
-
 abstract public class Employee {
     private String initials;
     private boolean available;

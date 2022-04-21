@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="empty_project" />
         <module name="Group6" />
+        <module name="put_your_project_name_here" />
       </profile>
     </annotationProcessing>
   </component>

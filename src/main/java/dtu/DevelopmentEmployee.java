@@ -53,16 +53,10 @@ public class DevelopmentEmployee extends Employee {
         this.active_projects.add(project);
     }
 
-    protected void chooseProjectLeader(boolean ifChoosenleader, DevelopmentEmployee dev){
-        DevelopmentE.add(dev);
+    protected void chooseProjectLeader(DevelopmentEmployee dev){
         this.DevelopmentE.remove(true);
-
         //this.dev.add(new ProjectLeader(ProjectLeader));
 
-    }
-
-    protected  void voteForProjectleader (DevelopmentEmployee dev){
-       // dev.add(ProjectLeader);
     }
 
     protected void registerTimeWorked(){
