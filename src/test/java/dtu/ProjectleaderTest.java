@@ -1,40 +1,32 @@
 package dtu;
-
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertSame;
 
-import static org.junit.Assert.assertTrue;
-
-class ProjectleaderTest {
+public class ProjectleaderTest {
     DevelopmentEmployee Jens = new DevelopmentEmployee("j");
     Project project = new Project("project");
     ProjectLeader Casper = new ProjectLeader(project,"c");
 
-    public void choose_projectleader(DevelopmentEmployee Jens, ProjectLeader Casper){
-        this.Jens = Jens;
-        this.Casper = Casper;
-        this.project = project;
+    @Given("user is developmentemployee")
+    public void user_is_developmentemployee() {
+        assertSame(this.Casper.getClass(), DevelopmentEmployee.class);
     }
 
-    @Given("user votes for another user")
-    public void userVote(){
+    @And("chosen employee is developmentemployee")
+    public void Employee_is_developmentemployee (){
+        assertSame(Casper, Jens);
+    }
+
+    @When("developmentemployee is chosen")
+    public void DevelopmentE(){
 
 
     }
-
-    @Given("input is valid")
-    public void Inputvalid(){
-
-    }
-
-    @When("user votes")
-    public void user_votes(){
-
-    }
-    @Then("vote is registered")
-    public void VoteRegi(){
+    @Then("developmentemployee becomes projectleader")
+    public void Becomes_projectleader(){
 
     }
 }
