@@ -10,10 +10,7 @@ public class ProjectleaderTest {
     Project project = new Project("project");
     ProjectLeader Casper = new ProjectLeader(project,"c");
 
-    @Given("user is developmentemployee")
-    public void user_is_developmentemployee() {
-        assertSame(this.Casper.getClass(), DevelopmentEmployee.class);
-    }
+
 
     @And("chosen employee is developmentemployee")
     public void Employee_is_developmentemployee (){

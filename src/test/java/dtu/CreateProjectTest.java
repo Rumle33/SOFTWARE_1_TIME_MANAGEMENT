@@ -17,6 +17,10 @@ public class CreateProjectTest {
     }
 
     // isDevelopmentEmployee() is in CreateActivityTest.java
+    @Given("user is developmentemployee")
+    public void userIsDevelopmentEmployee(){
+        assertSame(this.Jens.getClass(), DevelopmentEmployee.class);
+    }
 
     @When("developmentemployee creates project")
     public void devCreatesProject() {

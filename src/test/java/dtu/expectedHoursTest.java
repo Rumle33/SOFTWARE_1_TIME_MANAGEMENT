@@ -6,7 +6,7 @@ import io.cucumber.java.en.When;
 
 import static org.junit.Assert.*;
 
-public class expectedHours {
+public class expectedHoursTest {
 
     Project project = new Project("project");
     ProjectLeader Casper = new ProjectLeader(project, "C");
