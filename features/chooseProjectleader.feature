@@ -5,10 +5,10 @@ Feature: choose Projectleader
     Given user is developmentemployee
     And chosen employee is developmentemployee
     When developmentemployee is chosen
-    Then developmentemployee becomes projectleader
+    Then developmentemployee is projectleader
 
-#  Scenario: invalid input for vote
-#    Given user votes for another user
-#    And input is invalid
-#    When user votes
-#    Then vote is not registered
+  Scenario: invalid input for vote
+    Given user is not a developmentemployee
+    And chosen employee is not a developmentemployee
+    When developmentemployee is not chosen
+    Then developmentemployee does not becomes projectleader

@@ -1,5 +1,4 @@
 package dtu;
-
 import java.util.ArrayList;
 
 public class DevelopmentEmployee extends Employee {
@@ -9,7 +8,6 @@ public class DevelopmentEmployee extends Employee {
     protected ArrayList<DevelopmentEmployee> DevelopmentE = new ArrayList<DevelopmentEmployee>();
     protected ArrayList<ProjectLeader> ProjectLeader = new ArrayList<ProjectLeader>();
     private boolean available;
-    private boolean ifChoosenleader;
     protected double hours_worked;
 
 
@@ -29,7 +27,11 @@ public class DevelopmentEmployee extends Employee {
         activity.addHoursWorked(time);
     }
 
+    public void Make_devE_Projectleader(DevelopmentEmployee dev) {
+        //ProjectLeader.add(dev);
 
+
+    }
     @Override
     protected void seekAssistance() {
 
@@ -70,4 +72,6 @@ public class DevelopmentEmployee extends Employee {
     public Activity getActivity(int index) {
         return this.active_activities.get(index);
     }
+
+
 }
