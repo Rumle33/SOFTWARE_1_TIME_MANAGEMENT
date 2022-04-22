@@ -28,7 +28,7 @@ public class ProjectleaderTest {
     @Then("developmentemployee is projectleader")
     public void Becomes_projectleader(){
         // HVORFOR VIRKER DET IKKE ?!?
-        //assertSame(Jens, ProjectLeader.class);
+       // assertSame(this.Jens.getClass(), ProjectLeader.class);
     }
 
     // invalid input test
@@ -38,7 +38,7 @@ public class ProjectleaderTest {
     }
     @And("chosen employee is not a developmentemployee")
     public void chosen_employee_is_not_a_developmentemployee() {
-       // assertNotSame(this.Jens.getClass(), DevelopmentEmployee.class);
+        assertNotSame(this.Jens, DevelopmentEmployee.class);
     }
 
     @When("developmentemployee is not chosen")
@@ -46,9 +46,9 @@ public class ProjectleaderTest {
 
 
     }
-    @Then("developmentemployee does not becomes projectleader")
+    @Then("developmentemployee isnt projectleader")
     public void developmentemployee_does_not_becomes_projectleader() {
-       // assertNotSame(Jens, ProjectLeader.class);
+        assertNotSame(this.Jens, ProjectLeader.class);
     }
 
 }

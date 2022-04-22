@@ -11,4 +11,4 @@ Feature: choose Projectleader
     Given user is not a developmentemployee
     And chosen employee is not a developmentemployee
     When developmentemployee is not chosen
-    Then developmentemployee does not becomes projectleader
+    Then developmentemployee isnt projectleader
