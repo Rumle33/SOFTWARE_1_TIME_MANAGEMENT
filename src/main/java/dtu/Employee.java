@@ -10,7 +10,7 @@ abstract public class Employee {
 
     abstract protected Project createProject(String name);
 
-    abstract protected void registerTimeWorked(double time, Activity activity);
+    abstract protected void registerHoursWorked(double hours, Activity activity);
 
     abstract protected void seekAssistance();
 

@@ -18,9 +18,13 @@ public class expectedHoursTest {
         this.Casper.setTimeEstimate(hours, activity);
     }
 
-    @Then("{float} workhours are added on activity")
-    public void hoursAdded(Float hours){
+    @Then("{float} workhours are assigned on activity")
+    public void hoursAssigned(Float hours){
         assertEquals(activity.getEstimatedTime(), hours, 0.0);
     }
 
+    @Then("{float} workhours are not assigned")
+    public void hoursNotAssigned(Float hours){
+        assertNotEquals(activity.getEstimatedTime(), hours, 0.0);
+    }
 }

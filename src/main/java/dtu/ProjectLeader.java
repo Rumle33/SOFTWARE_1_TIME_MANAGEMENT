@@ -26,7 +26,7 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
-    protected void registerTimeWorked(double time, Activity activity) {
+    protected void registerHoursWorked(double time, Activity activity) {
         this.hours_worked += time;
         activity.addHoursWorked(time);
     }

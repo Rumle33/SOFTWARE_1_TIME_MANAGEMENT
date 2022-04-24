@@ -22,9 +22,9 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected void registerTimeWorked(double time, Activity activity) {
-        this.hours_worked += time;
-        activity.addHoursWorked(time);
+    protected void registerHoursWorked(double hours, Activity activity) {
+        this.hours_worked += hours;
+        activity.addHoursWorked(hours);
     }
 
     public void Make_devE_Projectleader(DevelopmentEmployee dev) {
@@ -58,10 +58,6 @@ public class DevelopmentEmployee extends Employee {
     protected void chooseProjectLeader(DevelopmentEmployee dev){
         this.DevelopmentE.remove(true);
         //this.dev.add(new ProjectLeader(ProjectLeader));
-
-    }
-
-    protected void registerTimeWorked(){
 
     }
 

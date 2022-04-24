@@ -1,24 +1,24 @@
 Feature: register workhours
   Scenario: register hours successfully
     Given user is projectleader
-    And user input is 2.5 - hours worked
-    When workhours are inputted
-    Then workhours are registered
+    And user input is valid - 2.5
+    When 2.5 is inputted
+    Then 2.5 is registered
 
   Scenario: register hours with invalid input
     Given user is projectleader
-    And user input is "to komma fem" - hours worked
-#    When wrong workhours are inputted
-#    Then workhours are not registered
-
-  Scenario: register hours successfully
-    Given user is developmentemployee
-    And user input is 2.5 - hours worked
-    When 2.5 is inputted - Developmentemployee
-    Then 2.5 hours are registered
-
-  Scenario: register hours successfully
-    Given user is developmentemployee
-    And user input is "to komma fem" - hours worked
+    And user input is invalid - "to komma fem"
     When "to komma fem" is inputted
-    Then print error message "Invalid input"
+    Then nothing is not registered
+
+  Scenario: register hours successfully
+    Given user is developmentemployee
+    And user input is valid - 2.5
+    When 2.5 is inputted - Developmentemployee
+    Then 2.5 is registered
+
+  Scenario: register hours successfully
+    Given user is developmentemployee
+    And user input is invalid - "to komma fem"
+    When "to komma fem" is inputted - Developmentemployee
+    Then nothing is not registered
