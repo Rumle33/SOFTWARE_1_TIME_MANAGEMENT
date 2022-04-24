@@ -1,22 +1,18 @@
 package dtu;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+import javax.swing.*;
 
-public class GUIApplication extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GUIApplication.class.getResource("application"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
-    }
+public class GUIApplication extends JFrame{
+
+    private JLabel Label_enter_name;
 
     public static void main(String[] args) {
-        launch();
+        GUIApplication h = new GUIApplication();
+        h.setTitle("Application");
+        h.setSize(300,300);
+        h.setVisible(true);
+        h.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 }
+
