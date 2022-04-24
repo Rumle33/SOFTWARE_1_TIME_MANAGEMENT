@@ -27,14 +27,21 @@ public class ProjectleaderTest {
     }
     @Then("developmentemployee is projectleader")
     public void Becomes_projectleader(){
-//        assertSame(this.project.getProjectLeader(), ProjectLeader.class);
-        assertEquals(this.project.getProjectLeader().toString(), this.Jens.toString());
+        assertSame(this.project.getProjectLeader().getClass(), ProjectLeader.class);
+
+    }
+
+    @And("employee has same initials")
+    public void same_intitials(){
+        assertEquals(this.project.getProjectLeader().getInitials(), this.Jens.getInitials());
+
     }
 
     // invalid input test
     @Given("user is not a developmentemployee")
     public void user_is_not_a_developmentemployee() {
         assertNotSame(this.Casper, DevelopmentEmployee.class);
+
     }
     @And("chosen employee is not a developmentemployee")
     public void chosen_employee_is_not_a_developmentemployee() {

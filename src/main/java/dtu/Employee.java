@@ -2,7 +2,6 @@ package dtu;
 
 abstract public class Employee {
     private String initials;
-    private boolean available;
 
     public Employee(String initials){
         this.initials = initials;
