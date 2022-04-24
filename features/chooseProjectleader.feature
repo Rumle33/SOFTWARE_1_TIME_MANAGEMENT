@@ -7,7 +7,7 @@ Feature: choose Projectleader
     Then developmentemployee is projectleader
     And employee has same initials
 
-  Scenario: invalid input for vote
+  Scenario: invalid input for choosing projectleader
     Given user is not a developmentemployee
     And chosen employee is not a developmentemployee
     When developmentemployee is not chosen
