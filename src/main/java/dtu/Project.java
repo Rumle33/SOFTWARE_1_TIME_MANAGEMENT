@@ -30,4 +30,15 @@ public class Project {
     public void addDevToProject(DevelopmentEmployee dev) {
         this.devs_in_project.add(dev);
     }
+
+    public void Make_devE_Projectleader(DevelopmentEmployee dev) {
+        String ca = dev.toString();
+        if(devs_in_project.contains(dev)){
+            devs_in_project.remove(dev);
+        }
+        this.projectleader = new ProjectLeader(this, ca);
+
+    }
+
+
 }

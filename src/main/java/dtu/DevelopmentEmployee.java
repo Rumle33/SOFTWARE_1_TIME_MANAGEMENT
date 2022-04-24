@@ -27,11 +27,6 @@ public class DevelopmentEmployee extends Employee {
         activity.addHoursWorked(hours);
     }
 
-    public void Make_devE_Projectleader(DevelopmentEmployee dev) {
-        //ProjectLeader.add(dev);
-
-
-    }
     @Override
     protected void seekAssistance() {
 
