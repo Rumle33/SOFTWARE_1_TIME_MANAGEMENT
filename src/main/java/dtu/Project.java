@@ -39,6 +39,4 @@ public class Project {
         this.projectleader = new ProjectLeader(this, ca);
 
     }
-
-
 }

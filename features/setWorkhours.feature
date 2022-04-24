@@ -1,3 +1,5 @@
+# Anders
+
 Feature: register workhours
   Scenario: register hours successfully
     Given user is projectleader

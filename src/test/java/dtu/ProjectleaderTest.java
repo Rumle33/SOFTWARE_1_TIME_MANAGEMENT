@@ -27,8 +27,8 @@ public class ProjectleaderTest {
     }
     @Then("developmentemployee is projectleader")
     public void Becomes_projectleader(){
-        //assertSame(this.project.getProjectLeader(), ProjectLeader.class);
-        assertEquals(this.project.getProjectLeader().toString(), Jens.toString());
+//        assertSame(this.project.getProjectLeader(), ProjectLeader.class);
+        assertEquals(this.project.getProjectLeader().toString(), this.Jens.toString());
     }
 
     // invalid input test

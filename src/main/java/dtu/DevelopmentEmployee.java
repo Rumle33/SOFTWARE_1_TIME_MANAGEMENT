@@ -64,5 +64,7 @@ public class DevelopmentEmployee extends Employee {
         return this.active_activities.get(index);
     }
 
-
+    public String toString(){
+        return super.toString();
+    }
 }

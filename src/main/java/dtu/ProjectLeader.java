@@ -91,4 +91,8 @@ public class ProjectLeader extends Employee {
     public int getNumberOfActivities() {
         return this.active_activities.size();
     }
+
+    public String toString(){
+        return super.toString();
+    }
 }
