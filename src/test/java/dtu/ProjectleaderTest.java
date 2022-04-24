@@ -41,7 +41,6 @@ public class ProjectleaderTest {
     @Given("user is not a developmentemployee")
     public void user_is_not_a_developmentemployee() {
         assertNotSame(this.Casper, DevelopmentEmployee.class);
-
     }
     @And("chosen employee is not a developmentemployee")
     public void chosen_employee_is_not_a_developmentemployee() {
