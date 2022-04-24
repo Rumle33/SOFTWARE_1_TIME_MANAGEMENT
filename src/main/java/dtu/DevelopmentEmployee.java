@@ -63,6 +63,4 @@ public class DevelopmentEmployee extends Employee {
     public Activity getActivity(int index) {
         return this.active_activities.get(index);
     }
-
-
 }

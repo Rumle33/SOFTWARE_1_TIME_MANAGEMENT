@@ -32,13 +32,11 @@ public class Project {
     }
 
     public void Make_devE_Projectleader(DevelopmentEmployee dev) {
-        String ca = dev.toString();
+        String ca = dev.getInitials();
         if(devs_in_project.contains(dev)){
             devs_in_project.remove(dev);
         }
         this.projectleader = new ProjectLeader(this, ca);
 
     }
-
-
 }
