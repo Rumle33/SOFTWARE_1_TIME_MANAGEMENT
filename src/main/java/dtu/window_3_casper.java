@@ -3,6 +3,7 @@ package dtu;
 import javax.swing.*;
 
 public class window_3_casper {
+
     JFrame frame = new JFrame("Application");
     private JLabel LABELCASPER;
     private JPanel panel1;

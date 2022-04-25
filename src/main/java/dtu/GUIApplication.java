@@ -17,6 +17,10 @@ public class GUIApplication implements ActionListener {
         jensButton.setFocusable(false);
         jensButton.addActionListener(this);
 
+        casperButton.setBounds(100,160,200,40);
+        casperButton.setFocusable(false);
+        casperButton.addActionListener(this);
+
         frame.setSize(1000, 1000);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,9 +33,9 @@ public class GUIApplication implements ActionListener {
             frame.dispose();
             window_2_jens myWindow = new window_2_jens();
         }
-        if(e.getSource() == casperButton) {
+        if (e.getSource() == casperButton){
             frame.dispose();
-            window_3_casper myWindowCasper = new window_3_casper();
+            window_3_casper myWindow = new window_3_casper();
         }
     }
 }
