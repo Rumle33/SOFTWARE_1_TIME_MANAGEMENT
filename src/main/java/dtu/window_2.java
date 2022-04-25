@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class window_2 {
 
-     JFrame frame = new JFrame();
+     JFrame frame = new JFrame("Application");
 
 
      window_2() {
@@ -13,5 +13,4 @@ public class window_2 {
          frame.setVisible(true);
 
      }
-
 }
