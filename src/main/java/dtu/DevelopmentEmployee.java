@@ -29,13 +29,6 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected void seekAssistance(Employee employee, Project project, Activity activity) {
-        if (employee.getAvailable() || employee.getProjects().contains(project) || employee.getActivities().contains(activity)){
-            employee.addAssistingActivity(activity);
-        }
-    }
-
-    @Override
     protected boolean getAvailable() {
         return this.available;
     }
@@ -65,12 +58,50 @@ public class DevelopmentEmployee extends Employee {
         this.assisting_activities.add(activity);
     }
 
+    @Override
+    protected void seekAssistance(Employee employee, Project project, Activity activity) {
+       if (employee.getAvailable() || employee.getActivities().contains(activity)){
+           if ((employee.getProjects().contains(project) || this.active_projects.contains(project))){
+               employee.addAssistingActivity(activity);
+           }
+        }
+    }
+
+    @Override
+    protected void acceptAssistance(Activity activity) {
+        try{
+            if (this.active_activities.size() <= 20 || this.active_projects.contains(activity.getProject())){
+                this.active_activities.add(activity);
+                this.assisting_activities.remove(activity);
+            } else {
+                System.out.println("For mange aktive aktiviteter");
+            }
+        } catch (Exception e){
+            System.out.println("Aktiviteten du forsøger at assistere på, findes ikke i dine anmodninger" + e);
+        }
+    }
+
+    @Override
+    protected void denyAssistance(Activity activity) {
+        try{
+            this.assisting_activities.remove(activity);
+        } catch (Exception e){
+            System.out.println("Aktiviteten du forsøger fjerne fra dine anmodninger, findes ikke i dine anmodninger" + e);
+        }
+    }
+
     protected String getInitials(){
         return super.getInitials();
     }
 
+    @Override
     protected void assignToProject(Project project) {
         this.active_projects.add(project);
+    }
+
+    @Override
+    protected void removeFromProject(Project project) {
+        this.active_projects.remove(project);
     }
 
     protected void chooseProjectLeader(DevelopmentEmployee dev){

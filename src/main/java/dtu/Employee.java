@@ -27,6 +27,14 @@ abstract public class Employee {
 
     abstract protected void addAssistingActivity(Activity activity);
 
+    abstract protected void acceptAssistance(Activity activity);
+
+    abstract protected void denyAssistance(Activity activity);
+
+    abstract protected void assignToProject(Project project);
+
+    abstract protected void removeFromProject(Project project);
+
     protected String getInitials(){
         return this.initials;
     }

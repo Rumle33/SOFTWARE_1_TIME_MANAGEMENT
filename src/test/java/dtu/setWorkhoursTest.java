@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 public class setWorkhoursTest {
 
     Project project = new Project("project");
-    Activity activity = new Activity("04-04-2022", "05-05-2022", "activity");
     ProjectLeader Casper = new ProjectLeader(project, "C");
+    Activity activity = new Activity("04-04-2022", "05-05-2022", "activity", this.Casper.assignedProject);
     DevelopmentEmployee Jens = new DevelopmentEmployee("J");
     double hours_worked;
     double invalid_hours_worked;

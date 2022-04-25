@@ -30,11 +30,6 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
-    protected void seekAssistance(Employee employee, Project project, Activity activity) {
-
-    }
-
-    @Override
     protected boolean getAvailable() {
         return available;
     }
@@ -64,12 +59,43 @@ public class ProjectLeader extends Employee {
         this.assisting_activities.add(activity);
     }
 
+    @Override
+    protected void seekAssistance(Employee employee, Project project, Activity activity) {
+        if (employee.getAvailable() || (employee.getProjects().contains(project) || this.active_projects.contains(project))
+                || employee.getActivities().contains(activity)){
+            employee.addAssistingActivity(activity);
+        }
+    }
+
+    @Override
+    protected void acceptAssistance(Activity activity) {
+        try{
+            if (this.active_activities.size() <= 20){
+                this.active_activities.add(activity);
+                this.assisting_activities.remove(activity);
+            } else {
+                System.out.println("For mange aktive aktiviteter");
+            }
+        } catch (Exception e){
+            System.out.println("Aktiviteten du forsøger at assistere på, findes ikke i dine anmodninger" + e);
+        }
+    }
+
+    @Override
+    protected void denyAssistance(Activity activity) {
+        try{
+             this.assisting_activities.remove(activity);
+        } catch (Exception e){
+            System.out.println("Aktiviteten du forsøger fjerne fra dine anmodninger, findes ikke i dine anmodninger" + e);
+        }
+    }
+
     protected String getInitials() {
         return super.getInitials();
     }
 
     public void createActivity(String start_date, String end_date, String activity_name) {
-        this.assignedProject.addActivity(new Activity(start_date, end_date,activity_name));
+        this.assignedProject.addActivity(new Activity(start_date, end_date,activity_name, this.assignedProject));
     }
 
     public void addDevToProject(DevelopmentEmployee dev) {
@@ -92,9 +118,16 @@ public class ProjectLeader extends Employee {
 
     }
 
+    @Override
     protected void assignToProject(Project project) {
         this.active_projects.add(project);
     }
+
+    @Override
+    protected void removeFromProject(Project project) {
+        this.active_projects.remove(project);
+    }
+
 
     public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee) {
         if (employee.active_projects.contains(this.assignedProject)){
