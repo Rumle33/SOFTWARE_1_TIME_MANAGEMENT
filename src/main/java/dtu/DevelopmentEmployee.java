@@ -48,6 +48,10 @@ public class DevelopmentEmployee extends Employee {
         return this.active_projects;
     }
 
+    protected Project getProject(int index) {
+        return this.active_projects.get(index);
+    }
+
     @Override
     protected ArrayList<Activity> getAssistingActivities() {
         return this.assisting_activities;

@@ -110,12 +110,12 @@ public class ProjectLeader extends Employee {
         activity.setEstimatedTime(estimate);
     }
 
-    public void setStartDate(String date) {
-
+    public void setStartDate(String date, Activity activity) {
+        activity.setStartDate(date);
     }
 
-    public void setEndDate(String date) {
-
+    public void setEndDate(String date, Activity activity) {
+        activity.setEndDate(date);
     }
 
     @Override
