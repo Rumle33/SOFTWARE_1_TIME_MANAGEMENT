@@ -24,9 +24,9 @@ public class seekHelpTest {
 
     @Given("user has activity assigned")
     public void userHasActivity(){
-        this.Jens.active_activities.add(activity);
+        this.Jens.addActivity(activity);
         assertFalse("Tjekker om listen af aktiviteter er tom",
-                this.Jens.active_activities.isEmpty());
+                this.Jens.getActivities().isEmpty());
     }
 
     @Given("co-worker requested is available")
