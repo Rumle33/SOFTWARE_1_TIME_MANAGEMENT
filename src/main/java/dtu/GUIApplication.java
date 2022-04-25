@@ -11,6 +11,7 @@ public class GUIApplication implements ActionListener {
     public JButton jensButton;
     JFrame frame = new JFrame("Time management application");
 
+
     GUIApplication() {
 
         jensButton.setBounds(100,160,200,40);
@@ -20,7 +21,6 @@ public class GUIApplication implements ActionListener {
         frame.setSize(300, 300);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(new GUIApplication().panel1);
 
     }
 
