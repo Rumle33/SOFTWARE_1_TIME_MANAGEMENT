@@ -8,7 +8,6 @@ public class ProjectLeader extends Employee {
     private ArrayList<Project> active_projects = new ArrayList<Project>();
     private ArrayList<Activity> active_activities = new ArrayList<Activity>();
     private ArrayList<Activity> assisting_activities = new ArrayList<>();
-    private ArrayList<DevelopmentEmployee> devs_in_assignedProject = new ArrayList<DevelopmentEmployee>();
     protected Project assignedProject; //The project that the given person is project leader on
     protected boolean available;
     protected double hours_worked;
