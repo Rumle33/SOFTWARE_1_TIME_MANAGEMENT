@@ -1,58 +1,63 @@
-//Anders
-
 package dtu;
 
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
-public class seekHelpTest {
+public class SeekHelpTest {
+    private DevelopmentEmployee Jens;
+    private DevelopmentEmployee Bo;
+    private Activity activity;
 
-    Project project = new Project("project");
-    Activity activity = new Activity("04-04-2022", "05-05-2022", "activity");
-    ProjectLeader Casper = new ProjectLeader(project, "C");
-    DevelopmentEmployee Jens = new DevelopmentEmployee("J");
-
-    @Given("user is employee")
-    public void userIsEmployee(){
-//        assertSame(this.Jens.super.class, Employee.class);
+    public SeekHelpTest() {
+         this.Jens = new DevelopmentEmployee("jens");
+         this.Bo = new DevelopmentEmployee("bo");
+         this.activity = new Activity("01/01-2022", "31/12-2022", "activity");
+//         for(int i = 0; i < 6; i++) {
+//             this.Jens.addDevToList(new DevelopmentEmployee("person" + i));
+//             if(i > 0 && i < 5) {
+//                 this.Jens.getDevs().get(i).setAvailable(true);
+//             }
+//             else {
+//                 this.Jens.getDevs().get(i).setAvailable(false);
+//             }
+//             System.out.println(this.Jens.getDevs().get(i).getInitials());
+//         }
     }
 
     @Given("user has activity assigned")
-    public void userHasActivity(){
-
-    }
-
-    @Given("co-worker requested is available")
-    public void userRequestedIsAvailable(){
-
-    }
-
-    @Given("user does not have activity assigned")
-    public void userDoesNotHaveActivityAssigned(){
-
-    }
-
-    @Given("user requested is not available")
-    public void requestedUserNotAvailable(){
-
+    public void userHasActivityAssigned() {
+        this.Jens.addActivity(this.activity);
+//        assertTrue(this.Jens.getActivities().size() != 0);
     }
 
     @When("user asks for help")
-    public void userAsksForHelp(){
+    public void asksForHelp() {
 
     }
 
-    @Then("co-worker helps with the activity")
-    public void userHelpsWithActivity(){
+    @Given("user requested is available")
+    public void isUserRequestedAvailable() {
+        this.Jens.seekAssistance(this.activity);
+    }
+
+    @Given("user requested is part of the same project")
+    public void userIsInSameProject() {
 
     }
 
-    @Then("user request is denied")
-    public void requestDenied(){
+    @Given("user requested accepts request to help")
+    public void userAccepts() {
 
     }
 
+    @Then("user asked for help, helps with the activity")
+    public void userAskedHelps() {
+
+    }
 }
