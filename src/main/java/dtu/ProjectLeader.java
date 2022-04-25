@@ -8,7 +8,6 @@ public class ProjectLeader extends Employee {
     private ArrayList<Project> active_projects = new ArrayList<Project>();
     private ArrayList<Activity> active_activities = new ArrayList<Activity>();
     private ArrayList<Activity> assisting_activities = new ArrayList<>();
-    private ArrayList<DevelopmentEmployee> devs_in_assignedProject = new ArrayList<DevelopmentEmployee>();
     protected Project assignedProject; //The project that the given person is project leader on
     protected boolean available;
     protected double hours_worked;
@@ -110,12 +109,12 @@ public class ProjectLeader extends Employee {
         activity.setEstimatedTime(estimate);
     }
 
-    public void setStartDate(String date) {
-
+    public void setStartDate(String date, Activity activity) {
+        activity.setStartDate(date);
     }
 
-    public void setEndDate(String date) {
-
+    public void setEndDate(String date, Activity activity) {
+        activity.setEndDate(date);
     }
 
     @Override
@@ -125,13 +124,15 @@ public class ProjectLeader extends Employee {
 
     @Override
     protected void removeFromProject(Project project) {
+        this.assignedProject = null;
+        project.removeProjectLeader();
         this.active_projects.remove(project);
     }
 
 
     public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee) {
-        if (employee.active_projects.contains(this.assignedProject)){
-            employee.active_activities.add(activity);
+        if (employee.getProjects().contains(this.assignedProject)){
+            employee.getActivities().add(activity);
         }
     }
 
