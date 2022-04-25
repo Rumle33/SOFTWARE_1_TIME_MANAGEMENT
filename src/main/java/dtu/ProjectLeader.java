@@ -60,8 +60,8 @@ public class ProjectLeader extends Employee {
 
     @Override
     protected void seekAssistance(Employee employee, Project project, Activity activity) {
-        if (employee.getAvailable() || (employee.getProjects().contains(project) || this.active_projects.contains(project))
-                || employee.getActivities().contains(activity)){
+        if (employee.getAvailable() && (employee.getProjects().contains(project) && this.active_projects.contains(project))
+                && employee.getActivities().contains(activity)){
             employee.addAssistingActivity(activity);
         }
     }
