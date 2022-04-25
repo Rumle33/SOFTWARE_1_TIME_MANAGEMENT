@@ -5,6 +5,7 @@ public class DevelopmentEmployee extends Employee {
 
     protected ArrayList<Project> active_projects = new ArrayList<Project>();
     protected ArrayList<Activity> active_activities = new ArrayList<Activity>();
+    protected ArrayList<Activity> assisting_activities = new ArrayList<>();
     protected ArrayList<DevelopmentEmployee> DevelopmentE = new ArrayList<DevelopmentEmployee>();
     protected ArrayList<ProjectLeader> ProjectLeader = new ArrayList<ProjectLeader>();
     private boolean available;
@@ -28,8 +29,10 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected void seekAssistance() {
-
+    protected void seekAssistance(Employee employee, Project project, Activity activity) {
+        if (employee.getAvailable() || employee.getProjects().contains(project) || employee.getActivities().contains(activity)){
+            employee.addAssistingActivity(activity);
+        }
     }
 
     @Override
@@ -40,6 +43,26 @@ public class DevelopmentEmployee extends Employee {
     @Override
     protected void setAvailable(boolean available){
         this.available = available;
+    }
+
+    @Override
+    protected ArrayList<Activity> getActivities() {
+        return this.active_activities;
+    }
+
+    @Override
+    protected ArrayList<Project> getProjects() {
+        return this.active_projects;
+    }
+
+    @Override
+    protected ArrayList<Activity> getAssistingActivities() {
+        return this.assisting_activities;
+    }
+
+    @Override
+    protected void addAssistingActivity(Activity activity) {
+        this.assisting_activities.add(activity);
     }
 
     protected String getInitials(){
@@ -63,4 +86,6 @@ public class DevelopmentEmployee extends Employee {
     public Activity getActivity(int index) {
         return this.active_activities.get(index);
     }
+
+
 }
