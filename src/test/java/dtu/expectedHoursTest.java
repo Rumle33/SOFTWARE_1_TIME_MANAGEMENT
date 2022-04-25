@@ -13,7 +13,7 @@ public class expectedHoursTest {
     Project project = new Project("project");
     ProjectLeader Casper = new ProjectLeader(project, "C");
     DevelopmentEmployee Jens = new DevelopmentEmployee("J");
-    Activity activity = new Activity("04-04-2022", "05-05-2022", "activity");
+    Activity activity = new Activity("04-04-2022", "05-05-2022", "activity", this.Casper.assignedProject);
 
     @When("user assigns expected workhours {float}")
     public void assignHours(Float hours){

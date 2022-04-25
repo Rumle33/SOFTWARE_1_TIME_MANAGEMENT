@@ -9,11 +9,13 @@ public class Activity {
     private String end_Date = "";
     private String name = "";
     private boolean isPersonal = false;
+    private Project assigned_project;
 
-    public Activity(String start_Date, String end_Date, String name) {
+    public Activity(String start_Date, String end_Date, String name, Project assigned_project) {
         this.start_Date = start_Date;
         this.end_Date = end_Date;
         this.name = name;
+        this.assigned_project = assigned_project;
     }
 
     public String getName() {
@@ -48,7 +50,7 @@ public class Activity {
         try {
             hours_worked += hours;
         } catch (InputMismatchException e){
-            System.out.println("Exeption: " + e);
+            System.out.println("Exception: " + e);
         }
     }
 
@@ -62,5 +64,9 @@ public class Activity {
 
     public void setPersonal(boolean personal) {
         this.isPersonal = personal;
+    }
+
+    public Project getProject(){
+        return this.assigned_project;
     }
 }

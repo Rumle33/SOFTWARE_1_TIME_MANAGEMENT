@@ -22,8 +22,8 @@ public class CreateActivityTest {
 
     @When("activity is created and added to project")
     public void createAndAddActivity() {
-        this.activity = new Activity("01/01-2022", "31/12-2022", "Activity");
-        this.Casper.createActivity("01/01-2022", "31/12-2022", "Activity");
+        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
+        this.Casper.createActivity("01-01-2022", "31-12-2022", "Activity");
     }
 
     @Given("activity is not vacation or alike")
@@ -38,7 +38,7 @@ public class CreateActivityTest {
 
     @When("activity is created")
     public void createPersonalActivity() {
-        this.activity = new Activity("01/01-2022", "31/12-2022", "Activity");
+        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
         this.activity.setPersonal(true);
         this.Jens = new DevelopmentEmployee("jens");
         this.Casper.createPersonalActivity(this.Jens, this.activity);
@@ -81,7 +81,7 @@ public class CreateActivityTest {
 
     @When("personal activity is created")
     public void createActivityTest2() {
-        this.activity = new Activity("01/01-2022", "31/12-2022", "Activity");
+        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
         this.activity.setPersonal(true);
         this.Jens.addActivity(this.activity);
     }
