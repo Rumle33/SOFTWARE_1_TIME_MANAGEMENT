@@ -1,5 +1,4 @@
 # Anders
-
 Feature: seek help
   Scenario: Employee seeks help from another worker
     Given user is employee

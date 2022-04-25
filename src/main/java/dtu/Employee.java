@@ -6,7 +6,11 @@ abstract public class Employee {
     private String initials;
 
     public Employee(String initials){
-        this.initials = initials;
+        if (initials.length() == 4){
+            this.initials = initials;
+        } else {
+            System.out.println("Initialer skal være på 4 bogstaver");
+        }
     }
 
     abstract protected Project createProject(String name);

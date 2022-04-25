@@ -31,7 +31,7 @@ public class assignWorkTest {
     @Given("co-worker is assigned to same project as leader")
     public void isAssignedToProject(){
         this.Jens.assignToProject(project);
-        assertTrue(this.Jens.active_projects.contains(this.Casper.assignedProject));
+        assertTrue(this.Jens.getProjects().contains(this.Casper.assignedProject));
     }
 
     @Given("co-worker is available")
@@ -42,7 +42,7 @@ public class assignWorkTest {
 
     @Given("co-worker is not assigned to project")
     public void notassigned(){
-        assertFalse(Jens.active_activities.contains(activity));
+        assertFalse(Jens.getActivities().contains(activity));
     }
 
     @Given("co-worker is not available")
@@ -63,7 +63,7 @@ public class assignWorkTest {
 
     @Then("the co-worker is assigned")
     public void assigned(){
-        assertTrue(Jens.active_activities.contains(activity));
+        assertTrue(Jens.getActivities().contains(activity));
     }
 
     //Denne her metode lader til ikke at tjekke om det givne besked er den rigtige, men bare om der er noget (Overflødigt)

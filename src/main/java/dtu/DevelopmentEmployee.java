@@ -3,11 +3,9 @@ import java.util.ArrayList;
 
 public class DevelopmentEmployee extends Employee {
 
-    protected ArrayList<Project> active_projects = new ArrayList<Project>();
-    protected ArrayList<Activity> active_activities = new ArrayList<Activity>();
-    protected ArrayList<Activity> assisting_activities = new ArrayList<>();
-    protected ArrayList<DevelopmentEmployee> DevelopmentE = new ArrayList<DevelopmentEmployee>();
-    protected ArrayList<ProjectLeader> ProjectLeader = new ArrayList<ProjectLeader>();
+    private ArrayList<Project> active_projects = new ArrayList<Project>();
+    private ArrayList<Activity> active_activities = new ArrayList<Activity>();
+    private ArrayList<Activity> assisting_activities = new ArrayList<>();
     private boolean available;
     protected double hours_worked;
 
@@ -64,10 +62,9 @@ public class DevelopmentEmployee extends Employee {
 
     @Override
     protected void seekAssistance(Employee employee, Project project, Activity activity) {
-       if (employee.getAvailable() || employee.getActivities().contains(activity)){
-           if ((employee.getProjects().contains(project) || this.active_projects.contains(project))){
-               employee.addAssistingActivity(activity);
-           }
+        if (employee.getAvailable() && (employee.getProjects().contains(project) && this.active_projects.contains(project))
+                && employee.getActivities().contains(activity)){
+            employee.addAssistingActivity(activity);
         }
     }
 
@@ -106,12 +103,6 @@ public class DevelopmentEmployee extends Employee {
     @Override
     protected void removeFromProject(Project project) {
         this.active_projects.remove(project);
-    }
-
-    protected void chooseProjectLeader(DevelopmentEmployee dev){
-        this.DevelopmentE.remove(true);
-        //this.dev.add(new ProjectLeader(ProjectLeader));
-
     }
 
     protected void addActivity(Activity activity) {
