@@ -76,12 +76,14 @@ public class CreateActivityTest {
 //
     @Given("user is logged in as developmentemployee")
     public void isDevelopmentEmployee() {
+        Project project = new Project("Project");
         this.Jens = new DevelopmentEmployee("jens");
+        this.Jens.assignToProject(project);
     }
 
     @When("personal activity is created")
     public void createActivityTest2() {
-        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
+        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Jens.getProject(0));
         this.activity.setPersonal(true);
         this.Jens.addActivity(this.activity);
     }
