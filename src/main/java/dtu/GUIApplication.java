@@ -27,9 +27,9 @@ public class GUIApplication implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jensButton) {
             frame.dispose();
-            window_2 myWindow = new window_2();
+            window_2_jens myWindow = new window_2_jens();
         }
-        if((e.getSource() == casperButton)) {
+        if(e.getSource() == casperButton) {
             frame.dispose();
             window_3_casper myWindowCasper = new window_3_casper();
         }
