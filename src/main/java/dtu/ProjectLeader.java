@@ -125,13 +125,15 @@ public class ProjectLeader extends Employee {
 
     @Override
     protected void removeFromProject(Project project) {
+        this.assignedProject = null;
+        project.removeProjectLeader();
         this.active_projects.remove(project);
     }
 
 
     public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee) {
-        if (employee.active_projects.contains(this.assignedProject)){
-            employee.active_activities.add(activity);
+        if (employee.getProjects().contains(this.assignedProject)){
+            employee.getActivities().add(activity);
         }
     }
 

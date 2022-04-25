@@ -15,6 +15,10 @@ public class Project {
         return projectleader;
     }
 
+    public void removeProjectLeader(){
+        this.projectleader = null;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,6 +41,5 @@ public class Project {
             devs_in_project.remove(dev);
         }
         this.projectleader = new ProjectLeader(this, ca);
-
     }
 }
