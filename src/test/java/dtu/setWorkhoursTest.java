@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 import static org.junit.Assert.*;
 
 public class setWorkhoursTest {
-//Denne fil findes
+
     Project project = new Project("project");
     ProjectLeader Casper = new ProjectLeader(project, "C");
     Activity activity = new Activity("04-04-2022", "05-05-2022", "activity", this.Casper.assignedProject);
