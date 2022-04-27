@@ -7,17 +7,14 @@ import io.cucumber.java.en.When;
 import static org.junit.Assert.*;
 
 public class ProjectleaderTest {
-    DevelopmentEmployee Jens = new DevelopmentEmployee("j");
-    DevelopmentEmployee Casper = new DevelopmentEmployee("C");
+    DevelopmentEmployee Jens = new DevelopmentEmployee("jens");
+    DevelopmentEmployee Casper = new DevelopmentEmployee("Casp");
     Project project = new Project("project");
-
-
 
     @And("chosen employee is developmentemployee")
     public void Employee_is_developmentemployee (){
         assertSame(this.Jens.getClass(), DevelopmentEmployee.class);
         this.project.devs_in_project.add(Jens);
-
     }
 
     @When("developmentemployee is chosen")
