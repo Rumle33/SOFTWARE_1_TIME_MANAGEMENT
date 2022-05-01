@@ -17,6 +17,7 @@ public class GUIApplication implements Runnable {
     }
 
     public void run(){
+
         Project Pro = new Project("SOFTWARE");
         ProjectLeader casper = new ProjectLeader(Pro, "Casp");
         Emp.add(casper);
@@ -41,6 +42,7 @@ public class GUIApplication implements Runnable {
             }
         });
         JFrame frame = new JFrame();
+        frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new JScrollPane(list1));
         frame.pack();
