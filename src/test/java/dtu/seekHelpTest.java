@@ -15,7 +15,6 @@ public class seekHelpTest {
     Activity activity = new Activity("04-04-2022", "05-05-2022", "activity", this.Casper.assignedProject);
     DevelopmentEmployee Jens = new DevelopmentEmployee("J");
 
-
     @Given("user is employee")
     public void userIsEmployee(){
         assertTrue(this.Jens instanceof Employee);
