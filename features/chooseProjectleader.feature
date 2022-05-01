@@ -10,5 +10,4 @@ Feature: choose Projectleader
   Scenario: invalid input for choosing projectleader
     Given user is not a developmentemployee
     And chosen employee is not a developmentemployee
-    When developmentemployee is not chosen
     Then developmentemployee isnt projectleader

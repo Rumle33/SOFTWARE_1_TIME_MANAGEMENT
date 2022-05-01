@@ -1,43 +1,48 @@
 package dtu;
-
 import javax.swing.*;
-import java.awt.event.*;
+import java.util.ArrayList;
 
-
-public class GUIApplication implements ActionListener {
+public class GUIApplication implements Runnable {
+    private ArrayList<Employee> Emp = new ArrayList<Employee>();
+    private ArrayList<ButtonItem> ButtonArrayList = new ArrayList<ButtonItem>();
 
     public JPanel panel1;
-    public JButton casperButton;
-    public JButton jensButton;
+    private JList list1;
+    private JButton CasperButton;
+
     JFrame frame = new JFrame("Time management application");
 
     GUIApplication() {
-
-        jensButton.setBounds(100,160,200,40);
-        jensButton.setFocusable(false);
-        jensButton.addActionListener(this);
-
-        casperButton.setBounds(100,160,200,40);
-        casperButton.setFocusable(false);
-        casperButton.addActionListener(this);
-
         frame.setSize(1000, 1000);
-        frame.setVisible(true);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel1);
+        frame.getContentPane().add(new JScrollPane(list1));
+        list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list1.setVisibleRowCount(5);
+        list1.setCellRenderer(new ButtonListRenderer());
+        frame.add(list1);
+        //frame.add(CasperButton);
+
+        frame.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jensButton) {
-            frame.dispose();
-            window_2_jens myWindow = new window_2_jens();
+    public void run(){
+        Project Pro = new Project("SOFTWARE");
+        ProjectLeader casper = new ProjectLeader(Pro, "Casp");
+        Emp.add(casper);
+
+
+
+        for(Employee employee : this.Emp){
+            ButtonItem button = new ButtonItem(employee.getInitials());
+            ButtonArrayList.add(button);
+
         }
-        if (e.getSource() == casperButton){
-            frame.dispose();
-            window_3_casper myWindow = new window_3_casper();
+        list1 = new JList( ButtonArrayList.toArray());
+
         }
+
     }
-}
 
 

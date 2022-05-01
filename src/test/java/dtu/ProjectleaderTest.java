@@ -45,11 +45,6 @@ public class ProjectleaderTest {
         assertNotSame(this.Casper, DevelopmentEmployee.class);
     }
 
-    @When("developmentemployee is not chosen")
-    public void developmentemployee_is_not_chosen() {
-
-
-    }
     @Then("developmentemployee isnt projectleader")
     public void developmentemployee_does_not_becomes_projectleader() {
         assertNotSame(this.Casper, ProjectLeader.class);
