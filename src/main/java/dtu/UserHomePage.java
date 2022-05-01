@@ -1,37 +1,52 @@
 package dtu;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class UserHomePage extends GUIApplication{
-    private  JList list1;
-    private  JList list2;
-    //  private ArrayList<> Users = new ArrayList<>();
-    JFrame frame = new JFrame("Time management application");
 
-    public  void GUI(){
+    private JFrame frame;
+    private ArrayList<Project> active_projects;
+    private ArrayList<ButtonItem> project_buttons;
+    private JList buttonlist_visual;
 
+    public UserHomePage(Employee employee){
+        this.active_projects = employee.getProjects();
 
-      // UserHomePage(){
+        for(Project project : this.active_projects){
+            ButtonItem button = new ButtonItem(project.getName());
+            project_buttons.add(button);
+        }
 
-            frame.setSize(300,300);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-          //  frame.add(list1);
-
-
-
-
-
-
-
+        buttonlist_visual = new JList(project_buttons.toArray());
+        buttonlist_visual.setCellRenderer(new ButtonListRenderer());
+        buttonlist_visual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        buttonlist_visual.setVisibleRowCount(5);
+        buttonlist_visual.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent event)
+            {
+                clickButtonAt(event.getPoint());
+            }
+        });
+        frame = new JFrame("user " + employee.getInitials());
+        frame.setSize(1000,1000);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new JScrollPane(buttonlist_visual));
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
-    // Noget med at lave en liste af alle users og en tilsvarende --
-    // -- liste i GUIApplication, hvor der bliver --
-    // --lavet en ny knap pr user.
 
-    // Det kan være der skal være en metode, som --
-    // --både laver og tilføjer en ny knap til 'knap-listen' og--
-    // --laver og tilføjer en ny user til 'user-listen'
-    // Held og lykke
+    private void clickButtonAt(Point point)
+    {
+        int index = buttonlist_visual.locationToIndex(point);
+        ButtonItem item = (ButtonItem) buttonlist_visual.getModel().getElementAt(index);
+        item.getButton().doClick();
+    }
+
 }
