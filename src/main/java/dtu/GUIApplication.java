@@ -9,21 +9,7 @@ public class GUIApplication implements Runnable {
     private ArrayList<Employee> Emp = new ArrayList<Employee>();
     private ArrayList<ButtonItem> ButtonArrayList = new ArrayList<ButtonItem>();
 
-    public JPanel panel1;
     private JList list1;
-    private JButton CasperButton;
-
-    JFrame frame = new JFrame("Time management application");
-
-    GUIApplication() {
-        frame.setSize(1000, 1000);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel1);
-        frame.getContentPane().add(new JScrollPane(list1));
-
-        frame.setVisible(true);
-    }
 
     public static void main(String args[])
     {
@@ -34,6 +20,8 @@ public class GUIApplication implements Runnable {
         Project Pro = new Project("SOFTWARE");
         ProjectLeader casper = new ProjectLeader(Pro, "Casp");
         Emp.add(casper);
+        DevelopmentEmployee Jens = new DevelopmentEmployee ("Jens");
+        Emp.add(Jens);
 
         for(Employee employee : this.Emp){
             ButtonItem button = new ButtonItem(employee.getInitials());
@@ -65,9 +53,7 @@ public class GUIApplication implements Runnable {
         int index = list1.locationToIndex(point);
         ButtonItem item = (ButtonItem) list1.getModel().getElementAt(index);
         item.getButton().doClick();
-//    jlist.repaint(jlist.getCellBounds(index, index));
     }
-
-    }
+}
 
 
