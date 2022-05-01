@@ -9,21 +9,7 @@ public class GUIApplication implements Runnable {
     private ArrayList<Employee> Emp = new ArrayList<Employee>();
     private ArrayList<ButtonItem> ButtonArrayList = new ArrayList<ButtonItem>();
 
-    public JPanel panel1;
     private JList list1;
-    private JButton CasperButton;
-
-    JFrame frame = new JFrame("Time management application");
-
-    GUIApplication() {
-        frame.setSize(1000, 1000);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel1);
-        frame.getContentPane().add(new JScrollPane(list1));
-
-        frame.setVisible(true);
-    }
 
     public static void main(String args[])
     {
