@@ -16,13 +16,13 @@ public class Activity {
 
     //Constructor
     public Activity(String start_date, String end_date, String name, Project assigned_project) {
-        String start_temp = this.setDate(start_date);
+        Calendar start_temp = this.setDate(start_date);
         if (start_temp != null){
-            this.start_date = start_temp;
+            this.start_date = start_date;
         }
-        String end_temp = this.setDate(end_date);
+        Calendar end_temp = this.setDate(end_date);
         if (end_temp != null){
-            this.end_date = end_temp;
+            this.end_date = end_date;
         }
         this.name = name;
         this.assigned_project = assigned_project;
@@ -41,9 +41,9 @@ public class Activity {
     // Date setters & getters
 
     // Check date validity
-    public String setDate(String input_date) throws InputMismatchException{
+    public Calendar setDate(String input_date) throws InputMismatchException{
         try {
-            if(!start_date.contains("/")) {
+            if(!input_date.contains("/")) {
                 System.out.println("Input is invalid");
             }
             else {
@@ -61,7 +61,7 @@ public class Activity {
                         date.set(year, month, day);
 
                         System.out.println("Year: " + date.get(Calendar.YEAR) + ", Month: " + date.get(Calendar.MONTH) + ", Day: " + date.get(Calendar.DATE));
-                        return input_date;
+                        return date;
                     }
                     else {
                         System.out.println("The day is outside the range of this month");
@@ -81,16 +81,28 @@ public class Activity {
     }
 
     public void setStartDate(String start_date) {
-        String start_temp = this.setDate(start_date);
+        Calendar start_temp = this.setDate(start_date);
         if (start_temp != null){
-            this.start_date = start_temp;
+            this.start_date = start_date;
         }
     }
 
     public void setEndDate(String end_date) {
-        String start_temp = this.setDate(start_date);
-        if (start_temp != null){
-            this.start_date = start_temp;
+        Calendar end_temp = this.setDate(end_date);
+        if (end_temp != null){
+            Calendar start_temp = Calendar.getInstance();
+            String[] arr = this.start_date.split("/");
+            int day = Integer.parseInt(arr[0]);
+            int month = Integer.parseInt(arr[1]) - 1;
+            int year = Integer.parseInt(arr[2]);
+
+            start_temp.set(year, month, day);
+            if(end_temp.after(start_temp)) {
+                this.end_date = end_date;
+            }
+            else {
+                System.out.println("Deadline cannot be before start date");
+            }
         }
     }
 

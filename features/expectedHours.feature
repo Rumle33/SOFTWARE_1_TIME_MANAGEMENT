@@ -8,5 +8,4 @@ Feature: assign expected workhours
 
   Scenario: user fails to assign expected workhours
     Given user is not projectleader
-    When user assigns expected workhours 2
     Then 2 workhours are not assigned

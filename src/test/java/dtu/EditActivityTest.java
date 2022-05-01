@@ -3,18 +3,22 @@ package dtu;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.hu.De;
 
 import static org.junit.Assert.*;
 
 public class EditActivityTest {
     private ProjectLeader Casper;
+    private DevelopmentEmployee Jens;
+    private Project project;
     private Activity activity;
     private String input_startDate;
     private String input_endDate;
 
     public EditActivityTest() {
-        Project project = new Project("Project");
+        this.project = new Project("Project");
         this.Casper = new ProjectLeader(project, "Casp");
+        this.Jens = new DevelopmentEmployee("Jens");
         this.activity = new Activity("01/01/2022", "31/12/2022", "Activity", project);
     }
 
@@ -64,5 +68,10 @@ public class EditActivityTest {
     public void startRegistersButNotDeadline() {
         assertEquals(this.activity.getStartDate(), this.input_startDate);
         assertNotSame(this.activity.getEndDate(), this.input_endDate);
+    }
+
+    @When("the start and deadline of the activity is set - developmentemployee")
+    public void startAndDeadlineIsSetDev() {
+        System.out.println("Not authorized to set start and deadline");
     }
 }
