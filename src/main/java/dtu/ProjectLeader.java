@@ -44,8 +44,18 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
+    protected Activity getActivity(int index) {
+        return this.active_activities.get(index);
+    }
+
+    @Override
     protected ArrayList<Project> getProjects() {
         return this.active_projects;
+    }
+
+    @Override
+    protected Project getProject(int index) {
+        return this.active_projects.get(index);
     }
 
     @Override
@@ -89,6 +99,18 @@ public class ProjectLeader extends Employee {
         }
     }
 
+    @Override
+    protected void assignToProject(Project project) {
+        this.active_projects.add(project);
+    }
+
+    @Override
+    protected void removeFromProject(Project project) {
+        this.assignedProject = null;
+        project.removeProjectLeader();
+        this.active_projects.remove(project);
+    }
+
     protected String getInitials() {
         return super.getInitials();
     }
@@ -117,31 +139,11 @@ public class ProjectLeader extends Employee {
         activity.setEndDate(date);
     }
 
-    @Override
-    protected void assignToProject(Project project) {
-        this.active_projects.add(project);
-    }
-
-    @Override
-    protected void removeFromProject(Project project) {
-        this.assignedProject = null;
-        project.removeProjectLeader();
-        this.active_projects.remove(project);
-    }
-
-
     public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee) {
         if (employee.getProjects().contains(this.assignedProject)){
-            employee.getActivities().add(activity);
+            employee.addActivity(activity);
         }
     }
 
-    public Activity getActivity(int index) {
-        return this.active_activities.get(index);
-    }
-
-    public int getNumberOfActivities() {
-        return this.active_activities.size();
-    }
 
 }

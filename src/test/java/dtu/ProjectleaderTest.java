@@ -19,7 +19,7 @@ public class ProjectleaderTest {
 
     @When("developmentemployee is chosen")
     public void DevelopmentE(){
-        this.project.Make_devE_Projectleader(Jens);
+        this.project.MakeDevProjectleader(Jens);
 
     }
     @Then("developmentemployee is projectleader")
