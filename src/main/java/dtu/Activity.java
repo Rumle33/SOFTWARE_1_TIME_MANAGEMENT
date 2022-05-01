@@ -47,7 +47,7 @@ public class Activity {
                 System.out.println("Input is invalid");
             }
             else {
-                String[] dateArr = start_date.split("/");
+                String[] dateArr = input_date.split("/");
                 Calendar curDate = Calendar.getInstance();
 
                 int day = Integer.parseInt(dateArr[0]);
