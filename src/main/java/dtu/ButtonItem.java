@@ -15,8 +15,19 @@ public class ButtonItem {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                System.out.println(button.getText() + " was clicked.");
             }
         });
+    }
+
+
+    public JButton getButton()
+    {
+        return button;
+    }
+
+    @Override
+    public String toString(){
+        return button.getText();
     }
 }
