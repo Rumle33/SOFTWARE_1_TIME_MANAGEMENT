@@ -25,7 +25,11 @@ abstract public class Employee {
 
     abstract protected ArrayList<Activity> getActivities();
 
+    abstract protected Activity getActivity(int index);
+
     abstract protected ArrayList<Project> getProjects();
+
+    abstract protected Project getProject(int index);
 
     abstract protected ArrayList<Activity> getAssistingActivities();
 

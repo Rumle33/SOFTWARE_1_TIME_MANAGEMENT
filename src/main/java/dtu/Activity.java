@@ -7,42 +7,47 @@ import java.util.InputMismatchException;
 public class Activity {
     private double estimated_Time = 0;
     private double hours_worked;
-    private String start_Date = "";
-    private String end_Date = "";
+    private String start_date = "";
+    private String end_date = "";
     private String name = "";
     private boolean isPersonal = false;
     private Project assigned_project;
 
-    public Activity(String start_Date, String end_Date, String name, Project assigned_project) {
-        this.start_Date = start_Date;
-        this.end_Date = end_Date;
+
+    //Constructor
+    public Activity(String start_date, String end_date, String name, Project assigned_project) {
+        String start_temp = this.setDate(start_date);
+        if (start_temp != null){
+            this.start_date = start_temp;
+        }
+        String end_temp = this.setDate(end_date);
+        if (end_temp != null){
+            this.end_date = end_temp;
+        }
         this.name = name;
         this.assigned_project = assigned_project;
     }
 
-    public String getName() {
-        return this.name;
+    // Time estimate setter & getter
+
+    public void setEstimatedTime(double estimated_Time) {
+        this.estimated_Time = estimated_Time;
     }
 
     public double getEstimatedTime() {
         return estimated_Time;
     }
 
-    public void setEstimatedTime(double estimated_Time) {
-        this.estimated_Time = estimated_Time;
-    }
+    // Date setters & getters
 
-    public String getStartDate() {
-        return start_Date;
-    }
-
-    public void setStartDate(String start_Date) throws InputMismatchException {
+    // Check date validity
+    public String setDate(String input_date) throws InputMismatchException{
         try {
-            if(!start_Date.contains("/")) {
+            if(!start_date.contains("/")) {
                 System.out.println("Input is invalid");
             }
             else {
-                String[] dateArr = start_Date.split("/");
+                String[] dateArr = start_date.split("/");
                 Calendar curDate = Calendar.getInstance();
 
                 int day = Integer.parseInt(dateArr[0]);
@@ -54,72 +59,50 @@ public class Activity {
                     date.set(year, month, 1);
                     if(day > 0 && day <= date.getActualMaximum(Calendar.DAY_OF_MONTH)) {
                         date.set(year, month, day);
-                        this.start_Date = start_Date;
 
                         System.out.println("Year: " + date.get(Calendar.YEAR) + ", Month: " + date.get(Calendar.MONTH) + ", Day: " + date.get(Calendar.DATE));
+                        return input_date;
                     }
                     else {
                         System.out.println("The day is outside the range of this month");
+
                     }
                 }
                 else {
                     System.out.println("The day is outside the range of this month");
                 }
             }
+            return null;
         }
         catch(InputMismatchException e) {
             System.out.println("Exception " + e);
+            return null;
         }
+    }
+
+    public void setStartDate(String start_date) {
+        String start_temp = this.setDate(start_date);
+        if (start_temp != null){
+            this.start_date = start_temp;
+        }
+    }
+
+    public void setEndDate(String end_date) {
+        String start_temp = this.setDate(start_date);
+        if (start_temp != null){
+            this.start_date = start_temp;
+        }
+    }
+
+    public String getStartDate() {
+        return start_date;
     }
 
     public String getEndDate() {
-        return end_Date;
+        return end_date;
     }
 
-    public void setEndDate(String end_Date) {
-        try {
-            if(!end_Date.contains("/")) {
-                System.out.println("Input is invalid");
-            }
-            else {
-                String[] dateArr = end_Date.split("/");
-                Calendar curDate = Calendar.getInstance();
-
-                int day = Integer.parseInt(dateArr[0]);
-                int month = Integer.parseInt(dateArr[1]) - 1;
-                int year = Integer.parseInt(dateArr[2]);
-
-                if(month > -1 && month < 12 && year >= curDate.get(Calendar.YEAR)) {
-                    Calendar date = Calendar.getInstance();
-                    date.set(year, month, 1);
-                    if(day > 0 && day <= date.getActualMaximum(Calendar.DAY_OF_MONTH)) {
-                        date.set(year, month, day);
-
-                        Calendar startDate = Calendar.getInstance();
-                        String[] startDateArr = this.start_Date.split("/");
-                        startDate.set(Integer.parseInt(startDateArr[0]), Integer.parseInt(startDateArr[1]), Integer.parseInt(startDateArr[2]));
-
-                        if(date.after(startDate)) {
-                            System.out.println("Deadline cannot be earlier than start");
-                        }
-                        else {
-                            this.end_Date = end_Date;
-                            System.out.println("Year: " + date.get(Calendar.YEAR) + ", Month: " + date.get(Calendar.MONTH) + ", Day: " + date.get(Calendar.DATE));
-                        }
-                    }
-                    else {
-                        System.out.println("The day is outside the range of this month");
-                    }
-                }
-                else {
-                    System.out.println("Input is invalid");
-                }
-            }
-        }
-        catch(InputMismatchException e) {
-            System.out.println("Exception " + e);
-        }
-    }
+    // Workhours add & getter
 
     public void addHoursWorked(double hours) throws InputMismatchException {
         try {
@@ -131,6 +114,12 @@ public class Activity {
 
     public double getHoursWorked(){
         return hours_worked;
+    }
+
+    //Other getters & setters
+
+    public String getName() {
+        return this.name;
     }
 
     public boolean isPersonal() {

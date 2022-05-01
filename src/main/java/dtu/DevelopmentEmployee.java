@@ -42,10 +42,16 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
+    protected Activity getActivity(int index) {
+        return this.active_activities.get(index);
+    }
+
+    @Override
     protected ArrayList<Project> getProjects() {
         return this.active_projects;
     }
 
+    @Override
     protected Project getProject(int index) {
         return this.active_projects.get(index);
     }
@@ -91,10 +97,6 @@ public class DevelopmentEmployee extends Employee {
         }
     }
 
-    protected String getInitials(){
-        return super.getInitials();
-    }
-
     @Override
     protected void assignToProject(Project project) {
         this.active_projects.add(project);
@@ -105,13 +107,12 @@ public class DevelopmentEmployee extends Employee {
         this.active_projects.remove(project);
     }
 
+    protected String getInitials(){
+        return super.getInitials();
+    }
+
     protected void addActivity(Activity activity) {
         this.active_activities.add(activity);
     }
-
-    public Activity getActivity(int index) {
-        return this.active_activities.get(index);
-    }
-
 
 }
