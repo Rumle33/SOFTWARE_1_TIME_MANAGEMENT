@@ -37,6 +37,7 @@ public class GUIApplication implements Runnable{
 
     public void run(){
 
+
         Project Pro = new Project("SOFTWARE");
         ProjectLeader casper = new ProjectLeader(Pro, "Casp");
         Emp.add(casper);

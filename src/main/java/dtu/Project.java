@@ -15,7 +15,7 @@ public class Project {
         return projectleader;
     }
 
-    public void removeProjectLeader(){
+    public void removeProjectLeader() {
         this.projectleader = null;
     }
 
@@ -35,11 +35,18 @@ public class Project {
         this.devs_in_project.add(dev);
     }
 
-    public void MakeDevProjectleader(DevelopmentEmployee dev) {
-        String ca = dev.getInitials();
-        if(devs_in_project.contains(dev)){
-            devs_in_project.remove(dev);
+    public void MakeDevProjectleader(DevelopmentEmployee dev, Project project) throws Exception {
+        String Initials = dev.getInitials();
+        if (project.getProjectLeader() == null) {
+            this.projectleader = new ProjectLeader(this, Initials);
+            if (devs_in_project.contains(dev)) {
+                devs_in_project.remove(dev);
+
+            } else {
+                throw new Exception("Projectleader with the same name already exist ");
+            }
+
+
         }
-        this.projectleader = new ProjectLeader(this, ca);
     }
 }
