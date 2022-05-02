@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class UserHomePage extends GUIApplication {
+public class UserHomePage {
 
     private JFrame frame;
     private ArrayList<Project> active_projects = new ArrayList<Project>();
@@ -30,18 +30,22 @@ public class UserHomePage extends GUIApplication {
 
     public void setup(){
         for(Project project : this.active_projects){
-            ButtonItem button = new ButtonItem(project, project.getName());
+            ButtonItem button = new ButtonItem(this.current_user, project, project.getName());
             this.project_buttons.add(button);
         }
 
-        int array_length;
-        if (project_buttons == null){
-            array_length = 0;
+        int array_len;
+        if (project_buttons.size() <= 0){
+            array_len = 0;
         } else {
-            array_length = project_buttons.size();
+            array_len = project_buttons.size();
         }
-        Object[] button_list = new Object[array_length + 1];
+        Object[] button_list = new Object[array_len + 1];
         button_list[0] = add_project;
+
+        for (int i = 1; i <= array_len; i++){
+            button_list[i] = this.project_buttons.get(i-1);
+        }
 
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
@@ -55,7 +59,7 @@ public class UserHomePage extends GUIApplication {
                 clickButtonAt(event.getPoint());
             }
         });
-        frame = new JFrame("user " + this.current_user.getInitials());
+        frame = new JFrame("User: " + this.current_user.getInitials());
         frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.scrollPane = new JScrollPane(buttonlist_visual);

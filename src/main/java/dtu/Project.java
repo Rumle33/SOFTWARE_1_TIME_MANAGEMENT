@@ -31,6 +31,10 @@ public class Project {
         return this.activities.get(index);
     }
 
+    public ArrayList<Activity> getActivities(){
+        return this.activities;
+    }
+
     public void addDevToProject(DevelopmentEmployee dev) {
         this.devs_in_project.add(dev);
     }
@@ -41,5 +45,9 @@ public class Project {
             devs_in_project.remove(dev);
         }
         this.projectleader = new ProjectLeader(this, ca);
+    }
+
+    public ArrayList<DevelopmentEmployee> getDevsInProjects(){
+        return this.devs_in_project;
     }
 }

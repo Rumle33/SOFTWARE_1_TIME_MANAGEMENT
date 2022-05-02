@@ -51,19 +51,44 @@ public class ButtonItem {
     }
 
     //Knap til UserProjectPage
-    public ButtonItem(Project project, String name) {
+    public ButtonItem(Employee employee, Project project, String name) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                UserHomePage homePage = new UserHomePage(project);
+                ProjectHomePage projectHomePage = new ProjectHomePage(employee, project);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
     }
 
 
+    //Knap til nye aktiviteter
+    public ButtonItem(ProjectHomePage projectHomePage, String name) {
+
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddActivityForm addActivityForm = new AddActivityForm();
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+    //Knap til ActivityPage
+    public ButtonItem(Activity activity, String name) {
+
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ActivityPage activityPage = new ActivityPage();
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
 
 
     public JButton getButton()

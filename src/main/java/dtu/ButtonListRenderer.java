@@ -10,6 +10,7 @@ class ButtonListRenderer extends JButton implements ListCellRenderer
     {
         setEnabled(comp.isEnabled());
         setFont(comp.getFont());
+        System.out.println(value);
         setText(value.toString());
 
         if (isSelected)
