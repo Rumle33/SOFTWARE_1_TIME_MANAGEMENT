@@ -35,11 +35,12 @@ public class UserHomePage {
         }
 
         int array_len;
-        if (project_buttons.size() <= 0){
-            array_len = 0;
-        } else {
-            array_len = project_buttons.size();
-        }
+//        if (project_buttons.size() <= 0){
+//            array_len = 0;
+//        } else {
+//            array_len = project_buttons.size();
+//        }
+        array_len = project_buttons.size();
         Object[] button_list = new Object[array_len + 1];
         button_list[0] = add_project;
 
@@ -63,7 +64,7 @@ public class UserHomePage {
         frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.scrollPane = new JScrollPane(buttonlist_visual);
-        frame.getContentPane().add(new JScrollPane(this.scrollPane));
+        frame.getContentPane().add(this.scrollPane);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

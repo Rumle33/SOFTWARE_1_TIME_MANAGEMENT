@@ -39,7 +39,7 @@ public class Project {
         this.devs_in_project.add(dev);
     }
 
-    public void MakeDevProjectleader(DevelopmentEmployee dev) {
+    public void makeDevProjectleader(DevelopmentEmployee dev) {
         String ca = dev.getInitials();
         if(devs_in_project.contains(dev)){
             devs_in_project.remove(dev);
