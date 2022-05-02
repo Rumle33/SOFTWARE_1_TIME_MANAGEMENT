@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class UserHomePage extends GUIApplication {
 
     private JFrame frame;
-    private ArrayList<Project> active_projects;
-    private ArrayList<ButtonItem> project_buttons;
+    private ArrayList<Project> active_projects = new ArrayList<Project>();
+    private ArrayList<ButtonItem> project_buttons = new ArrayList<ButtonItem>();
     private JList buttonlist_visual;
     private JScrollPane scrollPane;
     private ButtonItem add_project = new ButtonItem(this, "Add new project");
@@ -31,7 +31,7 @@ public class UserHomePage extends GUIApplication {
     public void setup(){
         for(Project project : this.active_projects){
             ButtonItem button = new ButtonItem(project, project.getName());
-            project_buttons.add(button);
+            this.project_buttons.add(button);
         }
 
         int array_length;
