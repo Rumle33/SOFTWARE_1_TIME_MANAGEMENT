@@ -9,9 +9,12 @@ public class AddDevForm implements ActionListener {
     private JButton add_project;
     private JPanel panel1;
     private JTextField textField1;
+
+
     JFrame frame = new JFrame();
     GUIApplication Gui2;
     ArrayList<Employee> temp_emp;
+
 
     AddDevForm(GUIApplication GUI){
         this.Gui2 = GUI;
@@ -24,7 +27,6 @@ public class AddDevForm implements ActionListener {
         frame.add(panel1);
         frame.setSize(1500,1000);
         frame.setVisible(true);
-
     }
     @Override
     public void actionPerformed(ActionEvent e) {

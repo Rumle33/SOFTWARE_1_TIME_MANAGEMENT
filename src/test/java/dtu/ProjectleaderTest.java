@@ -18,8 +18,8 @@ public class ProjectleaderTest {
     }
 
     @When("developmentemployee is chosen")
-    public void DevelopmentE(){
-        this.project.makeDevProjectleader(Jens);
+    public void DevelopmentE() throws Exception {
+        this.project.makeDevProjectleader( Jens, project);
 
     }
     @Then("developmentemployee is projectleader")

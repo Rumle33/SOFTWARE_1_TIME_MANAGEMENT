@@ -39,12 +39,18 @@ public class Project {
         this.devs_in_project.add(dev);
     }
 
-    public void makeDevProjectleader(DevelopmentEmployee dev) {
-        String ca = dev.getInitials();
-        if(devs_in_project.contains(dev)){
-            devs_in_project.remove(dev);
+    public void makeDevProjectleader(DevelopmentEmployee dev, Project project) throws Exception {
+        String Initials = dev.getInitials();
+        if (project.getProjectLeader() == null) {
+            this.projectleader = new ProjectLeader(this, Initials);
+            if (devs_in_project.contains(dev)) {
+                devs_in_project.remove(dev);
+
+            } else {
+                throw new Exception("Projectleader with the same name already exist ");
+            }
+
         }
-        this.projectleader = new ProjectLeader(this, ca);
     }
 
     public ArrayList<DevelopmentEmployee> getDevsInProjects(){
