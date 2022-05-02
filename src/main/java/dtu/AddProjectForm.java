@@ -5,17 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class AddDevForm implements ActionListener {
+public class AddProjectForm implements ActionListener {
     private JButton add_project;
     private JPanel panel1;
     private JTextField textField1;
     JFrame frame = new JFrame();
-    GUIApplication Gui2;
-    ArrayList<Employee> temp_emp;
+    UserHomePage userHomePage;
+    ArrayList<Project> temp_projects;
+    private Employee current_user;
 
-    AddDevForm(GUIApplication GUI){
-        this.Gui2 = GUI;
-        temp_emp = Gui2.Emp;
+    AddProjectForm(UserHomePage userHomePage){
+        this.userHomePage = userHomePage;
+        this.current_user = this.userHomePage.getCurrentUser();
+        temp_projects = this.userHomePage.getProjects();
         add_project.addActionListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -24,15 +26,15 @@ public class AddDevForm implements ActionListener {
         frame.add(panel1);
         frame.setSize(1500,1000);
         frame.setVisible(true);
-
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == add_project) {
             frame.dispose();
-            temp_emp.add(new DevelopmentEmployee(textField1.getText()));
-            GUIApplication gui_app = new GUIApplication(temp_emp);
-            gui_app.setup();
+            temp_projects.add(new Project(textField1.getText()));
+            UserHomePage userHomePage = new UserHomePage(temp_projects,this.current_user);
+            userHomePage.setup();
         };
     }
 

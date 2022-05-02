@@ -3,6 +3,7 @@ package dtu;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class ButtonItem {
 
@@ -10,11 +11,53 @@ public class ButtonItem {
 
     private JButton button;
 
-    public ButtonItem(String name) {
+    //Knap til nye development employee
+    public ButtonItem(GUIApplication gui, String name) {
+
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                AddDevForm addDev = new AddDevForm(gui);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+    //Knap til UserHomePage
+    public ButtonItem(Employee employee, String name) {
+
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserHomePage homePage = new UserHomePage(employee);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+    //Knap til nye projekter
+    public ButtonItem(UserHomePage userHomePage, String name) {
+
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddProjectForm addProject = new AddProjectForm(userHomePage);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+    //Knap til UserProjectPage
+    public ButtonItem(Project project, String name) {
+
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                UserHomePage homePage = new UserHomePage(project);
                 System.out.println(button.getText() + " was clicked.");
             }
         });

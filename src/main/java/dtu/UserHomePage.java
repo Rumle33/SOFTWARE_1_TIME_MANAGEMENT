@@ -6,22 +6,44 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class UserHomePage extends GUIApplication{
+public class UserHomePage extends GUIApplication {
 
     private JFrame frame;
     private ArrayList<Project> active_projects;
     private ArrayList<ButtonItem> project_buttons;
     private JList buttonlist_visual;
+    private JScrollPane scrollPane;
+    private ButtonItem add_project = new ButtonItem(this, "Add new project");
+    private Employee current_user;
 
-    public UserHomePage(Employee employee){
+    public UserHomePage(ArrayList<Project> new_active_projects, Employee employee){
+        this.active_projects = new_active_projects;
+        this.current_user = employee;
+    }
+
+    public UserHomePage(Employee employee) {
+        this.current_user = employee;
         this.active_projects = employee.getProjects();
 
+        this.setup();
+    }
+
+    public void setup(){
         for(Project project : this.active_projects){
-            ButtonItem button = new ButtonItem(project.getName());
+            ButtonItem button = new ButtonItem(project, project.getName());
             project_buttons.add(button);
         }
 
-        buttonlist_visual = new JList(project_buttons.toArray());
+        int array_length;
+        if (project_buttons == null){
+            array_length = 0;
+        } else {
+            array_length = project_buttons.size();
+        }
+        Object[] button_list = new Object[array_length + 1];
+        button_list[0] = add_project;
+
+        buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
         buttonlist_visual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         buttonlist_visual.setVisibleRowCount(5);
@@ -33,10 +55,11 @@ public class UserHomePage extends GUIApplication{
                 clickButtonAt(event.getPoint());
             }
         });
-        frame = new JFrame("user " + employee.getInitials());
+        frame = new JFrame("user " + this.current_user.getInitials());
         frame.setSize(1000,1000);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new JScrollPane(buttonlist_visual));
+        this.scrollPane = new JScrollPane(buttonlist_visual);
+        frame.getContentPane().add(new JScrollPane(this.scrollPane));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -47,6 +70,15 @@ public class UserHomePage extends GUIApplication{
         int index = buttonlist_visual.locationToIndex(point);
         ButtonItem item = (ButtonItem) buttonlist_visual.getModel().getElementAt(index);
         item.getButton().doClick();
+        frame.dispose();
+    }
+
+    public ArrayList<Project> getProjects(){
+        return active_projects;
+    }
+
+    public Employee getCurrentUser(){
+        return current_user;
     }
 
 }
