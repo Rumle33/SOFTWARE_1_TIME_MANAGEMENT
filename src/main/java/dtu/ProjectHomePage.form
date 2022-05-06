@@ -16,21 +16,6 @@
         <border type="none" title="Aktiviteter"/>
         <children/>
       </scrollpane>
-      <vspacer id="d7d5f">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <component id="ba2d4" class="javax.swing.JTextField" binding="project_textfield">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Projekt:  - Titel: "/>
-        </properties>
-      </component>
       <scrollpane id="5bd14" binding="scroll_employees">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -39,6 +24,19 @@
         <border type="none" title="Medarbejdere"/>
         <children/>
       </scrollpane>
+      <component id="abe76" class="javax.swing.JLabel" binding="label_projectname">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Label for projectname"/>
+        </properties>
+      </component>
+      <hspacer id="5aaed">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
     </children>
   </grid>
 </form>

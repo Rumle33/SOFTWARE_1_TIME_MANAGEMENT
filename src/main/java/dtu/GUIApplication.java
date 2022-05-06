@@ -76,12 +76,16 @@ public class GUIApplication implements Runnable{
                 clickButtonAt(event.getPoint());
             }
         });
-        frame.setMinimumSize(new Dimension(1000,1000));
+        frame.setMinimumSize(new Dimension(500,1000));
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JScrollPane scroll_pane = new JScrollPane(list1);
         scroll_pane.setPreferredSize(new Dimension(500,1000));
         frame.getContentPane().add(scroll_pane);
         frame.pack();
+
+        frame.setResizable(false);
+        frame.setSize(1000,1000);
 
         frame.setVisible(true);
     }

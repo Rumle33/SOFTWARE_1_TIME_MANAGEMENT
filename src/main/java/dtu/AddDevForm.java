@@ -25,7 +25,9 @@ public class AddDevForm implements ActionListener {
         frame.add(add_project);
         add_project.setBounds(50,50,150,50);
         frame.add(panel1);
-        frame.setSize(1500,1000);
+        frame.setResizable(false);
+        frame.setSize(1000,1000);
+
         frame.setVisible(true);
     }
     @Override

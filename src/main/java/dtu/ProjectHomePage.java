@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class ProjectHomePage {
 
     private JTextField project_textfield;
     private JScrollPane scroll_activities;
     private JScrollPane scroll_employees;
+    private JLabel label_projectname;
     private JFrame frame;
     private Employee current_user;
     private Project current_project;
@@ -71,13 +71,15 @@ public class ProjectHomePage {
                 clickButtonAt(event.getPoint());
             }
         });
+
         frame = new JFrame("User: " + this.current_user.getInitials());
-        frame.setSize(1000,1000);
+        frame.add(label_projectname);
+        label_projectname.setText("Project name: " + this.current_project.getName() );
+        frame.setMinimumSize(new Dimension(1000,1000));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.scroll_activities = new JScrollPane(buttonlist_visual);
         frame.getContentPane().add(new JScrollPane(this.scroll_activities));
-        frame.pack();
-        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 

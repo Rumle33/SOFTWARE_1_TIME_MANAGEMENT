@@ -61,13 +61,15 @@ public class UserHomePage {
             }
         });
         frame = new JFrame("User: " + this.current_user.getInitials());
-        frame.setSize(1000,1000);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.scrollPane = new JScrollPane(buttonlist_visual);
         frame.getContentPane().add(this.scrollPane);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
+       // frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setSize(1000,1000);
         frame.setVisible(true);
+
     }
 
     private void clickButtonAt(Point point)
