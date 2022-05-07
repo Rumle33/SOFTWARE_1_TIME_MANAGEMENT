@@ -23,7 +23,6 @@ public class AddActivityForm implements ActionListener {
         this.current_user = this.projectHomePage.getCurrentUser();
         temp_activity = this.projectHomePage.getActivities();
         add_activity.addActionListener(this);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(add_activity);
         frame.pack();

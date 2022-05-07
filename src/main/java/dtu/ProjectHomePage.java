@@ -25,6 +25,15 @@ public class ProjectHomePage implements ActionListener {
 
     private ButtonItem add_activity = new ButtonItem(this, "Add new activity");
 
+    public ProjectHomePage(Employee employee, Project project) {
+        this.current_user = employee;
+        this.current_project = project;
+        this.active_activities = project.getActivities();
+        this.assigned_devs = project.getDevsInProjects();
+
+        this.setup();
+    }
+
     public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project){
         this.current_user = employee;
         this.current_project = project;
@@ -34,28 +43,20 @@ public class ProjectHomePage implements ActionListener {
         this.setup();
     }
 
-    public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project,ProjectLeader Projectleader){
+    public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project,ProjectLeader projectleader){
         this.current_user = employee;
         this.current_project = project;
         this.active_activities = project.getActivities();
         this.assigned_devs = project.getDevsInProjects();
 
-        if(this.current_user.getClass() != Projectleader.getClass()){
-            this.current_project.makeDevProjectleader(this.current_user, this.current_project);
-
-
-
-
+        try{
+            if(this.current_user.getClass() == DevelopmentEmployee.class){
+                DevelopmentEmployee tempDev = (DevelopmentEmployee) this.current_user;
+                this.current_project.makeDevProjectleader(tempDev, this.current_project);
+            }
+        } catch (Exception e){
+            System.out.println("Error: " + e);
         }
-
-        this.setup();
-    }
-
-    public ProjectHomePage(Employee employee, Project project) {
-        this.current_user = employee;
-        this.current_project = project;
-        this.active_activities = project.getActivities();
-        this.assigned_devs = project.getDevsInProjects();
 
         this.setup();
     }
@@ -76,18 +77,18 @@ public class ProjectHomePage implements ActionListener {
 
 
         if(current_user.getClass() == ProjectLeader.class) {
-            Object[] button_list = new Object[array_len + 1];
+            button_list = new Object[array_len + 1];
             button_list[0] = add_activity;
             for (int i = 1; i <= array_len; i++){
                 button_list[i] = this.activiy_buttons.get(i-1);
             }
         } else if(array_len < 0) {
-            Object[] button_list = new Object[array_len];
+            button_list = new Object[array_len];
             for (int i = 0; i <= array_len; i++){
                 button_list[i] = this.activiy_buttons.get(i);
             }
         }
-        Object[] button_list = new Object[array_len];
+        button_list = new Object[array_len];
 
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());

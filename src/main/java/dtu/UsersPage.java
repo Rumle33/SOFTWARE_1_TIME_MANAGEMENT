@@ -8,53 +8,37 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class GUIApplication implements Runnable{
-    public ArrayList<Employee> Emp = new ArrayList<Employee>();
+public class UsersPage {
+    private ArrayList<DevelopmentEmployee> devs = new ArrayList<DevelopmentEmployee>();
     private ArrayList<ButtonItem> ButtonArrayList = new ArrayList<ButtonItem>();
 
     private JList list1;
     private ButtonItem add_emp = new ButtonItem(this, "Add new developmentemployee");
+    private Project current_project;
 
     JFrame frame = new JFrame();
 
-    public GUIApplication(){
-
-    }
-
-    public GUIApplication(ArrayList<Employee> new_Emp){
-        this.Emp = new_Emp;
-    }
-
-    public void addDev(String name){
-        Emp.add(new DevelopmentEmployee(name));
-    }
-
-    public static void main(String args[])
-    {
-        SwingUtilities.invokeLater(new GUIApplication());
-    }
-
-
-    public void run(){
-
-
-        Project Pro = new Project("SOFTWARE");
-        ProjectLeader casper = new ProjectLeader(Pro, "Casp");
-        Emp.add(casper);
-        DevelopmentEmployee Jens = new DevelopmentEmployee ("Jens");
-        Emp.add(Jens);
+    public UsersPage(Project project){
+        this.current_project = project;
 
         this.setup();
+    }
 
+    public UsersPage(Project project, ArrayList<DevelopmentEmployee> new_devs){
+        this.current_project = project;
+        this.devs = new_devs;
+
+        this.setup();
     }
 
     public void setup(){
 
         //Laver en liste af knapper med medarbejdere
-        for(Employee employee : this.Emp){
-            ButtonItem button = new ButtonItem(employee, employee.getInitials());
+        for(DevelopmentEmployee dev : this.devs){
+            ButtonItem button = new ButtonItem(dev, dev.getInitials(), this.current_project);
             ButtonArrayList.add(button);
         }
+
         //Tilføjer en knap til at tilføje nye medarbejdere i toppen af listen
         int array_length = ButtonArrayList.size();
         Object[] button_list = new Object[array_length + 1];
@@ -96,6 +80,14 @@ public class GUIApplication implements Runnable{
         ButtonItem item = (ButtonItem) list1.getModel().getElementAt(index);
         item.getButton().doClick();
         frame.dispose();
+    }
+
+    public Project getProject(){
+        return this.current_project;
+    }
+
+    public ArrayList<DevelopmentEmployee> getDevs(){
+        return this.devs;
     }
 
 }

@@ -10,14 +10,12 @@ public class AddProjectForm implements ActionListener {
     private JPanel panel1;
     private JTextField textField1;
     JFrame frame = new JFrame();
-    UserHomePage userHomePage;
+    ProjectsPage projectsPage;
     ArrayList<Project> temp_projects;
-    private Employee current_user;
 
-    AddProjectForm(UserHomePage userHomePage){
-        this.userHomePage = userHomePage;
-        this.current_user = this.userHomePage.getCurrentUser();
-        temp_projects = this.userHomePage.getProjects();
+    AddProjectForm(ProjectsPage projectsPage){
+        this.projectsPage = projectsPage;
+        temp_projects = this.projectsPage.getProjects();
         add_project.addActionListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -34,8 +32,8 @@ public class AddProjectForm implements ActionListener {
         if (e.getSource() == add_project) {
             frame.dispose();
             temp_projects.add(new Project(textField1.getText()));
-            UserHomePage userHomePage = new UserHomePage(temp_projects,this.current_user);
-            userHomePage.setup();
+            ProjectsPage projectsPage = new ProjectsPage(temp_projects);
+            projectsPage.setup();
         };
     }
 

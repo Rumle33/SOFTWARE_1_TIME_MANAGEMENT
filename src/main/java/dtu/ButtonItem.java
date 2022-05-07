@@ -6,51 +6,49 @@ import java.awt.event.ActionListener;
 
 public class ButtonItem {
 
-
-
     private JButton button;
 
-    //Knap til nye development employee
-    public ButtonItem(GUIApplication gui, String name) {
+    // Knap fra ProjectsPAge til AddProjectForm
+    public ButtonItem(ProjectsPage projectsPage, String name) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddDevForm addDev = new AddDevForm(gui);
+                AddProjectForm addProject = new AddProjectForm(projectsPage);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
     }
 
-    //Knap til UserHomePage
-    public ButtonItem(Employee employee, String name) {
+    // Knap fra ProjectsPage til UsersPage
+    public ButtonItem(Project project, String name) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UserHomePage homePage = new UserHomePage(employee);
+                UsersPage usersPage = new UsersPage(project);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
     }
 
-    //Knap til nye projekter
-    public ButtonItem(UserHomePage userHomePage, String name) {
+    //Knap fra UsersPage til AddDevForm
+    public ButtonItem(UsersPage usersPage, String name) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddProjectForm addProject = new AddProjectForm(userHomePage);
+                AddDevForm addDev = new AddDevForm(usersPage);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
     }
 
-    //Knap til UserProjectPage
-    public ButtonItem(Employee employee, Project project, String name) {
+    //Knap fra UsersPage til ProjectHomePage
+    public ButtonItem(Employee employee, String name, Project project) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
@@ -62,20 +60,44 @@ public class ButtonItem {
         });
     }
 
-    public ButtonItem(ProjectHomePage projectHomePage, ProjectLeader Pro) {
+
+
+
+
+    //Knap fra ProjectHomePage til AddActivityForm
+    public ButtonItem(ProjectHomePage projectHomePage, ProjectLeader projectLeader) {
 
         this.button = new JButton();
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProjectHomePage NewPage = new ProjectHomePage(projectHomePage.getActivities(),projectHomePage.getCurrentUser(),projectHomePage.getProject(),Pro);
+                ProjectHomePage NewPage = new ProjectHomePage(projectHomePage.getActivities() ,projectHomePage.getCurrentUser(), projectHomePage.getProject(), projectLeader);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
     }
 
 
-        //Knap til nye aktiviteter
+
+
+
+
+
+    //Knap til ProjectHomePage
+    public ButtonItem(Employee employee, String name) {
+
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                UsersPage usersPage = new UsersPage(employee, name);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+
+    //Knap fra ProjectHomePage til nye aktiviteter
     public ButtonItem(ProjectHomePage projectHomePage, String name) {
 
         this.button = new JButton(name);
