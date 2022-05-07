@@ -71,7 +71,7 @@ public class ButtonItem {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddActivityForm addActivityForm = new AddActivityForm();
+                AddActivityForm addActivityForm = new AddActivityForm(projectHomePage);
                 System.out.println(button.getText() + " was clicked.");
             }
         });

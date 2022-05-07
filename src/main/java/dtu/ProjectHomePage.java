@@ -22,7 +22,7 @@ public class ProjectHomePage {
 
     private ButtonItem add_activity = new ButtonItem(this, "Add new activity");
 
-    public ProjectHomePage(ArrayList<Activity> new_active_projects, Employee employee, Project project){
+    public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project){
         this.current_user = employee;
         this.current_project = project;
         this.active_activities = project.getActivities();
@@ -99,4 +99,7 @@ public class ProjectHomePage {
         return current_user;
     }
 
+    public Project getProject(){
+        return current_project;
+    }
 }
