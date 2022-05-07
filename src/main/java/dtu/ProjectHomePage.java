@@ -2,16 +2,19 @@ package dtu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ProjectHomePage {
-
+public class ProjectHomePage implements ActionListener {
+    private Object[] button_list;
     private JTextField project_textfield;
     private JScrollPane scroll_activities;
     private JScrollPane scroll_employees;
     private JLabel label_projectname;
+    private JButton ASSprojectleader;
     private JFrame frame;
     private Employee current_user;
     private Project current_project;
@@ -31,6 +34,23 @@ public class ProjectHomePage {
         this.setup();
     }
 
+    public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project,ProjectLeader Projectleader){
+        this.current_user = employee;
+        this.current_project = project;
+        this.active_activities = project.getActivities();
+        this.assigned_devs = project.getDevsInProjects();
+
+        if(this.current_user.getClass() != Projectleader.getClass()){
+            this.current_project.makeDevProjectleader(this.current_user, this.current_project);
+
+
+
+
+        }
+
+        this.setup();
+    }
+
     public ProjectHomePage(Employee employee, Project project) {
         this.current_user = employee;
         this.current_project = project;
@@ -43,6 +63,7 @@ public class ProjectHomePage {
     public void setup(){
         for(Activity activity : this.active_activities){
             ButtonItem button = new ButtonItem(activity, activity.getName());
+
             this.activiy_buttons.add(button);
         }
 
@@ -52,12 +73,21 @@ public class ProjectHomePage {
         } else {
             array_len = activiy_buttons.size();
         }
-        Object[] button_list = new Object[array_len + 1];
-        button_list[0] = add_activity;
 
-        for (int i = 1; i <= array_len; i++){
-            button_list[i] = this.activiy_buttons.get(i-1);
+
+        if(current_user.getClass() == ProjectLeader.class) {
+            Object[] button_list = new Object[array_len + 1];
+            button_list[0] = add_activity;
+            for (int i = 1; i <= array_len; i++){
+                button_list[i] = this.activiy_buttons.get(i-1);
+            }
+        } else if(array_len < 0) {
+            Object[] button_list = new Object[array_len];
+            for (int i = 0; i <= array_len; i++){
+                button_list[i] = this.activiy_buttons.get(i);
+            }
         }
+        Object[] button_list = new Object[array_len];
 
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
@@ -80,7 +110,19 @@ public class ProjectHomePage {
         this.scroll_activities = new JScrollPane(buttonlist_visual);
         frame.getContentPane().add(new JScrollPane(this.scroll_activities));
         frame.setResizable(false);
+
+        frame.add(ASSprojectleader);
+
         frame.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == ASSprojectleader) {
+            frame.dispose();
+            Make_dev_Projectleader Leader = new Make_dev_Projectleader();
+            Leader.setup();
+        };
     }
 
     private void clickButtonAt(Point point)
@@ -102,4 +144,5 @@ public class ProjectHomePage {
     public Project getProject(){
         return current_project;
     }
+
 }

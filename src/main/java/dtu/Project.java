@@ -15,6 +15,12 @@ public class Project {
         return projectleader;
     }
 
+    public void setProjectleader(ProjectLeader Proj){
+        if(this.projectleader== null){
+            this.projectleader = Proj;
+        }
+    }
+
     public void removeProjectLeader(){
         this.projectleader = null;
     }
@@ -34,6 +40,8 @@ public class Project {
     public ArrayList<Activity> getActivities(){
         return this.activities;
     }
+
+
 
     public void addDevToProject(DevelopmentEmployee dev) {
         this.devs_in_project.add(dev);

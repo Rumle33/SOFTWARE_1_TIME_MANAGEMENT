@@ -3,7 +3,6 @@ package dtu;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 
 public class ButtonItem {
 
@@ -63,8 +62,20 @@ public class ButtonItem {
         });
     }
 
+    public ButtonItem(ProjectHomePage projectHomePage, ProjectLeader Pro) {
 
-    //Knap til nye aktiviteter
+        this.button = new JButton();
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProjectHomePage NewPage = new ProjectHomePage(projectHomePage.getActivities(),projectHomePage.getCurrentUser(),projectHomePage.getProject(),Pro);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+
+        //Knap til nye aktiviteter
     public ButtonItem(ProjectHomePage projectHomePage, String name) {
 
         this.button = new JButton(name);

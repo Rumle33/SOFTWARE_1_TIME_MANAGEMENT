@@ -48,6 +48,7 @@ public class UserHomePage {
             button_list[i] = this.project_buttons.get(i-1);
         }
 
+
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
         buttonlist_visual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

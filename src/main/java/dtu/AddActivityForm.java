@@ -23,13 +23,14 @@ public class AddActivityForm implements ActionListener {
         this.current_user = this.projectHomePage.getCurrentUser();
         temp_activity = this.projectHomePage.getActivities();
         add_activity.addActionListener(this);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
         frame.add(add_activity);
-        add_activity.setBounds(50,50,150,50);
+        frame.pack();
         frame.add(panel1);
         frame.setResizable(false);
         frame.setSize(1000,1000);
+        add_activity.setBounds(50,150,200,100);
         frame.setVisible(true);
     }
 
@@ -39,7 +40,6 @@ public class AddActivityForm implements ActionListener {
             frame.dispose();
             temp_activity.add(new Activity(startDateField.getText(), endDateField.getText(), nameField.getText(), this.current_project));
             ProjectHomePage projectHomePage = new ProjectHomePage(temp_activity, this.current_user, this.current_project);
-            projectHomePage.setup();
         };
     }
 
