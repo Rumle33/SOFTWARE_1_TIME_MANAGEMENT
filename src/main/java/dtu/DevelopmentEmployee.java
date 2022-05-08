@@ -3,8 +3,6 @@ import java.util.ArrayList;
 
 public class DevelopmentEmployee extends Employee {
 
-    private ArrayList<Project> active_projects = new ArrayList<Project>();
-    private ArrayList<Activity> active_activities = new ArrayList<Activity>();
     private ArrayList<Activity> assisting_activities = new ArrayList<>();
     private boolean available;
     protected double hours_worked;
@@ -42,18 +40,8 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected Activity getActivity(int index) {
-        return this.active_activities.get(index);
-    }
-
-    @Override
     protected ArrayList<Project> getProjects() {
         return this.active_projects;
-    }
-
-    @Override
-    protected Project getProject(int index) {
-        return this.active_projects.get(index);
     }
 
     @Override

@@ -1,5 +1,5 @@
 Feature: create activity
-  Scenario: activity is created successfully
+  Scenario: activity is created
     Given user is logged in as projectleader
     When activity is created and added to project
     And activity is not vacation or alike
@@ -7,7 +7,7 @@ Feature: create activity
 
   Scenario: personal activity is added to employee
     Given user is logged in as projectleader
-    When activity is created
+    When projectleader creates activity for user
     And activity is vacation or alike
     Then activity is created and added to employee
 

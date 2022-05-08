@@ -1,4 +1,6 @@
 package dtu;
+import io.cucumber.java.bs.A;
+
 import java.util.ArrayList;
 
 public class Project {
@@ -33,8 +35,20 @@ public class Project {
         this.activities.add(activity);
     }
 
-    public Activity getActivity(int index) {
-        return this.activities.get(index);
+    public Activity getActivity(String name) {
+        ArrayList<Activity> activities = new ArrayList<>();
+        for(Activity a : this.activities) {
+            if(a.getName().equals(name)) {
+                activities.add(a);
+            }
+        }
+        if(activities.size() == 1) {
+            return activities.get(0);
+        }
+        else {
+            System.out.println("There are multiple activities with this name");
+            return null;
+        }
     }
 
     public ArrayList<Activity> getActivities(){

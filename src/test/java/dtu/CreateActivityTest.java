@@ -26,18 +26,13 @@ public class CreateActivityTest {
         this.Casper.createActivity("01-01-2022", "31-12-2022", "Activity");
     }
 
-    @Given("activity is not vacation or alike")
-    public void isNotVacation() {
-        assertFalse(Casper.assignedProject.getActivity(0).isPersonal());
-    }
-
     @Then("activity is available in project")
     public void activityAvailableInProject() {
-        assertSame(Casper.assignedProject.getActivity(0).getName(), this.activity.getName());
+        assertSame(Casper.assignedProject.getActivity("Activity").getName(), this.activity.getName());
     }
 
-    @When("activity is created")
-    public void createPersonalActivity() {
+    @When("projectleader creates activity for user")
+    public void projectleaderCreatesPersonalActivity() {
         this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
         this.activity.setPersonal(true);
         this.Jens = new DevelopmentEmployee("jens");
@@ -46,34 +41,29 @@ public class CreateActivityTest {
 
     @Given("activity is vacation or alike")
     public void isVacation() {
-        assertTrue(this.Jens.getActivity(0).isPersonal());
+        assertTrue(this.Jens.getActivity("Activity", "Project").isPersonal());
     }
 
     @Then("activity is created and added to employee")
     public void activityAddedToEmployee() {
-        assertSame(this.Jens.getActivity(0), this.activity);
+        assertSame(this.Jens.getActivity("Activity", "Project"), this.activity);
     }
 
-//    @Given("user is logged in as developmentemployee")
-//    public void isDevelopmentemployeeTest1() {
-//        this.Jens = new DevelopmentEmployee("jens");
-//    }
-//
-//    @When("activity is created")
-//    public void createActivityTest1() {
-//        this.activity = new Activity("01/01-2022", "31/12-2022", "Activity");
-//    }
-//
-//    @Given("activity is not vacation or alike")
-//    public void isVacationTest1() {
-//        assertFalse(this.activity.isPersonal());
-//    }
-//
-//    @Then("activity fails to get created")
-//    public void activityIsNotCreated() {
-//        System.out.println("User is not authorized to create activity");
-//    }
-//
+    @When("activity is created")
+    public void createActivity() {
+        this.activity = new Activity("01/01-2022", "31/12-2022", "Activity", this.Casper.assignedProject);
+    }
+
+    @Given("activity is not vacation or alike")
+    public void isNotVacation() {
+        assertFalse(this.activity.isPersonal());
+    }
+
+    @Then("activity fails to get created")
+    public void activityIsNotCreated() {
+        System.out.println("User is not authorized to create activity");
+    }
+
     @Given("user is logged in as developmentemployee")
     public void isDevelopmentEmployee() {
         Project project = new Project("Project");
@@ -82,14 +72,14 @@ public class CreateActivityTest {
     }
 
     @When("personal activity is created")
-    public void createActivityTest2() {
-        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Jens.getProject(0));
+    public void createPersonalActivity() {
+        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Jens.getProject("Project"));
         this.activity.setPersonal(true);
         this.Jens.addActivity(this.activity);
     }
 
     @Then("activity is created and added to users activitylist")
     public void activityIsAddedToUsersActivityList() {
-        assertSame(this.Jens.getActivity(0), this.activity);
+        assertSame(this.Jens.getActivity("Activity", "Project"), this.activity);
     }
 }
