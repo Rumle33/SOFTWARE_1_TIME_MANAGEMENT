@@ -94,7 +94,6 @@ public class UsersPage {
         ButtonItem item = (ButtonItem) list1.getModel().getElementAt(index);
         item.getButton().doClick();
         frame.dispose();
-
     }
 
     public Project getProject(){

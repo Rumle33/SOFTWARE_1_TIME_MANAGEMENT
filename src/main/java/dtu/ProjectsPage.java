@@ -29,7 +29,7 @@ public class ProjectsPage implements Runnable {
 
     @Override
     public void run() {
-        this.setup();
+
     }
 
     public void setup(){
