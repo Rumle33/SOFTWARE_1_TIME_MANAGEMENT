@@ -47,7 +47,8 @@ public class Activity {
     // Check date validity
     public Calendar setDate(String input_date) {
         if(StringUtils.countMatches(input_date, "/") != 2) { // 1
-            System.out.println("Input is invalid"); // 8
+            System.out.println("Input is invalid");
+            System.out.println("The format has to be as such XX/XX/XXXX"); // 8
             return null;
         }
         else {
