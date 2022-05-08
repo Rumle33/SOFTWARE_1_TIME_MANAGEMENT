@@ -15,7 +15,7 @@ abstract public class Employee {
         }
     }
 
-    abstract protected Project createProject(String name);
+    abstract protected void createProject(String name);
 
     abstract protected void registerHoursWorked(double hours, Activity activity);
 

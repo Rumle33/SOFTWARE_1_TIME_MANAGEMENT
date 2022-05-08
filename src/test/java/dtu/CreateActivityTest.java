@@ -4,6 +4,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class CreateActivityTest {
@@ -59,8 +61,8 @@ public class CreateActivityTest {
         assertFalse(this.activity.isPersonal());
     }
 
-    @Then("activity fails to get created")
-    public void activityIsNotCreated() {
+    @Then("activity fails to get created, because user is unauthorized")
+    public void activityIsNotCreatedBecauseUserIsUnauthorized() {
         System.out.println("User is not authorized to create activity");
     }
 
@@ -81,5 +83,26 @@ public class CreateActivityTest {
     @Then("activity is created and added to users activitylist")
     public void activityIsAddedToUsersActivityList() {
         assertSame(this.Jens.getActivity("Activity", "Project"), this.activity);
+    }
+
+    @Given("activity with the same name already exists in project")
+    public void activityWithSameNameExists() {
+        this.Casper.createActivity("01/01/2022", "31/12/2022", "Activity");
+    }
+
+    @When("activity with the same name {string} is created")
+    public void activityWithSameNameCreated(String name) {
+        this.Casper.createActivity("01/01/2022", "31/12/2022", name);
+    }
+
+    @Then("activity fails to get created, because activity already exists")
+    public void activityIsNotCreatedBecauseActivityAlreadyExists() {
+        ArrayList<Activity> activities = new ArrayList<>();
+        for(Activity a : this.Casper.assignedProject.getActivities()) {
+            if(a.getName().equals("Activity")) {
+                activities.add(a);
+            }
+        }
+        assertEquals(activities.size(), 1);
     }
 }
