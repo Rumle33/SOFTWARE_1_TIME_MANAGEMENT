@@ -46,19 +46,33 @@ public class ActivityPage implements ActionListener {
             frame.add(assignNewDevelopmentemployee);
             frame.add(setExpectedHours);
 
-            setTimeEstimate.setBounds(0, 150, 1000, 50);
+            setTimeEstimate.setBounds(500, 150, 500, 50);
+            timeEstimateField.setBounds(0, 150, 500, 50);
             assignNewDevelopmentemployee.setBounds(0, 200, 1000, 50);
-            setExpectedHours.setBounds(0, 250, 1000, 50);
+            setExpectedHours.setBounds(500, 250, 500, 50);
+            expectedHoursField.setBounds(0, 250, 500, 50);
+
+            setTimeEstimate.setVisible(true);
+            timeEstimateField.setVisible(true);
+            assignNewDevelopmentemployee.setVisible(true);
+            setExpectedHours.setVisible(true);
+            expectedHoursField.setVisible(true);
+        } else {
+            setTimeEstimate.setVisible(false);
+            timeEstimateField.setVisible(false);
+            assignNewDevelopmentemployee.setVisible(false);
+            setExpectedHours.setVisible(false);
+            expectedHoursField.setVisible(false);
         }
 
-        registerHours.setBounds(0,0,1000,50);
+        registerHours.setBounds(500,0,500,50);
+        registerHoursField.setBounds(0, 0, 500, 50);
+
         seekAssistance.setBounds(0,50,1000,50);
         acceptAssistance.setBounds(0,100,1000,50);
         frame.add(panel1);
         frame.setResizable(false);
         frame.setSize(1000,1000);
-
-        frame.setVisible(true);
     }
 
     @Override
