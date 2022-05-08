@@ -43,41 +43,35 @@ public class Activity {
     // Date setters & getters
 
     // Check date validity
-    public Calendar setDate(String input_date) throws InputMismatchException {
-        try {
-            if(StringUtils.countMatches(input_date, "/") != 2) { // 1
-                System.out.println("Input is invalid"); // 8
-                return null;
-            }
-            else {
-                String[] dateArr = input_date.split("/");
-                Calendar curDate = Calendar.getInstance();
+    public Calendar setDate(String input_date) {
+        if(StringUtils.countMatches(input_date, "/") != 2) { // 1
+            System.out.println("Input is invalid"); // 8
+            return null;
+        }
+        else {
+            String[] dateArr = input_date.split("/");
+            Calendar curDate = Calendar.getInstance();
 
-                int day = Integer.parseInt(dateArr[0]);
-                int month = Integer.parseInt(dateArr[1]) - 1;
-                int year = Integer.parseInt(dateArr[2]); // 2
+            int day = Integer.parseInt(dateArr[0]);
+            int month = Integer.parseInt(dateArr[1]) - 1;
+            int year = Integer.parseInt(dateArr[2]); // 2
 
-                if(month > -1 && month < 12 && year >= curDate.get(Calendar.YEAR)) { // 3
-                    Calendar date = Calendar.getInstance();
-                    date.set(year, month, 1);// 4
-                    if(day > 0 && day <= date.getActualMaximum(Calendar.DAY_OF_MONTH)) { // 5
-                        date.set(year, month, day);
-                        return date; // 6
-                    }
-                    else {
-                        System.out.println("The day is outside the range of this month"); // 7
-                        return null;
-                    }
+            if(month > -1 && month < 12 && year >= curDate.get(Calendar.YEAR)) { // 3
+                Calendar date = Calendar.getInstance();
+                date.set(year, month, 1);// 4
+                if(day > 0 && day <= date.getActualMaximum(Calendar.DAY_OF_MONTH)) { // 5
+                    date.set(year, month, day);
+                    return date; // 6
                 }
                 else {
-                    System.out.println("Month exceeds the calendar or year has already passed"); // 9
+                    System.out.println("The day is outside the range of this month"); // 7
                     return null;
                 }
             }
-        }
-        catch(InputMismatchException e) {
-            System.out.println("Exception " + e);
-            return null;
+            else {
+                System.out.println("Month exceeds the calendar or year has already passed"); // 9
+                return null;
+            }
         }
     }
 
