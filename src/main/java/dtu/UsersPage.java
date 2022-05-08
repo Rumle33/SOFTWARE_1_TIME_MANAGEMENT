@@ -18,6 +18,7 @@ public class UsersPage {
     private Project current_project;
     private JPanel JpanelFORM;
 
+
     JFrame frame = new JFrame();
 
     public UsersPage(Project project){
@@ -34,6 +35,7 @@ public class UsersPage {
     }
 
     public void setup(){
+
 
         //Laver en liste af knapper med medarbejdere
         for(DevelopmentEmployee dev : this.devs){
