@@ -51,19 +51,9 @@ public class CreateActivityTest {
         assertSame(this.Jens.getActivity("Activity", "Project"), this.activity);
     }
 
-    @When("activity is created")
-    public void createActivity() {
-        this.activity = new Activity("01/01-2022", "31/12-2022", "Activity", this.Casper.assignedProject);
-    }
-
     @Given("activity is not vacation or alike")
     public void isNotVacation() {
         assertFalse(this.activity.isPersonal());
-    }
-
-    @Then("activity fails to get created, because user is unauthorized")
-    public void activityIsNotCreatedBecauseUserIsUnauthorized() {
-        System.out.println("User is not authorized to create activity");
     }
 
     @Given("user is logged in as developmentemployee")

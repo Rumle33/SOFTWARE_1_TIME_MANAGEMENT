@@ -31,6 +31,17 @@ public class ProjectLeader extends Employee {
         }
     }
 
+    protected void removeProject() {
+        ArrayList<DevelopmentEmployee> devsInProject = this.assignedProject.devsInProject;
+        for(DevelopmentEmployee dev : devsInProject) {
+            dev.removeFromProject(this.assignedProject);
+        }
+        for(int i = devsInProject.size() - 1; i > -1; i--) {
+            devsInProject.remove(i);
+        }
+        this.assignedProject = null;
+    }
+
     @Override
     protected void registerHoursWorked(double time, Activity activity) {
         this.hours_worked += time;
@@ -129,6 +140,21 @@ public class ProjectLeader extends Employee {
         }
     }
 
+    public void removeActivity(String name) {
+        Activity activity = this.assignedProject.getActivity(name);
+        if(activity != null) {
+            ArrayList<DevelopmentEmployee> devsOnActivity = activity.getDevs();
+            for(DevelopmentEmployee dev : devsOnActivity) {
+                dev.removeFromActivity(activity);
+            }
+            devsOnActivity.clear();
+            this.assignedProject.removeActivity(activity);
+        }
+        else {
+            System.out.println("This activity does not exist in this project");
+        }
+    }
+
     public void addDevToProject(DevelopmentEmployee dev) {
         this.assignedProject.addDevToProject(dev);
     }
@@ -152,6 +178,7 @@ public class ProjectLeader extends Employee {
     public void assignEmployeeActivity(Activity activity, DevelopmentEmployee employee) {
         if (employee.getProjects().contains(this.assignedProject)){
             employee.addActivity(activity);
+            activity.addDev(employee);
         }
     }
 
