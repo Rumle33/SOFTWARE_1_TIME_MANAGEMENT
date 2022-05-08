@@ -52,8 +52,14 @@ public class EditActivityTest {
         assertNotSame(this.activity.getEndDate(), this.input_endDate);
     }
 
-    @Given("input is invalid - date invalid - startDate {string} endDate {string}")
-    public void dateInvalid(String startDate, String endDate) {
+    @Given("input is invalid - year too early and month out of range - startDate {string} endDate {string}")
+    public void yearTooEarlyMonthOutOfRange(String startDate, String endDate) {
+        this.input_startDate = startDate;
+        this.input_endDate = endDate;
+    }
+
+    @Given("input is invalid - days out of range for this month - startDate {string} endDate {string}")
+    public void daysOutOfRange(String startDate, String endDate) {
         this.input_startDate = startDate;
         this.input_endDate = endDate;
     }
@@ -73,5 +79,11 @@ public class EditActivityTest {
     @When("the start and deadline of the activity is set - developmentemployee")
     public void startAndDeadlineIsSetDev() {
         System.out.println("Not authorized to set start and deadline");
+    }
+
+    @Given("Input is invalid - too many forward slashes - startDate {string} endDate {string}")
+    public void tooManySlashes(String startDate, String endDate) {
+        this.input_startDate = startDate;
+        this.input_endDate = endDate;
     }
 }

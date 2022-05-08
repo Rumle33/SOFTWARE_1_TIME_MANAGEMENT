@@ -13,9 +13,15 @@ Feature: edit start and deadline activity
 
   Scenario: user sets invalid input for start and deadline
     Given user is logged in as projectleader
-    And input is invalid - date invalid - startDate "35/00/2019" endDate "00/14/2020"
+    And input is invalid - year too early and month out of range - startDate "15/00/2019" endDate "10/14/2022"
     When the start and deadline of the activity is set
     Then the activity does not register start and deadline
+
+  Scenario: user sets invalid input for start and deadline
+    Given user is logged in as projectleader
+    And input is invalid - days out of range for this month - startDate "18/07/2022" endDate "31/04/2022"
+    When the start and deadline of the activity is set
+    Then the activity registers start but not deadline
 
   Scenario: deadline is before start, so inputs are invalid
     Given user is logged in as projectleader
@@ -27,4 +33,10 @@ Feature: edit start and deadline activity
     Given user is logged in as developmentemployee
     And input is valid - startDate "30/04/2022" endDate "30/05/2022"
     When the start and deadline of the activity is set - developmentemployee
+    Then the activity does not register start and deadline
+
+  Scenario: Too many forward slashes
+    Given user is logged in as projectleader
+    And Input is invalid - too many forward slashes - startDate "24/05/2022/35" endDate "14/08/2022/6"
+    When the start and deadline of the activity is set
     Then the activity does not register start and deadline

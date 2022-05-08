@@ -1,5 +1,7 @@
 package dtu;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Date;
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -41,10 +43,11 @@ public class Activity {
     // Date setters & getters
 
     // Check date validity
-    public Calendar setDate(String input_date) throws InputMismatchException{
+    public Calendar setDate(String input_date) throws InputMismatchException {
         try {
-            if(!input_date.contains("/")) {
-                System.out.println("Input is invalid");
+            if(StringUtils.countMatches(input_date, "/") != 2) { // 1
+                System.out.println("Input is invalid"); // 8
+                return null;
             }
             else {
                 String[] dateArr = input_date.split("/");
@@ -52,27 +55,25 @@ public class Activity {
 
                 int day = Integer.parseInt(dateArr[0]);
                 int month = Integer.parseInt(dateArr[1]) - 1;
-                int year = Integer.parseInt(dateArr[2]);
+                int year = Integer.parseInt(dateArr[2]); // 2
 
-                if(month > -1 && month < 12 && year >= curDate.get(Calendar.YEAR)) {
+                if(month > -1 && month < 12 && year >= curDate.get(Calendar.YEAR)) { // 3
                     Calendar date = Calendar.getInstance();
-                    date.set(year, month, 1);
-                    if(day > 0 && day <= date.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+                    date.set(year, month, 1);// 4
+                    if(day > 0 && day <= date.getActualMaximum(Calendar.DAY_OF_MONTH)) { // 5
                         date.set(year, month, day);
-
-                        System.out.println("Year: " + date.get(Calendar.YEAR) + ", Month: " + date.get(Calendar.MONTH) + ", Day: " + date.get(Calendar.DATE));
-                        return date;
+                        return date; // 6
                     }
                     else {
-                        System.out.println("The day is outside the range of this month");
-
+                        System.out.println("The day is outside the range of this month"); // 7
+                        return null;
                     }
                 }
                 else {
-                    System.out.println("The day is outside the range of this month");
+                    System.out.println("Month exceeds the calendar or year has already passed"); // 9
+                    return null;
                 }
             }
-            return null;
         }
         catch(InputMismatchException e) {
             System.out.println("Exception " + e);
@@ -89,7 +90,7 @@ public class Activity {
 
     public void setEndDate(String end_date) {
         Calendar end_temp = this.setDate(end_date);
-        if (end_temp != null){
+        if (end_temp != null)  {
             Calendar start_temp = Calendar.getInstance();
             String[] arr = this.start_date.split("/");
             int day = Integer.parseInt(arr[0]);
