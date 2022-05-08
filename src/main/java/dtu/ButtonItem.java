@@ -149,14 +149,14 @@ public class ButtonItem {
         });
     }
 
-    //Knap til ActivityPage
-    public ButtonItem(Activity activity, String name) {
+    //Knap fra ProjectHomePage til ActivityPage
+    public ButtonItem(ProjectHomePage projectHomePage, Activity activity, String name) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ActivityPage activityPage = new ActivityPage();
+                ActivityPage activityPage = new ActivityPage(activity, projectHomePage);
                 System.out.println(button.getText() + " was clicked.");
             }
         });

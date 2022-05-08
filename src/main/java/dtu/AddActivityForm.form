@@ -13,7 +13,7 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Start date of project:"/>
+          <text value="Start date of activity:"/>
         </properties>
       </component>
       <vspacer id="cabbb">
@@ -36,7 +36,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="End date of project:"/>
+          <text value="End date of activity:"/>
         </properties>
       </component>
       <component id="db169" class="javax.swing.JTextField" binding="endDateField">
@@ -54,7 +54,7 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Name of project:"/>
+          <text value="Name of activity:"/>
         </properties>
       </component>
       <component id="2112f" class="javax.swing.JTextField" binding="nameField">
