@@ -77,9 +77,13 @@ public class DevelopmentEmployee extends Employee {
     @Override
     protected void acceptAssistance(Activity activity) {
         try{
-            if (this.active_activities.size() <= 20 || this.active_projects.contains(activity.getProject())){
-                this.active_activities.add(activity);
-                this.assisting_activities.remove(activity);
+            if (this.active_activities.size() < 20 ){
+                if (this.active_projects.contains(activity.getProject())){
+                    this.active_activities.add(activity);
+                    this.assisting_activities.remove(activity);
+                } else {
+                    System.out.println("Du er ikke i projektet, som aktiviteten findes i");
+                }
             } else {
                 System.out.println("For mange aktive aktiviteter");
             }

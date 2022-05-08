@@ -48,6 +48,7 @@ public class UsersPage {
             ButtonArrayList.add(button);
         }
 
+
         //Tilføjer en knap til at tilføje nye medarbejdere i toppen af listen
         int array_length = ButtonArrayList.size() + 1; // + 1 fordi back button skal være der som den sidste knap
         Object[] button_list = new Object[array_length + 1]; // + 1 fordi add employee skal være der som første knap

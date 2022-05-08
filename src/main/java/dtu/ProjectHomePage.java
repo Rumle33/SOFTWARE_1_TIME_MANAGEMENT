@@ -8,7 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ProjectHomePage {
+public class ProjectHomePage{
     private Object[] button_list;
     private JFrame frame;
     private JScrollPane scroll_activities;
@@ -21,7 +21,9 @@ public class ProjectHomePage {
     private JList buttonlist_visual;
     private ButtonItem backButton;
 
+    private ButtonItem Assign_Projectleader;
     private ButtonItem add_activity = new ButtonItem(this, "Add new activity");
+
 
     public ProjectHomePage(ArrayList<Project> allProjects, Employee employee, Project project) {
         this.current_user = employee;
@@ -80,14 +82,12 @@ public class ProjectHomePage {
 
 
         if(current_user.getClass() == ProjectLeader.class) {
-            button_list = new Object[array_len + 1];
-            button_list[0] = add_activity;
-            for (int i = 1; i <= array_len; i++){
-                if (i == array_len){
-                    button_list[i] = this.backButton;
-                } else {
-                    button_list[i] = this.activiy_buttons.get(i-1);
-                }
+            button_list = new Object[array_len + 1]; // +1 for hver knap der tilføjes udover back
+            button_list[0] = this.backButton;
+            button_list[1] = add_activity;
+
+            for (int i = 2; i <= array_len; i++){ // i er + 1 for hver nye knap der tilføjes udover back
+                button_list[i] = this.activiy_buttons.get(i-2);
             }
         } else if (array_len >= 0){
             button_list = new Object[array_len + 1];
@@ -100,7 +100,6 @@ public class ProjectHomePage {
                 }
             }
         }
-
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
         buttonlist_visual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -124,6 +123,7 @@ public class ProjectHomePage {
         frame.getContentPane().add(this.scroll_activities);
         frame.setResizable(false);
         frame.setSize(new Dimension(1000, 1000));
+
         frame.setVisible(true);
     }
 
