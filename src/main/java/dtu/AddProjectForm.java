@@ -33,7 +33,6 @@ public class AddProjectForm implements ActionListener {
             frame.dispose();
             temp_projects.add(new Project(textField1.getText()));
             ProjectsPage projectsPage = new ProjectsPage(temp_projects);
-            projectsPage.setup();
         };
     }
 

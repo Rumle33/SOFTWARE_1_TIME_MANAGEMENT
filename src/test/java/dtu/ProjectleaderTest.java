@@ -14,7 +14,7 @@ public class ProjectleaderTest {
     @And("chosen employee is developmentemployee")
     public void Employee_is_developmentemployee (){
         assertSame(this.Jens.getClass(), DevelopmentEmployee.class);
-        this.project.devs_in_project.add(Jens);
+        this.project.addDevToProject(Jens);
     }
 
     @When("developmentemployee is chosen")

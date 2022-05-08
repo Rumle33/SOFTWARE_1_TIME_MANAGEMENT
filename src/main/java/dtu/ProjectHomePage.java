@@ -8,46 +8,47 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class ProjectHomePage implements ActionListener {
+public class ProjectHomePage {
     private Object[] button_list;
-    private JTextField project_textfield;
-    private JScrollPane scroll_activities;
-    private JScrollPane scroll_employees;
-    private JLabel label_projectname;
-    private JButton ASSprojectleader;
     private JFrame frame;
+    private JScrollPane scroll_activities;
     private Employee current_user;
     private Project current_project;
+    private ArrayList<Project> allProjects = new ArrayList<Project>();
     private ArrayList<DevelopmentEmployee> assigned_devs = new ArrayList<DevelopmentEmployee>();
     private ArrayList<Activity> active_activities;
     private ArrayList<ButtonItem> activiy_buttons = new ArrayList<ButtonItem>();
     private JList buttonlist_visual;
+    private ButtonItem backButton;
 
     private ButtonItem add_activity = new ButtonItem(this, "Add new activity");
 
-    public ProjectHomePage(Employee employee, Project project) {
+    public ProjectHomePage(ArrayList<Project> allProjects, Employee employee, Project project) {
         this.current_user = employee;
         this.current_project = project;
         this.active_activities = project.getActivities();
         this.assigned_devs = project.getDevsInProjects();
+        this.allProjects = allProjects;
 
         this.setup();
     }
 
-    public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project){
+    public ProjectHomePage(ArrayList<Project> allProjects, ArrayList<Activity> new_active_activities, Employee employee, Project project){
         this.current_user = employee;
         this.current_project = project;
         this.active_activities = project.getActivities();
         this.assigned_devs = project.getDevsInProjects();
+        this.allProjects = allProjects;
 
         this.setup();
     }
 
-    public ProjectHomePage(ArrayList<Activity> new_active_activities, Employee employee, Project project,ProjectLeader projectleader){
+    public ProjectHomePage(ArrayList<Project> allProjects, ArrayList<Activity> new_active_activities, Employee employee, Project project, ProjectLeader projectleader){
         this.current_user = employee;
         this.current_project = project;
         this.active_activities = project.getActivities();
         this.assigned_devs = project.getDevsInProjects();
+        this.allProjects = allProjects;
 
         try{
             if(this.current_user.getClass() == DevelopmentEmployee.class){
@@ -62,6 +63,8 @@ public class ProjectHomePage implements ActionListener {
     }
 
     public void setup(){
+        this.backButton = new ButtonItem(this.current_project.getDevsInProjects(), this.allProjects, this.current_project, "Back");
+
         for(Activity activity : this.active_activities){
             ButtonItem button = new ButtonItem(activity, activity.getName());
 
@@ -72,7 +75,7 @@ public class ProjectHomePage implements ActionListener {
         if (this.activiy_buttons.size() <= 0){
             array_len = 0;
         } else {
-            array_len = activiy_buttons.size();
+            array_len = activiy_buttons.size() + 1;
         }
 
 
@@ -80,15 +83,23 @@ public class ProjectHomePage implements ActionListener {
             button_list = new Object[array_len + 1];
             button_list[0] = add_activity;
             for (int i = 1; i <= array_len; i++){
-                button_list[i] = this.activiy_buttons.get(i-1);
+                if (i == array_len){
+                    button_list[i] = this.backButton;
+                } else {
+                    button_list[i] = this.activiy_buttons.get(i-1);
+                }
             }
-        } else if(array_len < 0) {
-            button_list = new Object[array_len];
+        } else if (array_len >= 0){
+            button_list = new Object[array_len + 1];
             for (int i = 0; i <= array_len; i++){
-                button_list[i] = this.activiy_buttons.get(i);
+                if (i == array_len){
+                    button_list[i] = this.backButton;
+                } else {
+                    System.out.println("Anden else ting " + array_len);
+                    button_list[i] = this.activiy_buttons.get(i);
+                }
             }
         }
-        button_list = new Object[array_len];
 
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
@@ -104,27 +115,18 @@ public class ProjectHomePage implements ActionListener {
         });
 
         frame = new JFrame("User: " + this.current_user.getInitials());
-        frame.add(label_projectname);
-        label_projectname.setText("Project name: " + this.current_project.getName() );
-        frame.setMinimumSize(new Dimension(1000,1000));
+//        frame.add(label_projectname);
+//        label_projectname.setText("Project name: " + this.current_project.getName() );
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.scroll_activities = new JScrollPane(buttonlist_visual);
-        frame.getContentPane().add(new JScrollPane(this.scroll_activities));
+        this.scroll_activities.setSize(new Dimension(500, 1000));
+        frame.getContentPane().add(this.scroll_activities);
         frame.setResizable(false);
-
-        frame.add(ASSprojectleader);
-
+        frame.setSize(new Dimension(1000, 1000));
         frame.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ASSprojectleader) {
-            frame.dispose();
-            Make_dev_Projectleader Leader = new Make_dev_Projectleader();
-            Leader.setup();
-        };
-    }
 
     private void clickButtonAt(Point point)
     {
@@ -144,6 +146,10 @@ public class ProjectHomePage implements ActionListener {
 
     public Project getProject(){
         return current_project;
+    }
+
+    public ArrayList<Project> getAllProjects(){
+        return this.allProjects;
     }
 
 }

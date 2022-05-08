@@ -7,7 +7,7 @@ public class Project {
     private ProjectLeader projectleader = null;
     private String name = "";
     protected ArrayList<Activity> activities = new ArrayList<Activity>();
-    protected ArrayList<DevelopmentEmployee> devs_in_project = new ArrayList<DevelopmentEmployee>();
+    protected ArrayList<DevelopmentEmployee> devsInProject = new ArrayList<DevelopmentEmployee>();
 
     public Project(String name) {
         this.name = name;
@@ -55,18 +55,16 @@ public class Project {
         return this.activities;
     }
 
-
-
     public void addDevToProject(DevelopmentEmployee dev) {
-        this.devs_in_project.add(dev);
+        this.devsInProject.add(dev);
     }
 
     public void makeDevProjectleader(DevelopmentEmployee dev, Project project) throws Exception {
         String Initials = dev.getInitials();
         if (project.getProjectLeader() == null) {
             this.projectleader = new ProjectLeader(this, Initials);
-            if (devs_in_project.contains(dev)) {
-                devs_in_project.remove(dev);
+            if (devsInProject.contains(dev)) {
+                devsInProject.remove(dev);
 
             } else {
                 throw new Exception("Projectleader with the same name already exist ");
@@ -76,6 +74,10 @@ public class Project {
     }
 
     public ArrayList<DevelopmentEmployee> getDevsInProjects(){
-        return this.devs_in_project;
+        return this.devsInProject;
+    }
+
+    public void setDevsInProject(ArrayList<DevelopmentEmployee> devs){
+        this.devsInProject = devs;
     }
 }

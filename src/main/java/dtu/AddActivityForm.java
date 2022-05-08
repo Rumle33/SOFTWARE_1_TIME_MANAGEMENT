@@ -38,7 +38,7 @@ public class AddActivityForm implements ActionListener {
         if (e.getSource() == add_activity) {
             frame.dispose();
             temp_activity.add(new Activity(startDateField.getText(), endDateField.getText(), nameField.getText(), this.current_project));
-            ProjectHomePage projectHomePage = new ProjectHomePage(temp_activity, this.current_user, this.current_project);
+            ProjectHomePage projectHomePage = new ProjectHomePage(this.projectHomePage.getAllProjects(), temp_activity, this.current_user, this.current_project);
         };
     }
 
