@@ -13,9 +13,19 @@ public class DevelopmentEmployee extends Employee {
     }
 
     @Override
-    protected Project createProject(String name) {
-        Project project = new Project(name);
-        return project;
+    protected void createProject(String name) {
+        boolean sameName = false;
+        for(Project p : this.getProjects()) {
+            if(p.getName().equals(name)) {
+                sameName = true;
+            }
+        }
+        if(sameName) {
+            System.out.println("This project already exists");
+        }
+        else {
+            this.active_projects.add(new Project(name));
+        }
     }
 
     @Override

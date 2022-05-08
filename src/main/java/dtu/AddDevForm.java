@@ -15,11 +15,13 @@ public class AddDevForm implements ActionListener {
     UsersPage usersPage;
     ArrayList<DevelopmentEmployee> temp_dev;
     private Project current_project;
+    private ArrayList<Project> allProjects = new ArrayList<Project>();
 
 
     AddDevForm(UsersPage usersPage){
         this.usersPage = usersPage;
         this.current_project = usersPage.getProject();
+        this.allProjects = usersPage.getAllProjects();
         temp_dev = this.usersPage.getDevs();
         add_developer.addActionListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,9 +38,8 @@ public class AddDevForm implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == add_developer) {
             frame.dispose();
-            temp_dev.add(new DevelopmentEmployee(textField1.getText()));
-            UsersPage usersPage = new UsersPage(this.current_project, temp_dev);
-            usersPage.setup();
+            this.temp_dev.add(new DevelopmentEmployee(textField1.getText()));
+            UsersPage usersPage = new UsersPage(this.allProjects, this.current_project, this.temp_dev);
         };
     }
 

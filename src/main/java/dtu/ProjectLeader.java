@@ -16,8 +16,19 @@ public class ProjectLeader extends Employee {
     }
 
     @Override
-    protected Project createProject(String name) {
-        return new Project(name);
+    protected void createProject(String name) {
+        boolean sameName = false;
+        for(Project p : this.getProjects()) {
+            if(p.getName().equals(name)) {
+                sameName = true;
+            }
+        }
+        if(sameName) {
+            System.out.println("This project already exists");
+        }
+        else {
+            this.active_projects.add(new Project(name));
+        }
     }
 
     @Override
@@ -108,7 +119,18 @@ public class ProjectLeader extends Employee {
     }
 
     public void createActivity(String start_date, String end_date, String activity_name) {
-        this.assignedProject.addActivity(new Activity(start_date, end_date,activity_name, this.assignedProject));
+        boolean sameName = false;
+        for(Activity a : this.assignedProject.getActivities()) {
+            if(a.getName().equals(activity_name)) {
+                sameName = true;
+            }
+        }
+        if(sameName) {
+            System.out.println("This activity already exists");
+        }
+        else {
+            this.assignedProject.addActivity(new Activity(start_date, end_date,activity_name, this.assignedProject));
+        }
     }
 
     public void addDevToProject(DevelopmentEmployee dev) {
