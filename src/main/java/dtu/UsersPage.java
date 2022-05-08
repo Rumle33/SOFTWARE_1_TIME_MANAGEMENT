@@ -14,7 +14,9 @@ public class UsersPage {
 
     private JList list1;
     private ButtonItem add_emp = new ButtonItem(this, "Add new developmentemployee");
+    private ButtonItem BACKBUTTON;
     private Project current_project;
+    private JPanel JpanelFORM;
 
     JFrame frame = new JFrame();
 
@@ -67,10 +69,9 @@ public class UsersPage {
         scroll_pane.setPreferredSize(new Dimension(500,1000));
         frame.getContentPane().add(scroll_pane);
         frame.pack();
-
         frame.setResizable(false);
         frame.setSize(1000,1000);
-
+        frame.add(JpanelFORM);
         frame.setVisible(true);
     }
 
@@ -80,6 +81,7 @@ public class UsersPage {
         ButtonItem item = (ButtonItem) list1.getModel().getElementAt(index);
         item.getButton().doClick();
         frame.dispose();
+
     }
 
     public Project getProject(){

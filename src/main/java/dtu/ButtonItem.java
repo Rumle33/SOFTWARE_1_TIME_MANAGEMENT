@@ -47,6 +47,18 @@ public class ButtonItem {
         });
     }
 
+    //Knap fra UsersPage til ProjectsPage
+    public ButtonItem(ArrayList<Project> projects, String name) {
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ProjectsPage projectsPage = new ProjectsPage(projects);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
     //Knap fra UsersPage til ProjectHomePage
     public ButtonItem(Employee employee, String name, Project project) {
 
@@ -61,9 +73,6 @@ public class ButtonItem {
     }
 
 
-
-
-
     //Knap fra ProjectHomePage til AddActivityForm
     public ButtonItem(ProjectHomePage projectHomePage, ProjectLeader projectLeader) {
 
@@ -76,12 +85,6 @@ public class ButtonItem {
             }
         });
     }
-
-
-
-
-
-
 
     //Knap til ProjectHomePage
     public ButtonItem(Employee employee, String name) {
