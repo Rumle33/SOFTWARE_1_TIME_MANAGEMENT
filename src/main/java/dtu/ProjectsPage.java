@@ -14,6 +14,7 @@ public class ProjectsPage implements Runnable {
     private JList buttonlist_visual;
     private JScrollPane scrollPane;
     private ButtonItem add_project = new ButtonItem(this, "Add new project");
+    private Object[] button_list;
 
     public ProjectsPage() {
 
@@ -40,7 +41,7 @@ public class ProjectsPage implements Runnable {
 
         int array_len;
         array_len = project_buttons.size();
-        Object[] button_list = new Object[array_len + 1];
+        button_list = new Object[array_len + 1];
         button_list[0] = add_project;
         for (int i = 1; i <= array_len; i++){
             button_list[i] = this.project_buttons.get(i-1);

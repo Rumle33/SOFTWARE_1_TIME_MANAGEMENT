@@ -9,7 +9,7 @@ public class ButtonItem {
 
     private JButton button;
 
-    // Knap fra ProjectsPAge til AddProjectForm
+    // Knap fra ProjectsPage til AddProjectForm
     public ButtonItem(ProjectsPage projectsPage, String name) {
 
         this.button = new JButton(name);
@@ -61,27 +61,44 @@ public class ButtonItem {
     }
 
     //Knap fra UsersPage til ProjectHomePage
-    public ButtonItem(Employee employee, String name, Project project) {
+    public ButtonItem(ArrayList<Project> allProjects, Employee employee, String name, Project project) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProjectHomePage projectHomePage = new ProjectHomePage(employee, project);
+                ProjectHomePage projectHomePage = new ProjectHomePage(allProjects, employee, project);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
+
+    //Knap fra UsersPage til ProjectsPage
+    public ButtonItem(ArrayList<DevelopmentEmployee> devs, ArrayList<Project> projects, Project currentProject, String name) {
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UsersPage usersPage = new UsersPage(projects, currentProject, devs);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
     }
 
 
+
+
+
+
+
     //Knap fra ProjectHomePage til AddActivityForm
-    public ButtonItem(ProjectHomePage projectHomePage, ProjectLeader projectLeader) {
+    public ButtonItem(ArrayList<Project> allProjects, ProjectHomePage projectHomePage, ProjectLeader projectLeader) {
 
         this.button = new JButton();
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProjectHomePage NewPage = new ProjectHomePage(projectHomePage.getActivities() ,projectHomePage.getCurrentUser(), projectHomePage.getProject(), projectLeader);
+                ProjectHomePage NewPage = new ProjectHomePage(allProjects, projectHomePage.getActivities() ,projectHomePage.getCurrentUser(), projectHomePage.getProject(), projectLeader);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
