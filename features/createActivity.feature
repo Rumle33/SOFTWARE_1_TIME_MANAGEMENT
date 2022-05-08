@@ -11,6 +11,12 @@ Feature: create activity
     And activity is vacation or alike
     Then activity is created and added to employee
 
+#  Scenario: activity is created unsuccessfully
+#    Given user is logged in as developmentemployee, test 1
+#    When activity is created
+#    And activity is not vacation or alike
+#    Then activity fails to get created, because user is unauthorized
+
   Scenario: personal activity is added to user
     Given user is logged in as developmentemployee
     When personal activity is created

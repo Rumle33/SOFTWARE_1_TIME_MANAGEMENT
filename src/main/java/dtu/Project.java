@@ -35,6 +35,10 @@ public class Project {
         this.activities.add(activity);
     }
 
+    public void removeActivity(Activity activity) {
+        this.getActivities().remove(activity);
+    }
+
     public Activity getActivity(String name) {
         ArrayList<Activity> activities = new ArrayList<>();
         for(Activity a : this.activities) {
@@ -44,6 +48,10 @@ public class Project {
         }
         if(activities.size() == 1) {
             return activities.get(0);
+        }
+        else if(activities.size() == 0) {
+            System.out.println("There is no activity with this name");
+            return null;
         }
         else {
             System.out.println("There are multiple activities with this name");
@@ -57,6 +65,7 @@ public class Project {
 
     public void addDevToProject(DevelopmentEmployee dev) {
         this.devsInProject.add(dev);
+        dev.assignToProject(this);
     }
 
     public void makeDevProjectleader(DevelopmentEmployee dev, Project project) throws Exception {

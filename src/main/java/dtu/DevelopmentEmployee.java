@@ -1,4 +1,6 @@
 package dtu;
+import io.cucumber.java.bs.A;
+
 import java.util.ArrayList;
 
 public class DevelopmentEmployee extends Employee {
@@ -115,6 +117,10 @@ public class DevelopmentEmployee extends Employee {
 
     protected void addActivity(Activity activity) {
         this.active_activities.add(activity);
+    }
+
+    protected void removeFromActivity(Activity activity) {
+        this.active_activities.remove(activity);
     }
 
 }

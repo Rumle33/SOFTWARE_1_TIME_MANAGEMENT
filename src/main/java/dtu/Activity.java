@@ -2,6 +2,7 @@ package dtu;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -14,6 +15,7 @@ public class Activity {
     private String name = "";
     private boolean isPersonal = false;
     private Project assigned_project;
+    private ArrayList<DevelopmentEmployee> devsOnActivity = new ArrayList<>();
 
 
     //Constructor
@@ -139,5 +141,13 @@ public class Activity {
 
     public Project getProject(){
         return this.assigned_project;
+    }
+
+    public ArrayList<DevelopmentEmployee> getDevs() {
+        return this.devsOnActivity;
+    }
+
+    public void addDev(DevelopmentEmployee dev) {
+        this.getDevs().add(dev);
     }
 }
