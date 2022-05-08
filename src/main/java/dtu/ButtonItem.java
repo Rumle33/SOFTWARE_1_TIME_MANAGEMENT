@@ -60,6 +60,24 @@ public class ButtonItem {
         });
     }
 
+    //Knap til at assign projectleader
+    public ButtonItem(ProjectHomePage projectHomePage, DevelopmentEmployee Dev, String name) {
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Dev.getClass() == DevelopmentEmployee.class ){
+                    projectHomePage.getProject().setProjectleader(new ProjectLeader(projectHomePage.getProject(), Dev.getInitials()));
+                    projectHomePage.getDevsInProject().remove(Dev);
+                    projectHomePage.getProject().setDevsInProject(projectHomePage.getDevsInProject());
+                    ProjectHomePage newpage = new ProjectHomePage(projectHomePage.getAllProjects(), projectHomePage.getActivities(), projectHomePage.getProjectLeader(), projectHomePage.getProject());
+                }
+            }
+        });
+    }
+
+
+
     //Knap fra UsersPage til ProjectHomePage
     public ButtonItem(ArrayList<Project> allProjects, Employee employee, String name, Project project) {
 
