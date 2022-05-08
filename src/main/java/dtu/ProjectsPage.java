@@ -42,7 +42,6 @@ public class ProjectsPage implements Runnable {
         array_len = project_buttons.size();
         Object[] button_list = new Object[array_len + 1];
         button_list[0] = add_project;
-
         for (int i = 1; i <= array_len; i++){
             button_list[i] = this.project_buttons.get(i-1);
         }

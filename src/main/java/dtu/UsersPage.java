@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class UsersPage {
     private ArrayList<DevelopmentEmployee> devs = new ArrayList<DevelopmentEmployee>();
     private ArrayList<ButtonItem> ButtonArrayList = new ArrayList<ButtonItem>();
+    private ArrayList<Project> allProjects = new ArrayList<Project>();
+
 
     private JList list1;
     private ButtonItem add_emp = new ButtonItem(this, "Add new developmentemployee");
@@ -21,15 +23,19 @@ public class UsersPage {
 
     JFrame frame = new JFrame();
 
-    public UsersPage(Project project){
+    public UsersPage(ArrayList<Project> allProjects, Project project){
         this.current_project = project;
+        this.allProjects = allProjects;
+        this.BACKBUTTON = new ButtonItem(allProjects, "Back");
 
         this.setup();
     }
 
-    public UsersPage(Project project, ArrayList<DevelopmentEmployee> new_devs){
+    public UsersPage(ArrayList<Project> allProjects, Project project, ArrayList<DevelopmentEmployee> new_devs){
         this.current_project = project;
         this.devs = new_devs;
+        this.allProjects = allProjects;
+
 
         this.setup();
     }
@@ -45,10 +51,15 @@ public class UsersPage {
 
         //Tilføjer en knap til at tilføje nye medarbejdere i toppen af listen
         int array_length = ButtonArrayList.size();
-        Object[] button_list = new Object[array_length + 1];
+        Object[] button_list = new Object[array_length + 2];
         button_list[0] = add_emp;
-        for (int i = 1; i <= array_length; i++) {
+        button_list[1] = BACKBUTTON;
+        for (int i = 2; i <= array_length; i++) {
+//            if(i == array_length){
+//                button_list[i] = BACKBUTTON;
+//            } else {
             button_list[i] = ButtonArrayList.get(i-1);
+//            }
         }
 
         //Tilføjer listen til en JList, så den kan interageres med
@@ -88,6 +99,10 @@ public class UsersPage {
 
     public Project getProject(){
         return this.current_project;
+    }
+
+    public ArrayList<Project> getAllProjects(){
+        return this.allProjects;
     }
 
     public ArrayList<DevelopmentEmployee> getDevs(){
