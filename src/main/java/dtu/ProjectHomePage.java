@@ -64,6 +64,25 @@ public class ProjectHomePage{
         this.setup();
     }
 
+    public ProjectHomePage(ActivityPage activityPage){
+        this.current_user = activityPage.getCurrentUser();
+        this.current_project = activityPage.getProject();
+        this.active_activities = activityPage.getProject().getActivities();
+        this.assigned_devs = this.current_project.getDevsInProjects();
+        this.allProjects = activityPage.getAllProjects();
+
+        try{
+            if(this.current_user.getClass() == DevelopmentEmployee.class){
+                DevelopmentEmployee tempDev = (DevelopmentEmployee) this.current_user;
+                this.current_project.makeDevProjectleader(tempDev, this.current_project);
+            }
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+
+        this.setup();
+    }
+
     public void setup(){
         this.backButton = new ButtonItem(this.current_project.getDevsInProjects(), this.allProjects, this.current_project, "Back");
 
