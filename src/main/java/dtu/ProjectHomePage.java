@@ -19,8 +19,8 @@ public class ProjectHomePage{
     private ArrayList<Activity> active_activities;
     private ArrayList<ButtonItem> activiy_buttons = new ArrayList<ButtonItem>();
     private JList buttonlist_visual;
-    private ButtonItem backButton;
 
+    private ButtonItem backButton;
     private ButtonItem Assign_Projectleader;
     private ButtonItem add_activity = new ButtonItem(this, "Add new activity");
 
@@ -38,7 +38,8 @@ public class ProjectHomePage{
     public ProjectHomePage(ArrayList<Project> allProjects, ArrayList<Activity> new_active_activities, Employee employee, Project project){
         this.current_user = employee;
         this.current_project = project;
-        this.active_activities = project.getActivities();
+        this.current_project.setActivities(new_active_activities);
+        this.active_activities = this.current_project.getActivities();
         this.assigned_devs = project.getDevsInProjects();
         this.allProjects = allProjects;
 
@@ -64,6 +65,25 @@ public class ProjectHomePage{
         this.setup();
     }
 
+    public ProjectHomePage(ActivityPage activityPage){
+        this.current_user = activityPage.getCurrentUser();
+        this.current_project = activityPage.getProject();
+        this.active_activities = activityPage.getProject().getActivities();
+        this.assigned_devs = this.current_project.getDevsInProjects();
+        this.allProjects = activityPage.getAllProjects();
+
+        try{
+            if(this.current_user.getClass() == DevelopmentEmployee.class){
+                DevelopmentEmployee tempDev = (DevelopmentEmployee) this.current_user;
+                this.current_project.makeDevProjectleader(tempDev, this.current_project);
+            }
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+
+        this.setup();
+    }
+
     public void setup(){
         this.backButton = new ButtonItem(this.current_project.getDevsInProjects(), this.allProjects, this.current_project, "Back");
 
@@ -74,26 +94,38 @@ public class ProjectHomePage{
         }
 
         int array_len;
-        array_len = activiy_buttons.size() + 1;
 
         if(current_user.getClass() == ProjectLeader.class) {
-            button_list = new Object[array_len + 1]; // +1 for hver knap der tilføjes udover back
+            array_len = activiy_buttons.size() + 2; //+1 for hver knap der tilføje
+            button_list = new Object[array_len];
             button_list[0] = this.backButton;
             button_list[1] = add_activity;
 
-            for (int i = 2; i <= array_len; i++){ // i er + 1 for hver nye knap der tilføjes udover back
-                button_list[i] = this.activiy_buttons.get(i-2);
+            for (int i = 2; i < array_len; i++){
+                button_list[i] = this.activiy_buttons.get(i - 2);
             }
         } else if (this.current_user.getClass() == DevelopmentEmployee.class){
-            this.Assign_Projectleader = new ButtonItem(this, (DevelopmentEmployee) this.current_user, "Assign projectleader" );
-            button_list = new Object[array_len + 1]; // +1 for hver knap der tilføjes udover back
-            button_list[0] = this.backButton;
-            button_list[1] = this.Assign_Projectleader;
+            if (this.current_project.getProjectLeader() != null){
+                array_len = activiy_buttons.size() + 1;
+                button_list = new Object[array_len];
+                button_list[0] = this.backButton;
 
-            for (int i = 2; i <= array_len; i++){ // i er + 1 for hver nye knap der tilføjes udover back
-                button_list[i] = this.activiy_buttons.get(i);
+                for (int i = 1; i < array_len; i++){
+                    button_list[i] = this.activiy_buttons.get(i-1);
+                }
+            } else {
+                array_len = activiy_buttons.size() + 2;
+                this.Assign_Projectleader = new ButtonItem(this, (DevelopmentEmployee) this.current_user, "Assign projectleader" );
+                button_list = new Object[array_len];
+                button_list[0] = this.backButton;
+                button_list[1] = this.Assign_Projectleader;
+
+                for (int i = 2; i < array_len; i++){ // i er + 1 for hver nye knap der tilføjes
+                    button_list[i] = this.activiy_buttons.get(i - 2);
+                }
             }
         }
+
         buttonlist_visual = new JList(button_list);
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
         buttonlist_visual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

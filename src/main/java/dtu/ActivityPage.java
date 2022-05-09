@@ -3,6 +3,7 @@ package dtu;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ActivityPage implements ActionListener {
     private JButton registerHours;
@@ -14,80 +15,150 @@ public class ActivityPage implements ActionListener {
     private JPanel panel1;
     private JTextField registerHoursField;
     private JLabel infoLabel;
-    private JTextField timeEstimateField;
+    private JTextField startDateField;
     private JTextField expectedHoursField;
+    private JTextField endDateField;
+    private JButton backButton;
     private JFrame frame = new JFrame();
     private Activity activity;
+    private Project project;
 
     private Employee current_user;
+    private ArrayList<DevelopmentEmployee> devsInProject;
+    private ArrayList<DevelopmentEmployee> devsInActivity = new ArrayList<DevelopmentEmployee>();
+    private ArrayList<Project> allProjects = new ArrayList<Project>();
 
     public ActivityPage(Activity activity, ProjectHomePage projectHomePage){
+        this.devsInProject = projectHomePage.getDevsInProject();
         this.activity = activity;
+        this.project = projectHomePage.getProject();
         this.current_user = projectHomePage.getCurrentUser();
+        this.allProjects = projectHomePage.getAllProjects();
+        this.setup();
+    }
+
+    public ActivityPage(ActivityPage activityPage){
+        this.allProjects = activityPage.getAllProjects();
+        this.devsInProject = activityPage.getDevsInProject();
+        this.devsInActivity = activityPage.getDevsInActivity();
+        this.activity = activityPage.activity;
+        this.current_user = activityPage.getCurrentUser();
         this.setup();
     }
 
     public void setup(){
+        this.infoLabel.setText("Aktivitet: " + this.activity.getName() + ". Hours worked: " + this.activity.getHoursWorked() + " out of " + this.activity.getEstimatedTime()
+        + ". Start date: " + this.activity.getStartDate() + ". End date: " + this.activity.getEndDate());
         registerHours.addActionListener(this);
         seekAssistance.addActionListener(this);
         acceptAssistance.addActionListener(this);
         setTimeEstimate.addActionListener(this);
         assignNewDevelopmentemployee.addActionListener(this);
         setExpectedHours.addActionListener(this);
+        backButton.addActionListener(this);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.add(registerHours);
-        frame.add(seekAssistance);
-        frame.add(acceptAssistance);
 
-        if (this.current_user.getClass() == ProjectLeader.class){
-            frame.add(setTimeEstimate);
-            frame.add(assignNewDevelopmentemployee);
-            frame.add(setExpectedHours);
-
-            setTimeEstimate.setBounds(500, 150, 500, 50);
-            timeEstimateField.setBounds(0, 150, 500, 50);
-            assignNewDevelopmentemployee.setBounds(0, 200, 1000, 50);
-            setExpectedHours.setBounds(500, 250, 500, 50);
-            expectedHoursField.setBounds(0, 250, 500, 50);
-
-            setTimeEstimate.setVisible(true);
-            timeEstimateField.setVisible(true);
-            assignNewDevelopmentemployee.setVisible(true);
-            setExpectedHours.setVisible(true);
-            expectedHoursField.setVisible(true);
-        } else {
-            setTimeEstimate.setVisible(false);
-            timeEstimateField.setVisible(false);
-            assignNewDevelopmentemployee.setVisible(false);
-            setExpectedHours.setVisible(false);
-            expectedHoursField.setVisible(false);
+        if (this.current_user.getClass() != ProjectLeader.class){
+            panel1.remove(assignNewDevelopmentemployee);
+            panel1.remove(setExpectedHours);
+            panel1.remove(setTimeEstimate);
+            panel1.remove(expectedHoursField);
+            panel1.remove(startDateField);
+            panel1.remove(endDateField);
         }
 
-        registerHours.setBounds(500,0,500,50);
-        registerHoursField.setBounds(0, 0, 500, 50);
-
-        seekAssistance.setBounds(0,50,1000,50);
-        acceptAssistance.setBounds(0,100,1000,50);
         frame.add(panel1);
         frame.setResizable(false);
         frame.setSize(1000,1000);
+
+        frame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == registerHours){
+        if (e.getSource() == assignNewDevelopmentemployee) {
+
+            AssignNewDev assignNewDev = new AssignNewDev(this);
             frame.dispose();
+
+
+        } else if (e.getSource() == seekAssistance) {
+
+            SeekAssistanceForm seekAssistanceForm = new SeekAssistanceForm(this);
+            frame.dispose();
+
         } else if (e.getSource() == acceptAssistance) {
+
+            AcceptAssistanceForm acceptAssistanceForm = new AcceptAssistanceForm(this);
             frame.dispose();
+
+        } else if (e.getSource() == backButton){
+
+            ProjectHomePage projectHomePage = new ProjectHomePage(this);
+            frame.dispose();
+
+        } else if (e.getSource() == registerHours){
+            try {
+                Double hours = Double.parseDouble(registerHoursField.getText());
+                this.activity.addHoursWorked(hours);
+            } catch (Exception exception) {
+                System.out.println("Indtast et decimaltal");
+            }
+            this.infoLabel.setText("Aktivitet: " + this.activity.getName() + ". Hours worked: " + this.activity.getHoursWorked() + " out of " + this.activity.getEstimatedTime()
+                    + ". Start date: " + this.activity.getStartDate() + ". End date: " + this.activity.getEndDate());
+
         } else if (e.getSource() == setTimeEstimate) {
-            frame.dispose();
-        } else if (e.getSource() == assignNewDevelopmentemployee) {
-            frame.dispose();
+
+            if (startDateField.getText() != null){
+                this.activity.setStartDate(startDateField.getText());
+            }
+            if (endDateField.getText() != null){
+                this.activity.setEndDate(endDateField.getText());
+            }
+            this.infoLabel.setText("Aktivitet: " + this.activity.getName() + ". Hours worked: " + this.activity.getHoursWorked() + " out of " + this.activity.getEstimatedTime()
+            + ". Start date: " + this.activity.getStartDate() + ". End date: " + this.activity.getEndDate());
+
         } else if (e.getSource() == setExpectedHours) {
-            frame.dispose();
+
+            try {
+                Double hours = Double.parseDouble(expectedHoursField.getText());
+                this.activity.setEstimatedTime(hours);
+            } catch (Exception exception) {
+                System.out.println("Indtast et decimaltal");
+            }
+            this.infoLabel.setText("Aktivitet: " + this.activity.getName() + ". Hours worked: " + this.activity.getHoursWorked() + " out of " + this.activity.getEstimatedTime()
+                    + ". Start date: " + this.activity.getStartDate() + ". End date: " + this.activity.getEndDate());
         }
 
+    }
+
+    public ArrayList<DevelopmentEmployee> getDevsInProject(){
+        return this.devsInProject;
+    }
+
+    public void addDevToActivity(DevelopmentEmployee dev){
+        this.devsInActivity.add(dev);
+    }
+
+    public Employee getCurrentUser(){
+        return this.current_user;
+    }
+
+    public ArrayList<DevelopmentEmployee> getDevsInActivity(){
+        return this.devsInActivity;
+    }
+
+    public Project getProject(){
+        return this.project;
+    }
+
+    public Activity getActivity(){
+        return this.activity;
+    }
+
+    public ArrayList<Project> getAllProjects(){
+        return this.allProjects;
     }
 }

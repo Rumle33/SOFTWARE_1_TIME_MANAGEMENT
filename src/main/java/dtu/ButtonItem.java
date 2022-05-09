@@ -60,7 +60,7 @@ public class ButtonItem {
         });
     }
 
-    //Knap til at assign projectleader
+    //Knap til at assigne projectleader
     public ButtonItem(ProjectHomePage projectHomePage, DevelopmentEmployee Dev, String name) {
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
@@ -91,7 +91,7 @@ public class ButtonItem {
         });
     }
 
-    //Knap fra UsersPage til ProjectsPage
+    //Knap fra ProjectsPage til UsersPage
     public ButtonItem(ArrayList<DevelopmentEmployee> devs, ArrayList<Project> projects, Project currentProject, String name) {
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
@@ -103,7 +103,36 @@ public class ButtonItem {
         });
     }
 
+    //Knap fra AssignNewDev til ActivityPage
+    public ButtonItem(ActivityPage activityPage, DevelopmentEmployee dev, String name, String buttonType) {
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (buttonType.equals("AssignNewDev")){
+                    activityPage.addDevToActivity(dev);
+                    ActivityPage activityPage1 = new ActivityPage(activityPage);
+                } else if (buttonType.equals("SeekAssistanceForm")){
+                    activityPage.getCurrentUser().seekAssistance(dev, activityPage.getProject(), activityPage.getActivity());
+                    ActivityPage activityPage1 = new ActivityPage(activityPage);
+                }
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
 
+    //Knap fra AssignNewDev til ActivityPage
+    public ButtonItem(ActivityPage activityPage, Activity activity, String name) {
+        this.button = new JButton(name);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                activityPage.getCurrentUser().acceptAssistance(activity);
+                ActivityPage activityPage1 = new ActivityPage(activityPage);
+                System.out.println(button.getText() + " was clicked.");
+            }
+        });
+    }
 
 
 

@@ -85,4 +85,8 @@ public class Project {
     public void setDevsInProject(ArrayList<DevelopmentEmployee> devs){
         this.devsInProject = devs;
     }
+
+    public void setActivities(ArrayList<Activity> activities){
+        this.activities = activities;
+    }
 }

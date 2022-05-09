@@ -1,15 +1,29 @@
-This project can be used as a starting project for your own projects.
+Project management application:
+____________________________________________________________________________________________________________
+Vores applikation er et værktøj til at håndtere projekt management lavet af Anders Just Raae (s214928),
+Chrstian Rumle Kjær Ulsø (s214923) og  Vestergaard, Hákun (s214690)
+____________________________________________________________________________________________________________
+How to use:
+------------------------------------------------------------------------------------------------------------
+Når aplikationen åbnes første gang vises der et vindue af aktive projekter:
+  - Hvis der klikkes på "Add new project" så vil man blive ført til et nyt vindue hvor 
+    man kan indtaste et navn på ens projekt hvorefter man kan klikke på "Add Project" 
+    som vil tilføje et nyt project til ens aktive projekter.
 
-It contains all the necessary libraries to run Cucumber tests, JUnit 5 tests, and JUnit 4 tests. In addition, it contains the reference to the Mockito libraries.
+  - Hvis der klikkes på et oprettet projekt, så vil man blive ført til et nyt vindue. 
+  
+På det næste vindue ses der en liste over developmentemployees der er på projektet:
 
-It is a good idea to change the name of the project. Don't forget to also change the name in the `pom.xml` file. 
+  - Hvis der klikkes på "Add new developmentemployee" så vil man blive ført til et nyt vindue hvor
+    man kan indtaste initialerne(på 4 characters) af en developmentemployee, hvorefter man kan klikke på "Add Employee"
+    som vil tilføje en ny employee til project.
 
-If you use a different version than Java 11, then change the `maven.compiler.source` and `maven.compiler.target` properties in the `pom.xml` file. This should only be needed if you want to use Java 8. The setting Java 11 is compatible with all installed JDK's of version 11 or higher.
+  - Hvis der klikkes på back vil man blive ført tilbage til den foregående side
+    
+På det næste vindue vil man blive ført til userpagen:
+      
+  - Hvor man kan vælge at trykke på "Assign projectleader" hvilket vil gøre
+    den pågældene developmentemployee til projektleder, hvilket vil giver 
+    brugeren mulighed for at tilføje aktiviteter
 
-It can be run through Maven, e.g., `mvn clean test`, Eclipse (run as JUnit test), and ItelliJ. 
-
-In case of Eclipse, if the run configuratiom for the test is set to JUnit 4, all the Cucumber tests and all the JUnit 4 tests are run, but not the JUnit 5 tests. If the setting is set to JUnit 5, then all the tests are run.
-
-For using Cucumber in Eclipse, you want to install the Cucumber plugin. In Eclipse, installing the Cucumber plugin is offered to you once you try to open a file with extension .feature. After the plugin is installled and Eclipse is restarted, you can select the project and then choose in the right button menu "Configure::Convert to Cucumber Project ...". This allows you later in a feature file to jump directly to the corresponding step definitions.
-
-When you use this project as a starting point, please remember to remove those fature files and classes that were just included for demonstration purposes.
+  - Hvis der klikkes på back vil man blive ført tilbage til den foregående side
