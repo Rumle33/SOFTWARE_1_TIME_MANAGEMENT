@@ -53,15 +53,36 @@ public class CreateProjectTest {
         this.Casper.createProject("Project");
     }
 
+    @Given("dev has a project with the same name")
+    public void devHasProjectWithSameName() {
+        this.Jens.createProject("Project");
+    }
+
     @When("project with the same name {string} is created")
     public void projectWithTheSameNameIsCreated(String name) {
         this.Casper.createProject(name);
+    }
+
+    @When("project with the same name {string} is created by dev")
+    public void projectWithTheSameNameIsCreatedByDev(String name) {
+        this.Jens.createProject(name);
     }
 
     @Then("project fails to get created, because project already exists")
     public void projectFailsBecauseProjectAlreadyExists() {
         ArrayList<Project> projects = new ArrayList<>();
         for(Project p : this.Casper.getProjects()) {
+            if(p.getName().equals("Project")) {
+                projects.add(p);
+            }
+        }
+        assertEquals(projects.size(), 1);
+    }
+
+    @Then("project fails to get created, because dev already has project")
+    public void projectFailsBecauseDevHasProject() {
+        ArrayList<Project> projects = new ArrayList<>();
+        for(Project p : this.Jens.getProjects()) {
             if(p.getName().equals("Project")) {
                 projects.add(p);
             }

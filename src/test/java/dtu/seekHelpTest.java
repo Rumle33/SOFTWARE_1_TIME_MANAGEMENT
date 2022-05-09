@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
 public class seekHelpTest {
 
     Project project = new Project("project");
-    ProjectLeader Casper = new ProjectLeader(project, "C");
-    Activity activity = new Activity("04-04-2022", "05-05-2022", "activity", this.Casper.assignedProject);
-    DevelopmentEmployee Jens = new DevelopmentEmployee("J");
+    ProjectLeader Casper = new ProjectLeader(project, "Casp");
+    Activity activity = new Activity("04/04/2022", "05/05/2022", "activity", this.Casper.assignedProject);
+    DevelopmentEmployee Jens = new DevelopmentEmployee("Jesp");
 
     @Given("user is employee")
     public void userIsEmployee(){

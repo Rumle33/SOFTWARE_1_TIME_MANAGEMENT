@@ -49,12 +49,8 @@ public class Project {
         if(activities.size() == 1) {
             return activities.get(0);
         }
-        else if(activities.size() == 0) {
-            System.out.println("There is no activity with this name");
-            return null;
-        }
         else {
-            System.out.println("There are multiple activities with this name");
+            System.out.println("There is no activity with this name");
             return null;
         }
     }

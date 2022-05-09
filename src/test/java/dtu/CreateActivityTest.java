@@ -24,8 +24,8 @@ public class CreateActivityTest {
 
     @When("activity is created and added to project")
     public void createAndAddActivity() {
-        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
-        this.Casper.createActivity("01-01-2022", "31-12-2022", "Activity");
+        this.activity = new Activity("01/01/2022", "31/12/2022", "Activity", this.Casper.assignedProject);
+        this.Casper.createActivity("01/01/2022", "31/12/2022", "Activity");
     }
 
     @Then("activity is available in project")
@@ -35,7 +35,7 @@ public class CreateActivityTest {
 
     @When("projectleader creates activity for user")
     public void projectleaderCreatesPersonalActivity() {
-        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Casper.assignedProject);
+        this.activity = new Activity("01/01/2022", "31/12/2022", "Activity", this.Casper.assignedProject);
         this.activity.setPersonal(true);
         this.Jens = new DevelopmentEmployee("jens");
         this.Casper.createPersonalActivity(this.Jens, this.activity);
@@ -65,7 +65,7 @@ public class CreateActivityTest {
 
     @When("personal activity is created")
     public void createPersonalActivity() {
-        this.activity = new Activity("01-01-2022", "31-12-2022", "Activity", this.Jens.getProject("Project"));
+        this.activity = new Activity("01/01/2022", "31/12/2022", "Activity", this.Jens.getProject("Project"));
         this.activity.setPersonal(true);
         this.Jens.addActivity(this.activity);
     }

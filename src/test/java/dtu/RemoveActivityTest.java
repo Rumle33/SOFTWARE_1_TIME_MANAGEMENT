@@ -37,4 +37,15 @@ public class RemoveActivityTest {
         assertEquals(this.Jens.active_activities.size(), 0);
         assertEquals(this.Casper.assignedProject.getActivities().size(), 0);
     }
+
+    @Given("activity with the same name does not exist in project")
+    public void noActivityWithThatName() {
+        this.Casper.createActivity("01/01/2022", "01/01/2022", "Not activity");
+        this.activity = new Activity("01/01/2022", "01/01/2022", "Not activity", new Project("test"));
+    }
+
+    @Then("nothing changed")
+    public void noChanges() {
+        assertEquals(this.Casper.assignedProject.getActivity("Not activity").getName(), this.activity.getName());
+    }
 }

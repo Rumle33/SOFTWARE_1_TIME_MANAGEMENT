@@ -11,10 +11,10 @@ import static org.junit.Assert.*;
 
 public class assignWorkTest {
 
-    private DevelopmentEmployee Jens = new DevelopmentEmployee("j");
+    private DevelopmentEmployee Jens = new DevelopmentEmployee("Jens");
     private Project project = new Project("project");
-    private ProjectLeader Casper = new ProjectLeader(project,"c");
-    private Activity activity = new Activity("29-03-2022", "20-06-2022", "activity", project);
+    private ProjectLeader Casper = new ProjectLeader(project,"Casp");
+    private Activity activity = new Activity("29/03/2022", "20/06/2022", "activity", project);
     private ErrorMessageHolder errorMessageHolder;
 
     //Constructor
