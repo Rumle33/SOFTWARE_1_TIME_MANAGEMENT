@@ -17,11 +17,12 @@ public class ProjectsPage implements Runnable {
     private Object[] button_list;
 
     public ProjectsPage() {
-
+        this.setup();
     }
 
     public ProjectsPage(ArrayList<Project> new_projects){
         this.active_projects = new_projects;
+        this.setup();
     }
 
     public static void main(String[] args) {
@@ -35,7 +36,7 @@ public class ProjectsPage implements Runnable {
 
     public void setup(){
         for(Project project : this.active_projects){
-            ButtonItem button = new ButtonItem(project, project.getName());
+            ButtonItem button = new ButtonItem(this, project, project.getName());
             this.project_buttons.add(button);
         }
 

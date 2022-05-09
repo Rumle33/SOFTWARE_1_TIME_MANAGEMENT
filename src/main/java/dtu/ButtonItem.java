@@ -23,13 +23,13 @@ public class ButtonItem {
     }
 
     // Knap fra ProjectsPage til UsersPage
-    public ButtonItem(Project project, String name) {
+    public ButtonItem(ProjectsPage projectsPage, Project project, String name) {
 
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UsersPage usersPage = new UsersPage(project);
+                UsersPage usersPage = new UsersPage(projectsPage.getProjects(), project);
                 System.out.println(button.getText() + " was clicked.");
             }
         });
