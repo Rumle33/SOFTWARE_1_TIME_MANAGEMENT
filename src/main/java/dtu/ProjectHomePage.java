@@ -1,3 +1,5 @@
+//Hákun
+
 package dtu;
 
 import javax.swing.*;
@@ -154,6 +156,7 @@ public class ProjectHomePage{
     }
 
 
+    //Denne metode tjekker om knapper bliver trykket på
     private void clickButtonAt(Point point)
     {
         int index = buttonlist_visual.locationToIndex(point);

@@ -1,5 +1,6 @@
+//Christian
+
 package dtu;
-import io.cucumber.java.bs.A;
 
 import java.util.ArrayList;
 
@@ -64,6 +65,7 @@ public class Project {
         dev.assignToProject(this);
     }
 
+    //Christian
     public void makeDevProjectleader(DevelopmentEmployee dev, Project project) throws Exception {
         String Initials = dev.getInitials();
         if (project.getProjectLeader() == null) {

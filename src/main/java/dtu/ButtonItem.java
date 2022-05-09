@@ -1,3 +1,5 @@
+//Anders
+
 package dtu;
 
 import javax.swing.*;
@@ -5,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+
+//Denne klasse virker som knapper mellem siderne. Den findes fordi man ikke kan få jbuttons til at være i en liste som vi gerne ville have dem
 public class ButtonItem {
 
     private JButton button;

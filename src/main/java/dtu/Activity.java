@@ -1,3 +1,5 @@
+//Hákun
+
 package dtu;
 
 import org.apache.commons.lang3.StringUtils;
@@ -77,7 +79,7 @@ public class Activity {
             }
         }
     }
-
+    // method sets start date
     public void setStartDate(String start_date) {
         Calendar start_temp = this.setDate(start_date);
         if (start_temp != null){
@@ -85,6 +87,7 @@ public class Activity {
         }
     }
 
+    // method sets end date
     public void setEndDate(String end_date) {
         Calendar end_temp = this.setDate(end_date);
         if (end_temp != null)  {
@@ -114,6 +117,7 @@ public class Activity {
 
     // Workhours add & getter
 
+    // method that register workhours
     public void addHoursWorked(double hours) throws InputMismatchException {
         try {
             hours_worked += hours;

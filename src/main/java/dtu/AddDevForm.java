@@ -34,6 +34,8 @@ public class AddDevForm implements ActionListener {
 
         frame.setVisible(true);
     }
+
+    //Denne metode tjekker om knapper bliver trykket på
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == add_developer) {

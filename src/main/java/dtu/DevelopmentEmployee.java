@@ -1,5 +1,6 @@
+//Christian
+
 package dtu;
-import io.cucumber.java.bs.A;
 
 import java.util.ArrayList;
 
@@ -14,10 +15,12 @@ public class DevelopmentEmployee extends Employee {
         super(initials);
     }
 
+
+    //metode til at lave projekt
     @Override
     protected void createProject(String name) {
         boolean sameName = false;
-        for(Project p : this.getProjects()) {
+        for(Project p : this.getProjects()) { //Tjek for samme navn
             if(p.getName().equals(name)) {
                 sameName = true;
                 break;
@@ -30,7 +33,7 @@ public class DevelopmentEmployee extends Employee {
             this.active_projects.add(new Project(name));
         }
     }
-
+    // metode til at registrer hvor meget man har arbejdet
     @Override
     protected void registerHoursWorked(double hours, Activity activity) {
         this.hours_worked += hours;
@@ -67,6 +70,7 @@ public class DevelopmentEmployee extends Employee {
         this.assisting_activities.add(activity);
     }
 
+    // metode til at søge assistance i det pågældene projekt
     @Override
     protected void seekAssistance(Employee employee, Project project, Activity activity) {
         if (employee.getAvailable() && (employee.getProjects().contains(project) && this.active_projects.contains(project))
@@ -74,7 +78,7 @@ public class DevelopmentEmployee extends Employee {
             employee.addAssistingActivity(activity);
         }
     }
-
+    // metode til at acceptere assistance i det pågældene projekt
     @Override
     protected void acceptAssistance(Activity activity) {
         try{
@@ -92,7 +96,7 @@ public class DevelopmentEmployee extends Employee {
             System.out.println("Aktiviteten du forsøger at assistere på, findes ikke i dine anmodninger" + e);
         }
     }
-
+// metode til at afvise assistance
     @Override
     protected void denyAssistance(Activity activity) {
         try{
@@ -102,11 +106,13 @@ public class DevelopmentEmployee extends Employee {
         }
     }
 
+    // metode assigner projekt
     @Override
     protected void assignToProject(Project project) {
         this.active_projects.add(project);
     }
 
+    // metode til at fjerne project
     @Override
     protected void removeFromProject(Project project) {
         this.active_projects.remove(project);
@@ -115,11 +121,11 @@ public class DevelopmentEmployee extends Employee {
     protected String getInitials(){
         return super.getInitials();
     }
-
+    // laver activity
     protected void addActivity(Activity activity) {
         this.active_activities.add(activity);
     }
-
+// fjerner aktivitet
     protected void removeFromActivity(Activity activity) {
         this.active_activities.remove(activity);
     }

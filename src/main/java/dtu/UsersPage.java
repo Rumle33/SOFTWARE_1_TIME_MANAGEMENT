@@ -1,9 +1,9 @@
+//Christian
+
 package dtu;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -96,6 +96,7 @@ public class UsersPage {
         frame.setVisible(true);
     }
 
+    //Denne metode tjekker om knapper bliver trykket på
     private void clickButtonAt(Point point)
     {
         int index = list1.locationToIndex(point);

@@ -1,3 +1,5 @@
+//Anders
+
 package dtu;
 
 import javax.swing.*;
@@ -60,6 +62,7 @@ public class ActivityPage implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
 
+        //Fjern nogle knapper hvis ikke brugeren er projectleader
         if (this.current_user.getClass() != ProjectLeader.class){
             panel1.remove(assignNewDevelopmentemployee);
             panel1.remove(setExpectedHours);
@@ -76,6 +79,7 @@ public class ActivityPage implements ActionListener {
         frame.setVisible(true);
     }
 
+    //Styrer hvad der sker når der bliver trykket på en knap
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == assignNewDevelopmentemployee) {

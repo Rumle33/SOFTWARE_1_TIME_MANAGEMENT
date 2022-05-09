@@ -1,3 +1,5 @@
+//Hákun
+
 package dtu;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ abstract public class Employee {
     abstract protected void setAvailable(boolean available);
 
     abstract protected ArrayList<Activity> getActivities();
+
 
     protected Activity getActivity(String name, String projectName) {
         ArrayList<Activity> activities = new ArrayList<>();

@@ -1,6 +1,8 @@
-package dtu;
-import dtu.Employee;
+//Anders
 
+package dtu;
+
+import java.lang.invoke.DelegatingMethodHandle$Holder;
 import java.util.ArrayList;
 
 public class ProjectLeader extends Employee {
@@ -15,6 +17,7 @@ public class ProjectLeader extends Employee {
         this.assignedProject = assignedProject;
     }
 
+    // meotde der tager en string til at at lave et projekt
     @Override
     protected void createProject(String name) {
         boolean sameName = false;
@@ -31,7 +34,7 @@ public class ProjectLeader extends Employee {
             this.active_projects.add(new Project(name));
         }
     }
-
+    // metode fjernet dev fra projekt
     protected void removeProject() {
         ArrayList<DevelopmentEmployee> devsInProject = this.assignedProject.devsInProject;
         for(DevelopmentEmployee dev : devsInProject) {
@@ -40,7 +43,7 @@ public class ProjectLeader extends Employee {
         devsInProject.clear();
         this.removeFromProject(this.assignedProject);
     }
-
+    // metode til at registerer antal timer arbejdet
     @Override
     protected void registerHoursWorked(double time, Activity activity) {
         this.hours_worked += time;
@@ -102,7 +105,7 @@ public class ProjectLeader extends Employee {
             System.out.println("Aktiviteten du forsøger at assistere på, findes ikke i dine anmodninger" + e);
         }
     }
-
+    // metode der afviser assistance
     @Override
     protected void denyAssistance(Activity activity) {
         try{
@@ -112,11 +115,14 @@ public class ProjectLeader extends Employee {
         }
     }
 
+    
+    
     @Override
     protected void assignToProject(Project project) {
         this.active_projects.add(project);
     }
-
+    
+    // metode til at fjerne et projekt 
     @Override
     protected void removeFromProject(Project project) {
         this.assignedProject = null;

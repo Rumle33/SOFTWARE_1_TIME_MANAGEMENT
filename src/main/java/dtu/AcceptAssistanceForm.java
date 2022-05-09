@@ -1,3 +1,5 @@
+//Anders
+
 package dtu;
 
 import javax.swing.*;
@@ -21,11 +23,13 @@ public class AcceptAssistanceForm {
     }
 
     public void setup(){
+        //Lav liste med knapper
         for(Activity activity : this.activityPage.getCurrentUser().getAssistingActivities()){
             ButtonItem button = new ButtonItem(this.activityPage, activity, activity.getName());
             this.activity_buttons.add(button);
         }
 
+        //Insæt listen af knapper
         buttonlist_visual = new JList(activity_buttons.toArray());
         buttonlist_visual.setCellRenderer(new ButtonListRenderer());
         buttonlist_visual.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -40,6 +44,7 @@ public class AcceptAssistanceForm {
         });
         frame = new JFrame("Devs in project");
 
+        //Sæt framen op
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.scrollPane = new JScrollPane(buttonlist_visual);
         frame.getContentPane().add(this.scrollPane);
@@ -49,6 +54,7 @@ public class AcceptAssistanceForm {
 
     }
 
+    //Denne virker som actionlistener til knapperne
     private void clickButtonAt(Point point)
     {
         int index = buttonlist_visual.locationToIndex(point);

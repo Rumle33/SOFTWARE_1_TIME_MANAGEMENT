@@ -1,3 +1,5 @@
+//Christian
+
 package dtu;
 
 import javax.swing.*;
@@ -56,6 +58,7 @@ public class Make_dev_Projectleader {
             frame.setVisible(true);
         }
 
+    //Denne metode tjekker om knapper bliver trykket på
         private void clickButtonAt(Point point)
         {
             int index = list1.locationToIndex(point);

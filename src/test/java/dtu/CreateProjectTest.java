@@ -1,4 +1,4 @@
-// Anders
+// Hákun
 
 package dtu;
 
