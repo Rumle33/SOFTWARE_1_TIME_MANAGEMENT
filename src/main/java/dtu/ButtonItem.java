@@ -91,7 +91,7 @@ public class ButtonItem {
         });
     }
 
-    //Knap fra UsersPage til ProjectsPage
+    //Knap fra ProjectsPage til UsersPage
     public ButtonItem(ArrayList<DevelopmentEmployee> devs, ArrayList<Project> projects, Project currentProject, String name) {
         this.button = new JButton(name);
         button.addActionListener(new ActionListener() {

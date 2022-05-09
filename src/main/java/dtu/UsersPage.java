@@ -41,7 +41,6 @@ public class UsersPage {
 
     public void setup(){
 
-
         //Laver en liste af knapper med medarbejdere
         for(DevelopmentEmployee dev : this.current_project.getDevsInProjects()){
             ButtonItem button = new ButtonItem(this.allProjects, dev, dev.getInitials(), this.current_project);
@@ -50,14 +49,24 @@ public class UsersPage {
 
 
         //Tilføjer en knap til at tilføje nye medarbejdere i toppen af listen
-        int array_length = ButtonArrayList.size() + 1; // + 1 fordi back button skal være der som den sidste knap
-        Object[] button_list = new Object[array_length + 1]; // + 1 fordi add employee skal være der som første knap
-        button_list[0] = add_emp;
-        for (int i = 1; i <= array_length; i++) {
-            if(i == array_length){
-                button_list[i] = backButton;
-            } else {
-            button_list[i] = ButtonArrayList.get(i-1);
+        Object[] button_list;
+        if (this.current_project.getProjectLeader() == null){
+            int array_length = ButtonArrayList.size() + 2; // + 1 for hver knap der tilføjes
+            button_list = new Object[array_length];
+            button_list[0] = backButton;
+            button_list[1] = add_emp;
+            for (int i = 2; i < array_length; i++) {
+                button_list[i] = ButtonArrayList.get(i-2);
+            }
+        } else {
+            ButtonItem projectLeaderButton = new ButtonItem(this.allProjects, this.current_project.getProjectLeader(), this.current_project.getProjectLeader().getInitials(), this.current_project);
+            int array_length = ButtonArrayList.size() + 3; // + 1 for hver knap der tilføjes
+            button_list = new Object[array_length];
+            button_list[0] = backButton;
+            button_list[1] = add_emp;
+            button_list[2] = projectLeaderButton;
+            for (int i = 3; i < array_length; i++) {
+                button_list[i] = ButtonArrayList.get(i - 3);
             }
         }
 
@@ -80,7 +89,7 @@ public class UsersPage {
         JScrollPane scroll_pane = new JScrollPane(list1);
         scroll_pane.setPreferredSize(new Dimension(500,1000));
         frame.getContentPane().add(scroll_pane);
-        frame.pack(); //Denne her laver fejl når man instantierer klassen fra AddDevForm
+        frame.pack();
         frame.setResizable(false);
         frame.setSize(1000,1000);
         frame.add(JpanelFORM);

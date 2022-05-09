@@ -66,6 +66,7 @@ public class ActivityPage implements ActionListener {
             panel1.remove(setTimeEstimate);
             panel1.remove(expectedHoursField);
             panel1.remove(startDateField);
+            panel1.remove(endDateField);
         }
 
         frame.add(panel1);
