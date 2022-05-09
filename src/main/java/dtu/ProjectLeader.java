@@ -21,6 +21,7 @@ public class ProjectLeader extends Employee {
         for(Project p : this.getProjects()) {
             if(p.getName().equals(name)) {
                 sameName = true;
+                break;
             }
         }
         if(sameName) {
@@ -36,10 +37,8 @@ public class ProjectLeader extends Employee {
         for(DevelopmentEmployee dev : devsInProject) {
             dev.removeFromProject(this.assignedProject);
         }
-        for(int i = devsInProject.size() - 1; i > -1; i--) {
-            devsInProject.remove(i);
-        }
-        this.assignedProject = null;
+        devsInProject.clear();
+        this.removeFromProject(this.assignedProject);
     }
 
     @Override
@@ -134,6 +133,7 @@ public class ProjectLeader extends Employee {
         for(Activity a : this.assignedProject.getActivities()) {
             if(a.getName().equals(activity_name)) {
                 sameName = true;
+                break;
             }
         }
         if(sameName) {

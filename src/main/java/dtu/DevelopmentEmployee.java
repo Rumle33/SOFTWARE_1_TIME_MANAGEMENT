@@ -20,6 +20,7 @@ public class DevelopmentEmployee extends Employee {
         for(Project p : this.getProjects()) {
             if(p.getName().equals(name)) {
                 sameName = true;
+                break;
             }
         }
         if(sameName) {

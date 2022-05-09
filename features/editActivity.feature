@@ -1,3 +1,5 @@
+#Hákun
+
 Feature: edit start and deadline activity
   Scenario: user successfully sets start and deadline for activity
     Given user is logged in as projectleader
