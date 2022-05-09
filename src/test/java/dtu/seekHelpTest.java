@@ -47,13 +47,26 @@ public class seekHelpTest {
     public void userIsInSameProject(){
         this.Casper.assignToProject(project);
         this.Jens.assignToProject(project);
-        assertTrue(this.Jens.getProjects().contains(project) || this.Casper.getProjects().contains(project));
+        assertTrue(this.Jens.getProjects().contains(project) && this.Casper.getProjects().contains(project));
     }
 
     @Given("co-worker requested is not assigned to same project")
     public void userIsNotInSameProject(){
         this.Jens.removeFromProject(project);
-        assertFalse(this.Jens.getProjects().contains(project) || this.Casper.getProjects().contains(project));
+        assertFalse(this.Jens.getProjects().contains(project) && this.Casper.getProjects().contains(project));
+    }
+
+    @Given("projectleader has activity assigned")
+    public void projectleaderHasActivityAssigned() {
+        this.Casper.addActivity(this.activity);
+        assertFalse("Tjekker om listen af aktiviteter er tom",
+                this.Casper.getActivities().isEmpty());
+    }
+
+    @Given("developmentemployee requested is available")
+    public void devRequestedIsAvailable() {
+        this.Jens.setAvailable(true);
+        assertTrue(this.Jens.getAvailable());
     }
 
     @When("user asks for help")
@@ -71,6 +84,21 @@ public class seekHelpTest {
         this.Casper.denyAssistance(this.activity);
     }
 
+    @When("projectleader asks for help")
+    public void projectleaderAsksForHelp() {
+        this.Casper.seekAssistance(this.Jens, this.project, this.activity);
+    }
+
+    @When("developmentemployee requested accepts")
+    public void devAccepts() {
+        this.Jens.acceptAssistance(this.activity);
+    }
+
+    @When("developmentemployee requested denies")
+    public void devDenies() {
+        this.Jens.denyAssistance(this.activity);
+    }
+
     @Then("co-worker is not put on the requested activity")
     public void coworkerNotOnActivity(){
         assertFalse(this.Casper.getActivities().contains(this.activity));
@@ -86,4 +114,18 @@ public class seekHelpTest {
         assertFalse(this.Casper.getAssistingActivities().contains(this.activity));
     }
 
+    @Then("developmentemployee is not requested")
+    public void projectleadersRequestDenied(){
+        assertFalse(this.Jens.getAssistingActivities().contains(this.activity));
+    }
+
+    @Then("developmentemployee helps with the activity")
+    public void devIsPutOnActivity() {
+        assertTrue(this.Jens.getActivities().contains(this.activity));
+    }
+
+    @Then("developmentemployee is not put on activity")
+    public void devIsNotPutOnActivity() {
+        assertFalse(this.Jens.getActivities().contains(this.activity));
+    }
 }

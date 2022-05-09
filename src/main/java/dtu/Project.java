@@ -67,9 +67,9 @@ public class Project {
     public void makeDevProjectleader(DevelopmentEmployee dev, Project project) throws Exception {
         String Initials = dev.getInitials();
         if (project.getProjectLeader() == null) {
-            this.projectleader = new ProjectLeader(this, Initials);
-            if (devsInProject.contains(dev)) {
-                devsInProject.remove(dev);
+            this.setProjectleader(new ProjectLeader(this, Initials));
+            if (this.getDevsInProjects().contains(dev)) {
+                this.getDevsInProjects().remove(dev);
 
             } else {
                 throw new Exception("Projectleader with the same name already exist ");
